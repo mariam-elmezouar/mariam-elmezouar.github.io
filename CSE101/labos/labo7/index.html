@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    figure {
+      
+      padding: 4px;
+      margin: auto;
+    }
+
+    figcaption {
+      color: black;
+      font-style: italic;
+      padding: 2px;
+      text-align: center;
+    }
+    </style>
+  <title>GEF330 Labo 7</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Custom fonts for this theme -->
+  <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="../../../css/freelancer.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="../../index.html">GEF 330</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+        type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#laboratoires">Laboratoires</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#horaire">Horaire</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <h2 class="mt-4">Labo 7: Conception d un reseau d entreprise</h2>
+    <h5 class="subtitle">GEF330 hiver 2021</h5>
+    
+    <h2 id="objectifs">Objectifs</h2>
+
+    <p>Le but de ce labo de conception au niveau de l’entreprise (EDX - <em>Entreprise Design Exercise</em>) est de vous demander :</p>
+    <ul>
+      <li>d’effectuer une conception non-dirigée sur un problème compliqué et réaliste.</li>
+      <li>de faire la conception, la construction et le testage d’un réseau de niveau d’entreprise qui rencontre les exigences données, en respectant des limitations de ressources et d’autres contraintes.</li>
+    </ul>
+
+    <p>Lorsque vous parcourez les exigences du lab, ne paniquez pas ! Oui, on vous en demande beaucoup, mais ces serveurs ont déjà été mis en place pour vous, vous n’avez qu’à vous occuper de leur mise en réseau.</p>
+
+    <h2 id="situation">Situation</h2>
+
+    <p>Votre équipe doit fournir du support d’ingénierie de réseau informatique à une force opérationnelle déployée. La force opérationnelle de coalition (FOC), où chaque équipe représente une force opérationnelle nationale, sera déployé dans le cours d’une opération de restauration de la paix sanctionnée par les NU dans un pays au bord de la guerre civile. Votre force opérationnelle nationale (FON) fera partie d’une coalition internationale. La langue de communication de la FOC sera l’anglais.</p>
+
+    <p>Pour supporter les opérations de la FOC, chaque FON connectera son réseau informatique déployé pour créer une infrastructure de coalition pour supporter l’administration et la planification des forces déployées. Vous devez faire la conception et la construction d’un réseau pour supporter votre FON et connecté celui-ci aux autres nations dans un réseau au niveau de la coalition.</p>
+
+    <p>Bien que chaque FON est déployée pour collaborer et participer à des opérations interarmées, votre nation n’a pas confiance complète en ses partenaires des autres nations. Vous devez collaborer avec les autres FON d’une part, tout en protégeant votre réseau et vos ressources de ces partenaires.</p>
+
+    <hr />
+    <h2 id="spécifications-dexigences-réseau">Spécifications d’exigences réseau</h2>
+
+    <p>La FON doit fournir les facilités/services suivants. Les exigences de sécurités pour ces facilités/services sont considérées essentielles (elles doivent être atteintes).</p>
+
+    <h3 id="exigences-générales">Exigences générales</h3>
+
+    <ul>
+      <li>Chaque FON se connectera au commutateur principal de la coalition (<em>Coalition Main Switch</em>) dans le sous-réseau <code class="highlighter-rouge">10.12.0.0/16</code></li>
+      <li>Chaque FON recevra 2 adresses IP sur ce sous-réseau :
+        <ul>
+          <li>Votre passerelle principale (<em>Main Gateway</em>) au <code class="highlighter-rouge">10.12.0.X</code> (où ‘X’ est 100+x)</li>
+          <li>Votre serveur web (<em>Web Server</em>) au <code class="highlighter-rouge">10.12.0.Y</code> (où ‘Y’ est 200+x)</li>
+        </ul>
+      </li>
+      <li>Votre réseau de FON utilisera une plage d’adresses privée (c.a.d. qu’aucune route à ces adresses n’existe des autres partenaires de la FOC).
+        <ul>
+          <li>Tout vos sous réseaux de FON configurés doivent être comprises dans la plage d’adresses <code class="highlighter-rouge">192.168.0.0/24</code></li>
+          <li>Vous pouvez sous-diviser cette plage d’adresse comme vous le voulez pour répondre aux exigences.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3 id="service-web">Service Web</h3>
+
+    <p>Vous devez fournir un serveur Web (<em>Web Server</em>) qui représente un point d’accès pour l’information de la FOC. Le service peut être utiliser par les utilisateurs de votre FON et par ceux des autres membres de la FOC. Le <em>Web Server</em> sert d’interface pour la présentation de l’information que votre FON maintien sur un <em>Operations File Server</em>.</p>
+    <ul>
+      <li>Vous devez supporter un hôte pour un <em>Web Server</em> offrant un service HTTP sur le port <code class="highlighter-rouge">TCP 80</code>.
+        <ul>
+          <li>Les utilisateurs des autres FON de la FOC doivent avoir accès au service HTTP en se connectant directement à votre <em>Web Server</em>.</li>
+          <li>Les utilisateurs de votre FON doivent avoir accès au service HTTP en se connectant de par le <em>Web Proxy Server</em>.</li>
+        </ul>
+      </li>
+      <li>Le <em>Web Server</em> doit pouvoir se connecter au <em>Operations File Server</em> que vous maintenez sur le réseau au port <code class="highlighter-rouge">TCP 22</code>.</li>
+      <li>Le <em>Web Server</em> ne peux pas initier de connections à tout poste de travail ou serveur, sauf le <em>Operations File Server</em> ou le <em>Web Proxy Server</em>.</li>
+    </ul>
+
+    <h3 id="services-mandataires-http">Services mandataires HTTP</h3>
+
+    <p>Votre réseau FON doit fournir un service mandataire HTTP (<em>Web Proxy Server</em>) qui permettra aux utilisateurs de votre FON d’avoir accès au service Web de la FOC, comprenant le <em>Web Server</em> de votre FON et ceux des autres FON.</p>
+
+    <ul>
+      <li>Vous devez supporter un hôte pour un <em>Web Proxy Server</em> offrant un service mandataire HTTP au port TCP 3128.</li>
+      <li>Aucun hôte des autres FON de la FOC ne doit pouvoir initier une connexion au <em>Web Proxy Server</em>.</li>
+      <li>Le <em>Web Proxy Server</em> ne doit pas pouvoir initier une connexion à un <em>User Workstation</em> ou serveur de votre réseau FON autre que le <em>Web Server</em> de la FON.</li>
+      <li>Les <em>User Workstation</em>s de votre FON peuvent se connecter au port TCP 3128 du <em>Web Proxy Server</em> pour demander une page Web qui existe dans le réseau de la FOC. Plus précisément, ceci veut dire que toutes les requêtes HTTP faites pare les utilisateurs de toute FON pour obtenir une page (GET) doivent être dirigée au <em>Web Proxy Server</em> au port TCP 3128.</li>
+      <li>Lorsqu’une page Web est demandée, le Proxy <em>Web Server</em> initiera une connexion TCP au port 80 du <em>Web Server</em> de la FON appropriée et demandera la page Web de la part du <em>User Workstation</em> ayant fait la requête initiale.</li>
+    </ul>
+
+    <h3 id="service-de-fichiers-opérationnel">Service de fichiers opérationnel</h3>
+
+    <p>Le dépôt principal d’information que vous partagez avec la FOC est stocké dans le serveur de fichier opérationnel (<em>Operations File Server</em>). Les utilisateurs de votre FON maintiennent l’information du <em>Operations File Server</em> à jour. Le <em>Web Server</em> de votre FON accède également le <em>Operations File Server</em> pour disséminer l’information aux utilisateurs de la FOC.</p>
+
+    <ul>
+      <li>Vous devez supporter un hôte pour un <em>Operations File Server</em> offrant un service SSH au port TCP 22.
+        <ul>
+          <li>Le service SSH doit être disponible pour tout <em>User Workstation</em> de votre FON.</li>
+        </ul>
+      </li>
+      <li>Le <em>Operations File Server</em> ne doit pas pouvoir initier de connexion avec un serveur ou avec les <em>Admin Workstations</em>.</li>
+      <li>Le <em>Web Server</em> doit pouvoir se connecter au <em>Operations File Server</em> au port TCP 22.</li>
+      <li>Les utilisateurs des autres FON ne doivent pas pouvoir initier de connexion au <em>Operations File Server</em>. Vous noterez par contre, que la fuite de l’information qui est située sur le <em>Operations File Server</em> ne peut pas endommager vos intérêts nationaux.</li>
+    </ul>
+
+    <h3 id="service-de-fichiers-restreint">Service de fichiers restreint</h3>
+
+    <p>Le dépôt principal d’information nationale protégée est le serveur de fichiers restreint (<em>Restricted File Server</em>). Les utilisateurs de votre FON utilisent l’information du <em>Restricted File Server</em> et tiennent celle-ci à jour.</p>
+    <ul>
+      <li>Vous devez supporter un hôte pour un <em>Restricted File Server</em> offrant un service SSH au port TCP 22.
+        <ul>
+          <li>Le service SSH doit être disponible pour tout <em>User Workstation</em> de votre FON.</li>
+        </ul>
+      </li>
+      <li>Le <em>Restricted File Server</em> ne doit pas pouvoir initier de connexions à tout autre serveur or poste de travail.</li>
+      <li>Les <em>User Workstation</em>s de votre FON ne doivent pas pouvoir initier de connexions avec le <em>Restricted File Server</em> à un port autre que le TCP 22.</li>
+      <li>Les utilisateurs des autres FON ne doivent pas avoir accès à ce <em>Restricted File Server</em>; une fuite de l’information protégée y résidant entraînerait des dommages à vos intérêts nationaux.</li>
+    </ul>
+
+    <h3 id="postes-de-travail-utilisateurs">Postes de travail utilisateurs</h3>
+
+    <p>Les utilisateurs de votre FON, que ce soit des officiers d’état-major, des analystes, des opérateurs, etc., utiliseront des poste de travail pour utilisateurs (<em>User Workstation</em>s).</p>
+
+    <ul>
+      <li>Les <em>User Workstation</em>s seront des hôtes Linux fournissant une suite d’outils de bureau.</li>
+      <li>Aucun hôte des autres FON ne peut initier de connexion aux <em>User Workstation</em>s.</li>
+      <li>Les <em>User Workstation</em>s ne doivent pas pouvoir initier de connexions à un hôte sur une autre FON.</li>
+      <li>Les <em>User Workstation</em>s peuvent demander des pages Web situées les serveurs HTTP de la FOC en utilisant le <em>Web Proxy Server</em>. Plus précisément, toutes demande de page Web doivent être acheminée au <em>Web Proxy Server</em> au port TCP 3128; le <em>Web Proxy Server</em> fera la demande de page au <em>Web Server</em> approprié de la part du <em>User Workstation</em>.</li>
+      <li>Les <em>User Workstation</em>s peuvent se connecter au <em>Operations File Server</em> au port TCP 22.</li>
+      <li>Les <em>User Workstation</em> peuvent se connecter au <em>Restricted File Server</em> au port TCP 22.</li>
+      <li>Votre réseau doit supporter jusqu’à 80 <em>User Workstation</em>s.</li>
+    </ul>
+
+    <h3 id="postes-de-travail-administratifs">Postes de travail administratifs</h3>
+
+    <p>Les administrateurs réseau de votre FON seront équipés de postes de travail administratifs (<em>Admin Workstations</em>). Ils utiliseront ceux-ci pour administrer l’infrastructure réseau de votre FON.</p>
+
+    <ul>
+      <li>Les <em>Admin Workstations</em> seront des hôtes Linux.</li>
+      <li>Aucun hôte des autres FON ne doit pouvoir initier de connexion aux <em>Admin Workstations</em>.</li>
+      <li>Les <em>Admin Workstations</em> ne doivent pas pouvoir initier de connexion à aucun hôte des autres FON.</li>
+      <li>Les <em>Admin Workstations</em> doivent pouvoir initier une connexion SSH avec les coupe-feux (<em>Firewalls</em>) de votre FON pour les gérer.</li>
+      <li>Les <em>Admin Workstations</em> doivent pouvoir initier une connexion SSH avec tous les postes de travails et serveurs de votre FON sur le port TCP 22, incluant:
+        <ul>
+          <li><em>Web Server</em>,</li>
+          <li><em>Web Proxy Server</em>,</li>
+          <li><em>Operations File Server</em>,</li>
+          <li><em>Restricted File Server</em>, et</li>
+          <li><em>Firewalls</em>.</li>
+        </ul>
+      </li>
+      <li>Les hôtes  suivant ne doivent pas se connecter aux <em>Admin Workstations</em> :
+        <ul>
+          <li>n’importe quel hôte d’une autre FON,</li>
+          <li>les serveurs de votre FON, ou le <em>User Workstation</em>s</li>
+        </ul>
+      </li>
+      <li>Votre réseau doit pouvoir supporter jusqu’à 5 <em>Admin Workstations</em>.</li>
+    </ul>
+
+    <p>Les <em>Admin Workstations</em> doivent aussi avoir un adaptateur <strong>External</strong>. Cet adaptateur doit se voir assigner l’adresse IP <code class="highlighter-rouge">10.12.0.z/16</code> (où ‘Z’ = 150 + x); cet adaptateur sera utilisé pour valider vos configurations réseau.</p>
+
+    <p>Afin de faciliter le test pratique de votre réseau ainsi que pour vous faciliter un peu la vie, vous devez configurer votre <em>Admin Workstation</em> pour pouvoir vous connecter à toutes vos VMs via une clef SSH. Cela permet de vous connecter sans avoir à entrer systématiquement un mot de passe. Executez les commanders suivantes sur votre <em>Admin Workstation</em> :</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">ssh-keygen</code>
+        <ul>
+          <li>Acceptez le dossier par défaut et utiliser un mot de passe vide.</li>
+          <li>Ne Faites cette étape <em>qu’une fois</em>.</li>
+        </ul>
+      </li>
+      <li><code class="highlighter-rouge">ssh-copy-id -i ~/.ssh/id_rsa.pub gef330@&lt;IP de l'hôte&gt;</code>
+        <ul>
+          <li>Testez pour être certain que ça marche.
+            <ul>
+              <li><code class="highlighter-rouge">ssh gef330@&lt;IP de l'hôte&gt;</code></li>
+            </ul>
+          </li>
+          <li>Répétez cette étape <em>pour chaque machine</em> que vous devez accèder via SSH.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong>NOTEZ BIEN</strong> qu’il est absolument crucial que vos <em>Admin Workstations</em> soient bien configurées. Vous ne recevrez aucune note si le serveur central ne peut pas se connecter aux <em>Admin Workstations</em> avec SSH au port TCP 22; vous ne recevrez aucune note pour les portions de votre réseau où les <em>Admin Workstations</em> ne peuvent pas se connecter aux autres postes de travail et serveur avec SSH au port TCP 22.</p>
+
+    <hr />
+    <h2 id="tâches">Tâches</h2>
+
+    <p>Vous devez faire la conception et la construction du réseau requis dans le CNSl (S4112) ou bien l'environnement virtuel équivalent.</p>
+
+    <p>Vous avez accès à:</p>
+    <ul>
+      <li>L’infrastructure principale du labo (c.à.d. le réseau <code class="highlighter-rouge">10.12.0.0/16</code> le concentrateur principal, etc.)</li>
+      <li>Vous devez bâtir votre réseau FON dans l’environnement VMWare; notez que vous utiliserez un compte différent pour l’EDX :
+        <ul> 
+          <li> Les utilisateurs sur le campus utiliseront un nouveau compte d'utilisateur pour cet exercice de conception d'entreprise (EDX).
+            <ul>
+              <li>Username: gef330_edx</li>
+              <li>Password: même que pour le compte gef330</li>
+            </ul>
+          </li>
+          <li>Les utilisateurs à distance utiliseront les mêmes informations d'identification que leur environnement normal.</li>
+          
+        </ul>
+      </li>
+      <li>7 commutateurs virtuels, étiquetés : External, Alfa, Bravo, Charlie, Delta, Echo et Foxtrot
+        <ul>
+          <li>Chacune de vos hôtes auront adaptateurs étiquetés avec les noms de ces commutateurs virtuels. Pour connecter un adaptateur au commutateur, vous devez l’allumer avec :
+            <ul>
+              <li><code class="highlighter-rouge">sudo ip link set [interface name] up</code></li>
+            </ul>
+          </li>
+          <li>Les instructeurs s’assureront que vous n’avez allumé que le nombre permis d’adaptateurs comme décrit plus bas.</li>
+        </ul>
+      </li>
+      <li>9 machines virtuelles sur votre hôte VMWare :
+        <ul>
+          <li>3 <em>Firewalls</em> - Vous devez utilisez tout les trois :
+            <ul>
+              <li><strong>External Firewall</strong> - Coupe-feu externe ayant un adaptateur externe (étiqueté External) et jusqu’à deux autre adaptateurs virtuels, sur des commutateurs distincts.</li>
+              <li><strong>Firewall 2</strong> - Coupe-feu ayant jusqu’à trois adaptateurs virtuels, sur des commutateurs distincts.</li>
+              <li><strong>Firewall 3</strong> - Coupe-feu ayant jusqu’à trois adaptateurs virtuels, sur des commutateurs distincts.</li>
+            </ul>
+          </li>
+          <li><strong>Web</strong>, pour le <em>Web Server</em> - un adaptateur sur un commutateur virtuel.</li>
+          <li><strong>Proxy</strong>, pour le Proxy Server - un adaptateur sur un commutateur virtuel.</li>
+          <li><strong>SSH Restricted</strong> pour le <em>Restricted File Server</em> - un adaptateur sur un commutateur virtuel.</li>
+          <li><strong>SSH Operations</strong> pour le <em>Operations File Server</em> - un adaptateur sur un commutateur virtuel.</li>
+          <li><strong>User</strong> pour le <em>User Workstation</em> - un adaptateur sur un commutateur virtuel.</li>
+          <li><strong>Admin</strong> pour le Admin Workstation - un adaptateur sur un commutateur virtuel.</li>
+        </ul>
+      </li>
+    </ul>
+
+
+    <h2>SSH</h2>
+    <p>L'accès à distance SSH doit être activé sur chaque machine virtuelle de votre réseau, le trafic SSH étant contrôlé par vos pare-feu comme spécifié ci-dessus.&nbsp;En plus de permettre l'administration depuis les VM Admin, il est nécessaire pour le test pratique.&nbsp;Vous pouvez démarrer, arrêter, redémarrer et vérifier l'état du SSH daemon sur votre machine virtuelle avec les commandes suivantes:</p>
+    <ul>
+    <li><code>sudo systemctl start sshd</code></li>
+    <li><code>sudo systemctl stop sshd</code></li>
+    <li><code>sudo systemctl restart sshd</code></li>
+    <li><code>sudo systemctl status sshd</code></li>
+    </ul>
+    <p>Par défaut, SSH est&nbsp;<em>désactivé</em>&nbsp;au démarrage.&nbsp;Vous pouvez l'activer de manière permanente au démarrage avec la commande suivante:</p>
+    <ul>
+    <li><code>sudo systemctl enable sshd</code></li>
+    </ul>
+    <p>Une fois que cela est fait, SSH sera&nbsp;<em>activé</em>&nbsp;au démarrage.&nbsp;Il n'est pas nécessaire de l'avoir dans votre script.</p>
+    <p>Pour faciliter les tests de votre réseau, vous&nbsp;<em>allez</em>&nbsp;configurer vos&nbsp;<strong>postes de travail d'&nbsp;administrateur</strong>&nbsp;avec des clés d'accès SSH à toutes vos machines virtuelles.&nbsp;Cela vous permet de vous connecter à SSH sans saisir de mot de passe à chaque fois.&nbsp;Utilisez les commandes suivantes sur votre poste de&nbsp;<strong>travail Admin</strong>&nbsp;:</p>
+    <ul>
+    <li><code>ssh-keygen</code> Acceptez le dossier par défaut et utilisez une phrase de passe vide.&nbsp;Faites cette étape&nbsp;<em>une fois</em>&nbsp;.</li>
+    <li><code>ssh-copy-id -i ~/.ssh/id_rsa.pub gef330@&lt;Host IP Address&gt;</code>Entrez le mot de passe par défaut du cours lorsque vous y êtes invité.&nbsp;Effectuez cette étape pour&nbsp;<em>chaque</em>&nbsp;hôte auquel vous accédez avec SSH.</li>
+    <li>Connectez-vous à la bo&icirc;te cible avec&nbsp;<code>ssh gef330@&lt;Host IP Address&gt;</code>.
+    <ul>
+    <li>Si vous êtes toujours invité à entrer un mot de passe lors de la connexion SSH de votre poste de&nbsp;<strong>travail d'administration</strong>&nbsp;vers n'importe quel autre bo&icirc;tier de votre réseau, cela n'a pas fonctionné.&nbsp;Corrigez-le avant de faire tester votre réseau.</li>
+    </ul>
+    </li>
+    <li>Si l'&nbsp;<em>instructeur</em>&nbsp;est invité à entrer des mots de passe lors de la tentative de test de votre réseau, vous serez pénalisés en raison d'une perte de temps.&nbsp;Prenez le nombre de groupes et multipliez-le par le nombre de machines virtuelles par groupe, puis déterminez si vous souhaitez saisir des mots de passe autant de fois.</li>
+    </ul>
+    <p><strong>Remarque:</strong>&nbsp;il est essentiel que vos&nbsp;<strong>postes de travail administratifs</strong>&nbsp;soient correctement configurés.&nbsp;Si l'instructeur est incapable de SSH sur les&nbsp;<strong>postes de travail administratifs</strong>&nbsp;ou si les&nbsp;<strong>postes de travail administratifs</strong>&nbsp;ne peuvent pas SSH sur les autres postes de travail et serveurs sur le port TCP 22, le script de test échouera et vous ne recevrez pas de notes pour cette partie du réseau.&nbsp;(L'instructeur sera SSH à partir de 10.12.0.166 ou du serveur commun.)</p>
+    
+    <h2>Persistance</h2>
+    <p>Toutes les modifications apportées aux serveurs sont effectuées à l'aide des commandes du terminal (&nbsp;<code>sudo ip ____</code>) et sont non persistantes, c'est-à-dire qu'elles ne survivront pas à un redémarrage du système.&nbsp;Il existe plusieurs fa&ccedil;ons d'obtenir la persistance.&nbsp;Il existe des fichiers de configuration réseau distincts qui peuvent être modifiés pour le routage persistant et la configuration de l'interface, ou vous pouvez faire exécuter automatiquement certaines commandes au démarrage ou à la connexion.</p>
+    <p>Dans ce cas, la meilleure option est de configurer votre VM pour exécuter vos scripts au démarrage.&nbsp;Chaque utilisateur Linux a en fait un fichier caché appelé&nbsp;<code>.profile</code>qui est exécuté à chaque fois que l'utilisateur se connecte. Normalement, cela ne nous aiderait pas à exécuter quelque chose au démarrage, mais comme vous l'avez peut-être remarqué, vos machines virtuelles Linux se connectent automatiquement au compte &nbsp;<code>gef330</code>.&nbsp;Ainsi, tous les scripts que nous ajoutons ici seront exécutés au démarrage de votre VM.</p>
+    <p><strong>Note:</strong>&nbsp;Le&nbsp;<code>.</code> au début de &nbsp;<code>.profile</code> le marque comme un fichier caché.&nbsp;Si vous le recherchez dans un explorateur de fichiers GUI, vous devrez activer l'affichage des fichiers cachés.&nbsp;Si vous le recherchez à partir de la ligne de commande,&nbsp;<code>ls -la</code>listera tous les fichiers, y compris les fichiers cachés.</p>
+    <ul>
+    <li>Utilisez un éditeur de texte pour ouvrir&nbsp;<code>/home/gef330/.profile</code></li>
+    <li>Faites défiler vers le bas du fichier et ajoutez le chemin d'accès complet au fichier de script.
+    <ul>
+    <li>Si votre script est appelé&nbsp;<code>setup.sh</code>et est stocké sur votre bureau, ajoutez-le&nbsp;<code>/home/gef330/Desktop/setup.sh</code>au fichier.&nbsp;Sur Linux, le chemin&nbsp;<em>est sensible à la casse!</em></li>
+    </ul>
+    </li>
+    <li>Enregistrez le fichier et redémarrez votre VM.&nbsp;Au démarrage de la sauvegarde, confirmez que votre script a été exécuté et que vos configurations réseau ont été appliquées.</li>
+    </ul>
+
+    <!--
+    <h2 id="persistance">Persistance</h2>
+
+    <p>Les changements faits aux serveurs d’une commande de terminal (telle <code class="highlighter-rouge">sudo ip ______</code>) ne sont pas persistants; il ne survivent pas à un redémarrage. Vous pouvez adressez ce problème de deux façons.</p>
+    <ul>
+      <li>Écrire un script (comme vous l’avez fait pour le labo 5) et éxecuter celui-ci au début de chaque session, ou</li>
+      <li>faites des recherches sur comment exécuter votre scripte de façon automatique à chaque démarrage.</li>
+    </ul>
+
+    <p>Notez que vous devez démarrer le service SSH sur tout serveur l’offrant avec la commande: 
+      - <code class="highlighter-rouge">sudo systemctl start sshd</code></p>
+
+    <p>Vous pouvez vérifier l’état du service SSH ou le redémarrer avec les commandes respective suivantes:
+      - <code class="highlighter-rouge">sudo systemctl status sshd</code>
+      - <code class="highlighter-rouge">sudo systemctl restart sshd</code></p>
+
+    <p>Afin d’avoir le service SSH activé au démarrage de la machine, utilisez la commande suivante : 
+      - <code class="highlighter-rouge">sudo systemctl enable sshd</code></p>
+
+    -->
+
+    <h3 id="données-livrables">Données livrables</h3>
+
+    <p>Reportez-vous au site Web du cours pour obtenir des détails sur la date à laquelle la partie pratique et la partie rapport de ce laboratoire doivent être reçues. Conformément à la présentation des livrables du laboratoire 7, ce laboratoire a des exigences de rapport supplémentaires, notamment:</p>
+
+
+    <ul>
+      <li>Un sommaire des communications permises entre les hôtes listées dans les Spécifications d’exigences réseau de ces instructions (Matrice de flux). Vous devez montrez celle-ci à votre instructeur au début de la période labo du 18 mars 2019.</li>
+      <li>Le schéma logique de votre réseau, selon les descriptions de zones du ITSG-38 pour votre conception réseau. Vous devez montrez celle-ci à votre instructeur selon le calendrier sur le site web.</li>
+      <li>Le schéma physique de votre réseau montrant tout les <em>Firewalls</em> et hôtes. Vous devez montrez celle-ci à votre instructeur selon le calendrier sur le site web.</li>
+      <li>La spécification de sous-réseau pour vos zones (Plan d’adressage IP). Vous devez montrez celle-ci à votre instructeur selon le calendrier sur le site web.</li>
+      <li>Spécifications de règles pour chaque Firewall (Placer l’ensemble des règles en annexe).</li>
+      <li>Spécification des règles de routage. (Placer l’ensemble des routes en annexe)</li>
+      <li>Votre plan de tests et les résultats confirmant que votre réseau rencontre les spécifications.</li>
+    </ul>
+   
+    <p><a href="../../ressources/CRI15-lab7_livrables.pdf">Revue des livrables</a></p>
+
+    <p>Un test pratique du réseau sera conduit par les instructeurs afin de s’assurer que toutes les specifications sont respectées.</p>
+
+
+
+
+    
+
+
+  </br></br>
+  </div>
+
+
+<!-- Copyright Section -->
+<section class="copyright py-4 text-center text-white">
+  <div class="container">
+    <small>Copyright &copy; Mariam El Mezouar 2021</small>
+  </div>
+</section>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-to-top d-lg-none position-fixed ">
+  <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+    <i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="../js/jqBootstrapValidation.js"></script>
+<script src="../js/contact_me.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/freelancer.min.js"></script>
+
+</body>
+
+</html>

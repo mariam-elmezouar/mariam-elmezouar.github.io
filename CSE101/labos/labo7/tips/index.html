@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    figure {
+      
+      padding: 4px;
+      margin: auto;
+    }
+
+    figcaption {
+      color: black;
+      font-style: italic;
+      padding: 2px;
+      text-align: center;
+    }
+    </style>
+  <title>GEF330 Labo 7 Tips</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Custom fonts for this theme -->
+  <link href="../../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="../../../../css/freelancer.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="../../index.html">GEF 330</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+        type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../../index.html#laboratoires">Laboratoires</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../../index.html#horaire">Horaire</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <h2 class="mt-4">Labo 7: Tips</h2>
+    <h5 class="subtitle">GEF330 hiver 2021</h5>
+    
+    <h3>Conception</h3>
+
+    <p>Lisez&nbsp;<em >attentivement les</em> instructions de laboratoire&nbsp;.</p>
+    <p>Les documents de conception sont destin&eacute;s &agrave; vous guider tout au long du processus de transformation des exigences et des contraintes r&eacute;pertori&eacute;es dans les instructions de laboratoire en un r&eacute;seau op&eacute;rationnel.</p>
+    <ul>
+        <li >Le r&eacute;sum&eacute; des communications vous indique quels h&ocirc;tes doivent &ecirc;tre en mesure d&apos;&eacute;tablir des connexions avec d&apos;autres h&ocirc;tes.&nbsp;Toutes les machines virtuelles, y compris les pare-feu, doivent appara&icirc;tre sur ce r&eacute;sum&eacute;, mais cela concerne le trafic&nbsp;<em >vers</em> ou&nbsp;<em >depuis</em> le pare-feu (comme SSH), et&nbsp;<em >non le</em> trafic passant&nbsp;<em >par</em> le pare-feu.</li>
+        <li >Le diagramme logique est bas&eacute; sur ITSG-38 et vous donne une structure logique, prenant en compte les exigences de s&eacute;curit&eacute; et les fonctions de chaque machine virtuelle.&nbsp;Ce n&apos;est pas une repr&eacute;sentation de la disposition physique de votre r&eacute;seau, mais il vous indique quelles zones vous aurez et quels h&ocirc;tes appartiennent &agrave; chaque zone.
+            <ul>
+                <li >Votre diagramme logique devrait ressembler&nbsp;<em >beaucoup</em> aux exemples de la conf&eacute;rence sur le zonage de s&eacute;curit&eacute;.&nbsp;Consultez les exemples de tables r&eacute;seau pour voir quels services appartiennent &agrave; quelle zone.</li>
+                <li >Rappelez-vous que chaque zone doit avoir au moins un sous-r&eacute;seau.</li>
+            </ul>
+        </li>
+        <li >Maintenant que vous savez quels ordinateurs appartiennent &agrave; quelle zone, vous pouvez d&eacute;marrer votre diagramme physique Commencez par vos zones et d&eacute;terminez comment vos pare-feu connecteront vos zones entre elles.&nbsp;Vous ne devez&nbsp;<em >pas</em> placer de zone entre les pare-feu, cela rend le routage extr&ecirc;mement complexe.
+          <ul>
+                <li >Une fois que vous avez dessin&eacute; vos pare-feu et vos zones, ajoutez des VM individuelles dans chaque zone.</li>
+            </ul>
+        </li>
+        <li >En sachant combien de zones vous avez et combien d&apos;h&ocirc;tes se trouvent dans chaque zone, compl&eacute;tez votre document de conception de sous-r&eacute;seau.&nbsp;Cela n&apos;a pas besoin d&apos;&ecirc;tre un diagramme de votre r&eacute;seau, juste une liste de vos sous-r&eacute;seaux avec les d&eacute;tails pertinents (adresse r&eacute;seau en notation CIDR, masque de sous-r&eacute;seau, adresse de diffusion, plage IP disponible.)</li>
+        <li >Sur votre diagramme physique, ajoutez des adresses IP en notation CIDR &agrave; toutes les interfaces d&apos;h&ocirc;te et de pare-feu.&nbsp;D&apos;autres d&eacute;tails de sous-r&eacute;seau tels que les adresses de diffusion et les plages IP compl&egrave;tes ne sont pas requis sur le diagramme physique.</li>
+        <li >Reportez-vous &agrave; votre r&eacute;sum&eacute; des communications.&nbsp;Pour chaque connexion qui doit &ecirc;tre autoris&eacute;e, commencez par la bo&icirc;te source sur votre diagramme physique.&nbsp;Acc&eacute;dez &agrave; la zone de destination.&nbsp;Chaque fois que vous passez un pare-feu, notez la r&egrave;gle dont vous avez besoin.&nbsp;(&apos;Firewall2, 192.168.0.5-&gt; 192.168.0.25, SSH Port 22&apos;) Parfois, vous pouvez avoir besoin d&apos;adresses IP sp&eacute;cifiques, d&apos;autres fois, vous pouvez utiliser des adresses r&eacute;seau pour accorder l&apos;acc&egrave;s &agrave; des sous-r&eacute;seaux entiers.</li>
+        <li >Une fois que vous avez une liste des r&egrave;gles de pare-feu requises pour chaque pare-feu, transformez-les en commandes appropri&eacute;es&nbsp;<code >iptables</code>.</li>
+    </ul>
+
+    <h3>Cas de test</h3>
+
+    <p>Vos cas de test sont extr&ecirc;mement importants.&nbsp;C&apos;est ainsi que vous confirmez que votre r&eacute;seau r&eacute;pond aux exigences de conception.&nbsp;Toutes les possibilit&eacute;s de votre r&eacute;sum&eacute; des communications doivent &ecirc;tre test&eacute;es, tant pour les connexions autoris&eacute;es que pour les connexions restreintes.</p>
+    <ul>
+        <li ><code class="language-plaintext highlighter-rouge" style='box-sizing: border-box; font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 15.75px; color: rgb(232, 62, 140); overflow-wrap: break-word;'>Ping</code>n&apos;est pas le meilleur outil de test ici.&nbsp;Il confirme uniquement si ICMP est autoris&eacute; ou bloqu&eacute;.</li>
+        <li ><code class="language-plaintext highlighter-rouge" style='box-sizing: border-box; font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 15.75px; color: rgb(232, 62, 140); overflow-wrap: break-word;'>Hping3</code>est mieux.&nbsp;Vous pouvez tester TCP sur des ports sp&eacute;cifiques.</li>
+        <li >Tester avec une application particuli&egrave;re est encore mieux.&nbsp;Utilisez SSH, des navigateurs Web ou des navigateurs Web avec des proxys activ&eacute;s pour tester des cas d&apos;utilisation particuliers.</li>
+        <li >Vous&nbsp;<em >devez</em> confirmer que chaque connexion autoris&eacute;e r&eacute;ussit sur le port souhait&eacute;.</li>
+        <li >Il&nbsp;<em >n&apos;est pas</em> n&eacute;cessaire de confirmer que les 65 533 autres ports sont bloqu&eacute;s.&nbsp;Si une connexion doit &ecirc;tre bloqu&eacute;e entre deux h&ocirc;tes, testez un ou deux ports TCP pour confirmer.</li>
+        <li >Documentez vos cas de test. Ils valent beaucoup de points.</li>
+    </ul>
+
+    <h3>Implémentation</h3>
+
+    <p>Il est recommand&eacute; de cr&eacute;er votre r&eacute;seau dans l&apos;ordre suivant:</p>
+    <ol>
+        <li >Configurez toutes les interfaces requises.</li>
+        <li >Activez le transfert de paquets sur les machines virtuelles agissant en tant que routeurs.</li>
+        <li >Configurez les passerelles par d&eacute;faut et les routes statiques.&nbsp;Toutes les machines doivent avoir des passerelles par d&eacute;faut, mais seuls vos routeurs doivent avoir des routes statiques.&nbsp;<em >Les routes statiques sur les h&ocirc;tes sont une mauvaise id&eacute;e.</em></li>
+        <li ><em >Testez minutieusement les connexions entre toutes les machines virtuelles</em> .&nbsp;M&ecirc;me celles qui ne sont pas cens&eacute;s communiquer selon votre r&eacute;sum&eacute; des communications.&nbsp;Ne continuez pas tant que toutes les connexions n&rsquo;ont pas abouti.</li>
+        <li >Basculez les pare-feu sur&nbsp;<code>Default DROP</code>et configurez vos r&egrave;gles de pare-feu.</li>
+        <li >Testez les connexions en fonction de vos cas de test.</li>
+        <li >D&eacute;pannez si n&eacute;cessaire.</li>
+    </ol>
+        
+    <h3>Conseils de dépannage</h3>
+    <ul>
+    <li >Lorsque vous rencontrez des probl&egrave;mes de connectivit&eacute;, effectuez le d&eacute;pannage de la source &agrave; la destination et vice-versa.<ul style="box-sizing: border-box; margin-top: 0px; margin-bottom: 0px;">
+            <li >Utilisez&nbsp;<code>tcpdump</code>sur chaque interface le long du chemin que les paquets sont cens&eacute;s parcourir.&nbsp;Utilisez&nbsp;<code>hping3</code>ou d&apos;autres outils pour envoyer des paquets de test.</li>
+            <li >Si vous voyez des paquets sur une interface d&apos;un routeur / pare-feu mais pas sur l&apos;autre, votre probl&egrave;me r&eacute;side sur ce routeur / pare-feu.</li>
+            <li >Pour exclure un probl&egrave;me de routage, d&eacute;finissez la strat&eacute;gie de pare-feu sur&nbsp;<code>ACCEPT</code>.&nbsp;Si le probl&egrave;me dispara&icirc;t, c&apos;est un probl&egrave;me de pare-feu.&nbsp;Si cela continue, c&apos;est un probl&egrave;me de routage.&nbsp;Si les paquets commencent &agrave; se d&eacute;placer &agrave; travers les deux interfaces de ce routeur / pare-feu mais que vous&nbsp;<em >ne</em> parvenez&nbsp;<em >toujours</em> pas &agrave; &eacute;tablir une connexion, vous avez plusieurs probl&egrave;mes.&nbsp;L&apos;un d&apos;eux &eacute;tait le pare-feu que vous venez de d&eacute;sactiver.&nbsp;L&apos;autre n&eacute;cessitera un d&eacute;pannage suppl&eacute;mentaire.</li>
+        </ul>
+    </li>
+    <li >Pour tester le proxy Web, ouvrez Mozilla Firefox, acc&eacute;dez &agrave;&nbsp;<code>Preferences</code>et&nbsp;faites&nbsp;d&eacute;filer vers le bas.&nbsp;Ouvrez les param&egrave;tres r&eacute;seau et d&eacute;finissez l&apos;adresse IP et le port du proxy.<ul style="box-sizing: border-box; margin-top: 0px; margin-bottom: 0px;">
+            <li >Vous pouvez &eacute;galement utiliser hping3.</li>
+        </ul>
+    </li>
+    <li >Pour tester l&apos;acc&egrave;s aux serveurs Web externes, utilisez le serveur &agrave; l&apos;adresse&nbsp;<code>10.12.0.1</code>.</li>
+    <li >Pour tester l&apos;acc&egrave;s &agrave;&nbsp;<em >votre</em> serveur Web &agrave; partir de r&eacute;seaux externes, utilisez votre poste de travail Admin via son interface externe.</li>
+</ul>
+
+    <h3>Rappels</h3>
+    <ul>
+        <li>Configurez les cl&eacute;s SSH pour ne pas avoir &agrave; saisir de mots de passe lors de la connexion SSH de vos Admin boxes vers vos autres VM.</li>
+        <li>Si vous avez des suggestions d&apos;articles &agrave; ajouter &agrave; cette page, envoyez-moi un e-mail.</li>
+    </ul>
+
+  </br></br>
+  </div>
+
+
+<!-- Copyright Section -->
+<section class="copyright py-4 text-center text-white">
+  <div class="container">
+    <small>Copyright &copy; Mariam El Mezouar 2021</small>
+  </div>
+</section>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-to-top d-lg-none position-fixed ">
+  <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+    <i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="../js/jqBootstrapValidation.js"></script>
+<script src="../js/contact_me.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/freelancer.min.js"></script>
+
+</body>
+
+</html>

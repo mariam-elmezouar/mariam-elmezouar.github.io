@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Devoir 6</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Custom fonts for this theme -->
+  <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="../../../css/freelancer.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="../../index.html">GEF 330</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+        type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#laboratoires">Laboratoires</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#horaire">Horaire</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <h2 class="mt-4">Devoir 6: </h2>
+    <h5 class="subtitle">GEF330 hiver 2021</h5>
+    
+    <p>Dans cette t&acirc;che, vous renforcerez votre compr&eacute;hension des protocoles de la couche de transport.&nbsp;En particulier comment tcp et udp fonctionnent ensemble.&nbsp;Ces questions et traces sont tir&eacute;es du manuel de Matthieu, chapitres 3.3 et 3.4.</p>
+<ul>
+    <li><a href="tcp_2transmit.pcap" style="box-sizing: border-box; color: rgb(0, 138, 255); text-decoration: none; background-color: transparent;">tcp_2transmit.pcap</a></li>
+    <li><a href="tcp_tcp.pcap" style="box-sizing: border-box; color: rgb(0, 138, 255); text-decoration: none; background-color: transparent;">tcp_tcp.pcap</a></li>
+    <li><a href="tcp_udp.pcap" style="box-sizing: border-box; color: rgb(0, 138, 255); text-decoration: none; background-color: transparent;">tcp_udp.pcap</a></li>
+    <li><a href="udp_2transmit.pcap" style="box-sizing: border-box; color: rgb(0, 138, 255); text-decoration: none; background-color: transparent;">udp_2transmit.pcap</a></li>
+    <li><a href="udp_udp.pcap" style="box-sizing: border-box; color: rgb(0, 138, 255); text-decoration: none; background-color: transparent;">udp_udp.pcap</a></li>
+</ul>
+<ol>
+    <li>Examinez les en-t&ecirc;tes UDP dans udp_2transmit.cap.&nbsp;Le champ de longueur inclut-il l&apos;en-t&ecirc;te et les donn&eacute;es ou simplement les donn&eacute;es?&nbsp;Pourquoi est-ce sous-optimal?</li>
+    <li>&Eacute;crivez un filtre d&apos;affichage pour isoler tous les datagrammes UDP sp&eacute;ciaux avec seulement 4 octets de donn&eacute;es.</li>
+    <li>Nous avons vu que les messages ICMP sont utilis&eacute;s pour signaler un datagramme UDP comme non livrable.&nbsp;Pourquoi TCP ne pouvait-il pas l&apos;utiliser comme indication de segments perdus?</li>
+    <li>Nous avons calcul&eacute; la surcharge de la transmission TCP r&eacute;ussie &agrave; 36 pour cent de 5000 octets de donn&eacute;es r&eacute;elles.&nbsp;Qu&apos;est-ce qui &eacute;tait inclus dans cette surcharge?&nbsp;Quels seraient la surcharge s&apos;il n&apos;y avait pas eu de retransmission?</li>
+    <li>Calculez la surcharge d&apos;UDP en transf&eacute;rant les 5000 octets de donn&eacute;es.&nbsp;Comment avez-vous calcul&eacute; votre r&eacute;ponse?&nbsp;Et si nous avions envoy&eacute; 100 tampons de 50 octets au lieu de 5 tampons de 1000 octets?</li>
+    <li>Dans tcp_udp.cap, combien de paquets TCP sont envoy&eacute;s dans chaque direction pendant que la transmission UDP envoie activement des paquets de donn&eacute;es?&nbsp;&Eacute;crivez des filtres d&apos;affichage qui vous aident &agrave; identifier ces paquets.</li>
+    <li>Dans tcp_udp.cap, combien d&apos;octets de donn&eacute;es sont transmis avec succ&egrave;s par TCP pendant le temps que la transmission UDP est active?&nbsp;Combien d&apos;octets du trafic TCP total?&nbsp;Comment avez-vous d&eacute;termin&eacute; votre r&eacute;ponse?</li>
+    <li>Dans tcp_tcp.cap, examinez le Time-Sequence Graph pour la premi&egrave;re connexion TCP.&nbsp;Utilisez la fonction de zoom pour afficher clairement le point auquel la pente change (d&apos;une ligne plus raide &agrave; une ligne plus plate).&nbsp;&Agrave; quelle temps cela se produit-il?&nbsp;Cela correspond-il exactement au d&eacute;but du deuxi&egrave;me flux TCP?&nbsp;Pourquoi pensez-vous cela est?&nbsp;(Trouv&eacute; sous les graphes de flux de statistiques)</li>
+    <li>Voyez-vous des retransmissions dans la trace tcp_tcp.cap?&nbsp;Comment avez-vous d&eacute;termin&eacute; votre r&eacute;ponse?&nbsp;Pourquoi pensez-vous cela est?</li>
+    <li>Dans udp_udp.cap, combien de paquets UDP du port 4445 &agrave; 5001 se produisent apr&egrave;s le d&eacute;but de la deuxi&egrave;me transmission UDP?&nbsp;Quelle est la distance entre ces paquets et tous les autres paquets de 4445 &agrave; 5001?&nbsp;Qu&apos;est-ce que tous ces paquets ont en commun?&nbsp;Pourquoi pensez-vous cela est?</li>
+    <li>Dans udp_udp.cap, le deuxi&egrave;me flux de transmission UDP r&eacute;ussit nettement mieux &agrave; acqu&eacute;rir de la bande passante que le premier.&nbsp;Pensez-vous qu&apos;il y a un avantage fondamental pour le retardataire?&nbsp;Pourquoi ou pourquoi pas?&nbsp;D&eacute;crivez un ensemble d&apos;exp&eacute;riences que vous pourriez effectuer pour tester votre r&eacute;ponse.</li>
+    <li>Examinez les traces et d&eacute;terminez ce que nous avons fait pour limiter la taille des traces lors de la capture. Estimez la taille des traces sans cette limite.</li>
+</ol>
+    
+  </div>
+
+
+<!-- Copyright Section -->
+<section class="copyright py-4 text-center text-white">
+  <div class="container">
+    <small>Copyright &copy; Mariam El Mezouar 2021</small>
+  </div>
+</section>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-to-top d-lg-none position-fixed ">
+  <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+    <i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="../js/jqBootstrapValidation.js"></script>
+<script src="../js/contact_me.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/freelancer.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    figure {
+      
+      padding: 4px;
+      margin: auto;
+    }
+
+    figcaption {
+      color: black;
+      font-style: italic;
+      padding: 2px;
+      text-align: center;
+    }
+    </style>
+  <title>GEF330 Labo 6</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Custom fonts for this theme -->
+  <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="../../../css/freelancer.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="../../index.html">GEF 330</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+        type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#laboratoires">Laboratoires</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#horaire">Horaire</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <h2 class="mt-4">Labo 6: Coupe-feu, fabrication de paquets et traduction d’adresse réseau</h2>
+    <h5 class="subtitle">GEF330 hiver 2021</h5>
+    
+    <h2 id="objectifs">Objectifs</h2>
+    <p>Ce labo vise à :</p>
+    <ul>
+      <li>Examiner le filtrage de paquets par <em>iptables</em></li>
+      <li>Comprendre la retransmission IP</li>
+      <li>Introduire la traduction d’adresse réseau dans le contexte d’<em>iptables</em></li>
+    </ul>
+
+    <h2 id="introduction">Introduction</h2>
+
+    <p>Ce labo vous aidera à devenir familier avec un coupe-feu réseau élémentaire. Un coupe feu est une passerelle de sécurité qui contrôle l’accèes entre un domaine administratif privé et l’Internet (RFC 2588).</p>
+
+    <p>Un coupe-feu a deux fonctions principales</p>
+
+    <ul>
+      <li>un terminal protocolaire. Dans ce cas, aucun terminal interne (à part du coupe-feu) n’est accessible de l’Internet externe et aucun terminal interne (à part du coupe-feu) n’est directement accessible de l’Intranet privé. De tels coupe-feux sont aussi connus sous le nom de “bastion d’application”.</li>
+      <li>un filtre de paquets. Dans ce cas, les terminaux internes et externes se voit à la couche IP, mais le coupe-feu filtre (c.a.d. qu’il bloque le passage de) certains paquets, selon le contenu de leur en-tête ou de leur charge utile.</li>
+    </ul>
+
+    <p>Ce labo explore le filtrage de paquets. Nous examinerons la politique par defaut de coupe-feux et nous verrons comment ajuster un coupe-feu pour ne permettre le passage que des paquets nécessaire aux exigences opérationnelles. Nous discuterons le besoin pour la traduction d’adresse réseau afin de limiter le nombre d’adresses exposées à l’Internet externe et comment intégrer ce concept à un coupe-feu.</p>
+
+    <h2 id="partie-1---explication-du-coupe-feu-iptables">Partie 1 - Explication du coupe-feu iptables</h2>
+
+    <p>Un filtre de paquet est essentiellement une passerelle réseau agissant comme agent de circulation utilisant l’information des en-têtes de couche 3 et 4 pour décider quel paquet peut traverser le coupe-feu vers sa destination. Par exemple, le filtre de paquet peut permettre le passage (pass) des paquets d’une plage d’adresse réseau ou de ports et bloquer (drop) les paquets d’autres plages d’adresses ou de port. Le filtre décide selon un ensemble de règles (rules) qui peuvent utiliser n’importe quelle pièce d’information de l’en-tête (adresse IP, numéro de ports, fragmentation, type de protocole, indicateurs TCP, etc.) afin de prendre les décision de pass/drop.</p>
+
+    <h2 id="iptables">iptables</h2>
+
+    <p>On peut trouver plusieurs implémentations pour le filtrage de paquet, chacune ayant ses propres mécanismes et format pour les règles. Nous avons choisit un filtre de paquet Linux commun pour ce labo qui s’appelle iptables. iptables définit trois tables : filter, nat et mangle. Nous utiliserons la table filter, servant à faire le filtrage de paquet, dans la partie 1 du labo et nous discuterons de la table nat dans la partie 3.</p>
+
+    <p>Chaque table est composée de chaînes (chains) comme vous pouvez le voir à la figure 1. Lorsqu’un paquet arrive, il est traité par une processus de routage qui examine sa destination pour décider à laquelle de trois chaîne intégrée doit être utilisée pour traiter le paquet. La chaîne INPUT est utilisée pour les paquets destiné au coupe-feu lui même (le coupe-feu est une passerelle avec une ou plusieurs adresse IP). de façon similaire, La chaîne OUTPUT est utilisée pour les paquets qui sont originaires du coupe-feu lui même. Finalement, la chaîne FORWARD est utilisée pour les paquets qui traversent le coupe-feu, étant originaire d’un autre ordi et destiné à un autre ordi.</p>
+
+    <p><img src="./Lab6_Figure1.jpeg" alt="iptables Built-in Chains Configuration" title="Figure 1 - iptables Built-in Chains Configuration" /></p>
+
+    <h3 id="traitement-de-chaîne">Traitement de chaîne</h3>
+
+    <p>Une <strong>chaine</strong> est une liste de contrôle (<em>check-list</em>) de règles. Lorsqu’un paquet est traité par une chaîne, les règles de celle-ci sont appliquées séquentiellement. Si un paquet est conforme à un règle, on dit que la règle est engagée (fire) et le paquet est acheminé à la cible (target) de cette règle. Les règles communes sont :</p>
+
+    <ul>
+      <li>ACCEPT
+        <ul>
+          <li>iptables cesse le traitement</li>
+          <li>le paquet est acheminé</li>
+        </ul>
+      </li>
+      <li>DROP
+        <ul>
+          <li>iptables cesse le traitement</li>
+          <li>le paquet est bloqué</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><em>iptables</em> cesse le traitement d’une chaîne dès qu’une règle conforme exécute. Les règles sont examinées dans leur ordre de définition dans la chaîne; l’ordre de définition de règles est donc très important.</p>
+
+    <h2 id="politique-policy">Politique (Policy)</h2>
+
+    <p>On appelle la dernière règle dans une chaîne sa politique. Puisque celle-ci est listée en dernier, elle sera toujours exécutée si le paquet passe toutes les règles précédentes. On peut imaginer cette politique comme étant l’action prise par défaut; la cible de cette politique peut être ACCEPT ou DROP.</p>
+
+    <p>Les systèmes mettant l’emphase sur la sécurité ont habituellement une politique de DROP (on bloque le paquet si on a un doute). Un paquet est donc bloqué, à moins qu’une règle lui permettant spécifiquement de passer exécute; on appelle ceci une liste-blanche (<em>white-listing</em>) puisqu’on liste spécifiquement les communications autorisées. D’un autre coté, les organisations qui désirent offrir le plus de services possible utilise une liste-noir (<em>black-listing</em>) où seulement les communications néfastes sont bloquées.</p>
+
+    <h2 id="écriture-de-règles">Écriture de règles</h2>
+
+    <p>On peut ajouter des règles à la base de données d’iptables en utilisant la commande iptables. L’ajout d’une règle au coupe-feu aurait un format comme-ci :</p>
+
+    <p><code class="highlighter-rouge">iptables -A FORWARD -s 0/0 -i eth0 -d 192.168.1.58 -o internal -p TCP \
+    --sport 1024:65535 --dport 80 -j ACCEPT</code></p>
+
+    <p>Dans cette commande, le programme iptables ajoute (<code class="highlighter-rouge">-A</code>) un nouvelle règle à la chaîne <strong>FORWARD</strong>. La règle trouvera les paquets ayant n’importe quelle adresse comme source (<code class="highlighter-rouge">-s 0/0</code>) ayant comme destination l’adresse IP 192.168.1.58 (<code class="highlighter-rouge">-d 192.168.1.58</code>). Pour que la règle exécute, le paquet doit avoir été reçu à l’adaptateur eth0 (<code class="highlighter-rouge">-i eth0</code>) et il doit être ré-transmis de l’adaptateur internal (<code class="highlighter-rouge">-o internal</code>). La règle spécifie également que le paquet doit être de type TCP destiné au port 80 et provenant d’un port de la plage 1024 à 65535 qui est un port éphémère  (<code class="highlighter-rouge">-p TCP --sport 1024:65535 --dport 80</code>). La cible de la règle est ACCEPT, qui veut dire que les paquets qui se conforme à la règle pourront traverser le coupe-feu vers leur destination (<code class="highlighter-rouge">-j ACCEPT</code>). Vous remarquerez également que cette longue règle prend plus d’une ligne de texte; la barre oblique inversée ‘', est utilisée pour indiquer que la définition de la règle continue à la prochaine ligne.</p>
+
+    <h2 id="partie-2---configuration-dun-coupe-feu-iptables">Partie 2 - Configuration d’un coupe-feu iptables</h2>
+
+    <h2 id="mise-en-place">Mise en place</h2>
+
+    <p>Vous allez configurer un petit réseau et vous utiliserez <em>iptables</em> comme filtre de paquets pour protéger celui-ci. Dans la partie 2 du labo, vous allez progressivement ajouter des règles à votre coupe-feu; vous apprendrez comment bâtir des règles de plus en plus complexes et comment celles-ci permette le passage ou le blocage de différents types de trafic. Pour en connaître plus sur iptables, consultez le packet-filtering HOWTO (English - Français).</p>
+
+    <p>On utilise habituellement un ordi avec au moins deux adaptateurs comme coupe-feu; un adaptateur est pour le segment externe et les autres sont utilisés pour les segments internes à protéger. Dans ce labo, votre Linux VM servira de coupe-feu puisque celui-ci a deux adaptateurs : un connecté au commutateur virtuel externe que vous avez utilisé pour vous connecter au réseau commun et un autre connecter au commutateur virtuel interne que vous avez utilisé pour vous connecter à la Windows VM. Dans ce labo, la Windows VM représentera le réseau interne que vous protégez à l’aide d’un coupe-feu. Soyez bien certain de déconnecter l’adaptateur External de votre Windows VM.</p>
+
+    <p>Configurez votre réseau selon les spécification suivante, et annotez la figure 2 de façon appropriée. Comme vous devez inclure celle-ci dans votre rapport de labo, nous vous donnons le <a href="./Lab6_Figures.pptx">fichier source</a>.</p>
+
+    <ul>
+      <li>Votre Réseau d’équipe a l’adresse 10.30.x.0/24, avec les ordis suivants :
+        <ul>
+          <li>La Windows VM est au 10.30.x.20 sur l’adaptateur Internal
+            <ul>
+              <li>Soyez bien certain de déconnecté l’adaptateur External de la Windows VM.</li>
+            </ul>
+          </li>
+          <li>La Linux VM IP est au 10.30.x.10, sur l’adaptateur Internal
+            <ul>
+              <li>Souvenez-vous d’allumer l’adaptateur Internal (UP); consultez le préambule si vous ne vous souvenez-pas comment le faire.</li>
+            </ul>
+          </li>
+          <li>La Linux VM agit comme passerelle de sous-réseau</li>
+        </ul>
+      </li>
+      <li>Les Réseau commun a l’adresse 10.12.0.0/16, avec les ordi suivant:
+        <ul>
+          <li>Votre Linux VM au 10.12.x.30 sur son adaptateur External</li>
+          <li>Un Server VM au 10.12.x.1</li>
+          <li>Une imprimante au 10.12.0.8</li>
+          <li>Le Server VM agit comme routeur du Réseau commun.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><img src="./Lab6_Figure2.jpg" alt="Lab 6 Network Configuration" title="Figure 2 - Configuration reseau" /></p>
+
+    <p>Configurez votre Linux VM pour qu’elle agisse à titre de routeur pour votre réseau (comme vous l’avez fait pour le labo 5) avec les commandes suivantes :</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">sysctl -a | grep ip_forward</code>
+        <ul>
+          <li>Vous devriez voir cette réponse : net.ipv4.ip_forward=0</li>
+          <li>Le ‘0’ indique que la retransmission IP (<em>IP forwarding</em>) est éteinte</li>
+        </ul>
+      </li>
+      <li><code class="highlighter-rouge">sudo sysctl net.ipv4.ip_forward=1</code>
+        <ul>
+          <li>Ceci averti le noyau de commencer la retransmission IP</li>
+        </ul>
+      </li>
+      <li><code class="highlighter-rouge">sysctl -a | grep ip_forward</code>
+        <ul>
+          <li>Confirmez que la retransmission IP est allumé, comme indiqué par le ‘1’ dans net.ipv4.ip_forward=1</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>Notez que les instructeurs ont ajouté des routes au routeur du Réseau commun lui disant que votre coupe-feu/routeur est la passerelle de votre Réseau d’équipe. Soyez-bien certain de comprendre pourquoi ceci est nécessaire.</p>
+
+    <p>Une fois votre réseau configuré, utilisez ping pour être certain que votre Windows VM a la bonne connectivité jusqu’au Server VM, de par l’entremise de votre Linux VM.</p>
+
+    <h4 id="a-word-on-troubleshooting">Un mot sur le dépannage:</h4>
+
+    <p>Le dépannage d'un pare-feu peut être un problème complexe. Apprendre à réagir et à résoudre les problèmes lorsqu'un pare-feu ne se comporte pas comme prévu est tout aussi important que d'apprendre quelles règles écrire et comment. Si vous rencontrez des problèmes avec votre pare-feu dans le laboratoire, <em>J'attends de vous que vous tentiez de le résoudre</em>. Les instructeurs de laboratoire sont heureux de vous aider, mais on s'attend à ce que vous essayiez d'abord de résoudre le problème vous-même. Même si vous ne réussissez pas, vous serez en mesure de mieux fournir à l’instructeur les informations dont il a besoin pour vous aider.</p>
+
+    <ul>
+      <li>La clé du dépannage des pare-feu est de pouvoir observer attentivement ce qui se passe de chaque côté du pare-feu, simultanément. Cela peut être fait en exécutant tcpdump sur les interfaces de chaque côté de votre pare-feu.</li>
+      <li>Démarrez deux instances de tcpdump sur votre Linux VM; une sur l’adaptateur Internal et une sur l’adaptateur External. Utilisez ces instances pour capturer une connexion telnet entre votre Windows VM et le Server VM avec alice : secret.
+        <ul>
+          <li>tcpdump est très similiaire à WinDump, et son manuel est disponible sur votre Linux VM. Ouvrez deux terminaux :
+            <ul>
+              <li>Dans le premier terminal, tapez : 
+      <code class="highlighter-rouge">sudo tcpdump -i internal_interface -nv 'port 23 and net 10.12.x'</code></li>
+              <li>Dans le deuxième terminal, tapez : 
+      <code class="highlighter-rouge">sudo tcpdump -i external_interface -nv 'port 23 and net 10.12.x'</code></li>
+            </ul>
+          </li>
+          <li>Soyez bien certain que vous pouvez pister les paquets entre votre Windows VM et votre Linux VM, ainsi qu’entre votre Linux VM et votre Server VM dans les deux directions.</li>
+          <li><code class="highlighter-rouge">(#1)</code> Votre rapport doit inclure une petite capture de paquets qui montre votre Linux VM agissant comme un routeur. La capture doit nous démontrer un paquet qui est acheminé par la Windows VM au Server VM. Mettez en valeur la différence entre les paquets entrant et sortant du routeur.</li>
+        </ul>
+      </li>
+      <li>Une fois vos tests terminés, éteignez la session telnet et cessez vos captures tcpdump.</li>
+      <li>Sachez par contre que tcpdump est crucial pour les tests de coupe-feu; utilisez-le!</li>
+    </ul>
+
+    <p>(#2) Faites commentaires sur votre configuration de réseau. Nous sommes particulièrement intéressé à savoir quelles étapes vous ont données des problèmes.</p>
+
+    <h2 id="utilisation-diptables">Utilisation d’iptables</h2>
+
+    <p>Vous avez maintenant un réseau à protéger, et nous pouvons maintenant examiner iptables en plus de détails. Commençons en examinant la configuration de base de iptables ainsi que ses politiques.</p>
+
+    <ul>
+      <li>Lister les règles en place à iptables
+        <ul>
+          <li><code class="highlighter-rouge">sudo iptables -nvL</code></li>
+          <li>Vous devriez voir les règles pour les chaînes : <strong>INPUT</strong>, <strong>FORWARD</strong> et <strong>OUTPUT</strong></li>
+          <li>La politique pour chacune d’entre-elles devrait être ACCEPT</li>
+        </ul>
+      </li>
+      <li>Démarrez un éditeur de texte sur votre Linux VM (<em>leafpad</em> est disponible).
+        <ul>
+          <li>Vous allez utiliser cet éditeur pour composer une série de commande que vous allez sauver dans un fichier texte.</li>
+          <li>Vous exécuterez ces commandes en exécutant le fichier texte comme un script de coquille (shell script)</li>
+          <li><em>iptables</em> doit être exécuté comme <code class="highlighter-rouge">root</code>; vous allez créer un alias afin de ne pas avoir à toujours tapez <code class="highlighter-rouge">sudo</code></li>
+          <li>Les changements que vous apporterez au coupe-feu ne seront pas persistants; un redémarrage de la Linux VM réinitialisera iptables à ses valeurs par défaut.</li>
+          <li>sauvegardez ce fichier sous le nom iptables_rules.sh dans le répertoire /home/eee330/</li>
+        </ul>
+      </li>
+      <li>Utilisez un terminal pour naviguer à votre répertoire par défaut (/home/eee330/) et changez les permissions (ou le mode) de ce fichier afin qu’on puisse l’exécuter comme un script
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  cd ~
+      chmod 755 iptables_rules.sh
+    </code></pre></div>    </div>
+      </li>
+    </ul>
+
+    <p>En Linux, chaque fichier possède un ensemble de permissions associées avec le propriétaire du fichier, le groupe du propriétaire et les reste du monde (<em>world</em>). Pour chacun de ceux-ci, on spécifie les permission pour lire (<code class="highlighter-rouge">r</code> pour <em>read</em>), écrire (<code class="highlighter-rouge">w</code> pour <em>write</em>) ou bien exécuter (<code class="highlighter-rouge">x</code> pour <em>execute</em>) le fichier en utilisant un masque de 3 bits qu’on représente comme un chiffre décimal entre 0-8. 755 donne les permissions rwx au propriétaire et rx à tout autres. Consultez le manuel de <em>chmod</em> sur votre Linux VM ou en références pour plus de détails.</p>
+
+    <ul>
+      <li>Tapez le texte suivant dans votre fichier iptables_rules.sh et sauvegardez le :</li>
+    </ul>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
+    <span class="nb">alias </span><span class="nv">iptables</span><span class="o">=</span><span class="s1">'sudo iptables'</span>
+    iptables <span class="nt">--flush</span>
+
+    iptables <span class="nt">--policy</span> INPUT DROP
+    iptables <span class="nt">--policy</span> FORWARD DROP
+    iptables <span class="nt">--policy</span> OUTPUT DROP
+
+    <span class="c">#append rules here:</span>
+
+    <span class="c">#display rules</span>
+    iptables <span class="nt">-nvL</span>
+
+    </code></pre></div></div>
+    <ul>
+      <li>La première commande vide (<code class="highlighter-rouge">flush</code>) toutes les règles présentes dans les chaînes
+        <ul>
+          <li>La commande <code class="highlighter-rouge">--policy</code> implémente une politique de liste-blanche.</li>
+          <li>La dernière commande imprime les règles de <code class="highlighter-rouge">iptables</code></li>
+          <li>Le <code class="highlighter-rouge">#</code> est utilisé pour une ligne commentaire</li>
+        </ul>
+      </li>
+      <li>Exécutez votre script :
+        <ul>
+          <li><code class="highlighter-rouge">./iptables_rules.sh</code></li>
+          <li>Vous devriez remarquer que la politiques de chaque chaîne est maintenant <strong>DROP</strong></li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>Essayez de faire <code class="highlighter-rouge">ping</code> ou d’utiliser <code class="highlighter-rouge">telnet</code> entre les Windows VM, Linux VM ou Server VM; vous devriez avoir perdu toute connectivité. <code class="highlighter-rouge">(#3)</code> Utilisez deux instances de <code class="highlighter-rouge">tcpdump</code> sur votre coupe-feu pour enregistrer tout le trafic et expliquez pourquoi vous avez perdu la connectivité.</p>
+
+    <p>Vous avez un coupe-feu, mais il n’est pas très propice aux communications. Vous devrez ajouter des règles permettant à certains types de trafic spécifiques de le traverser. Les règles ne devraient permettre que le passage de trafic que nous avons déclaré comme valide à notre liste-blanche; tout autre paquets doivent être bloqués.</p>
+
+    <h2 id="règle-1---permettre-les-icmp-echo-du-coupe-feu">Règle 1 - Permettre les ICMP Echo du coupe-feu</h2>
+
+    <p>Nous utilisons <code class="highlighter-rouge">ping</code> pour dépanner nos connexions. Pour ce faire, nous allons permettre aux paquets ICMP echo-request de quitter notre coupe-feu, et nous allons permettre au echo-reply de revenir vers celui-ci. Nous ne permettrons à aucune autre machine de faire <code class="highlighter-rouge">ping</code> au coupe-feu.</p>
+
+    <ul>
+      <li>ajoutez les règles suivantes à votre fichier <code class="highlighter-rouge">iptables_rules.sh</code> et sauvegardez le :
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables -A OUTPUT -p icmp --icmp-type echo-request -j ACCEPT
+    iptables -A INPUT -p icmp --icmp-type echo-reply -j ACCEPT
+    </code></pre></div>    </div>
+
+        <ul>
+          <li><code class="highlighter-rouge">(#4)</code> Utilisez <code class="highlighter-rouge">man iptables</code> pour examiner les options utilisées dans cette commande afin d’obtenir une appréciation de la création d’une règle. Fournissez un sommaire des options utilisées par la commande dans votre rapport.</li>
+        </ul>
+      </li>
+      <li>Exécutez votre script: <code class="highlighter-rouge">./iptables_rules.sh</code>
+        <ul>
+          <li>Vous devriez remarquez que de nouvelles règles ont été ajoutées.</li>
+        </ul>
+
+        <p>Essayez maintenant de faire <code class="highlighter-rouge">ping</code> du Linux VM au Server VM et du Linux VM au Windows VM. Puisqu’on a pas spécifié d’adaptateurs dans nos règles, on peut faire <code class="highlighter-rouge">ping</code> à l’internet et à l’externe.</p>
+      </li>
+    </ul>
+
+    <h2 id="hping3---un-outil-de-fabrication-de-paquets">hping3 - un outil de fabrication de paquets</h2>
+
+    <p>Lorsqu’on bâtit un coupe-feu, il est souvent désirable de pouvoir fabriquer des paquets spécifiques pour tester sa configuration. Le programme hping3 permet de créer des paquets personnalisés et de les transmettre sur un adaptateur. <code class="highlighter-rouge">hping3</code> requiert les privilèges de root, puisqu’il peut potentiellement être utilisé à fins malicieuses. Nous vous suggérons de lire le manuel de <code class="highlighter-rouge">hping3</code>, de votre Linux VM ou de la référence, pour devenir familier avec son utilisation.</p>
+
+    <p>Essayez d’utiliser <code class="highlighter-rouge">hping3</code> avec l’option <code class="highlighter-rouge">--icmp</code> pour tester votre configuration de coupe-feu; essayez de nouveau, mais utilisez le comportement défaut de <code class="highlighter-rouge">hping3</code> sans l’option  <code class="highlighter-rouge">--icmp</code>.Vous devriez remarquer qu’il y a une erreur.</p>
+
+    <p><code class="highlighter-rouge">(#5)</code> Que s’est il passé ? Comme le message d’erreur n’est pas très utile, utilisez <code class="highlighter-rouge">tcpdump</code> pour observer le trafic et discutez du problème dans votre rapport.</p>
+
+    <p><code class="highlighter-rouge">hping3</code> est très utile; utilisez-le lorsque votre coupe-feu ne se comporte pas comme prévu.</p>
+
+    <h2 id="règle-2---permettre-aux-icmp-echo-du-réseau-déquipe">Règle 2 - Permettre aux ICMP Echo du Réseau d’équipe</h2>
+
+    <p>Nous allons maintenant ajouter des règles pour permettre à la Windows VM (ou tout autre machine qui serait sur le Réseau d’équipe) de faire <code class="highlighter-rouge">ping</code> vers le monde extérieur (c.a.d. envoyer des <code class="highlighter-rouge">echo-request</code> au travers du coupe-feu et recevoir des <code class="highlighter-rouge">echo-reply</code> au travers de celui-ci).</p>
+
+    <ul>
+      <li>Ajouter les commandes suivantes à votre fichier iptables_rules.sh et sauvegardez le :
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables -A FORWARD -s 10.30.x.0/24 -p icmp --icmp-type echo-request -j ACCEPT
+    iptables -A FORWARD -d 10.30.x.0/24 -p icmp --icmp-type echo-reply -j ACCEPT
+    </code></pre></div>    </div>
+      </li>
+      <li>Exécutez votre script: <code class="highlighter-rouge">./iptables_rules.sh</code></li>
+    </ul>
+
+    <p>Essayez maintenant de faire <code class="highlighter-rouge">ping</code> au Server VM de votre Windows VM; le tout devrez fonctionner. <code class="highlighter-rouge">(#6)</code> Utilisez <code class="highlighter-rouge">tcpdump</code> pour dépanner et indiquez tout problème dans votre rapport</p>
+
+    <h2 id="règle-3---permettre-telnet-du-réseau-déquipe">Règle 3 - Permettre telnet du Réseau d’équipe</h2>
+
+    <p>Finalement, nous allons ajouter des règles permettant à notre Windows VM de faire connexion telnet au Server VM</p>
+
+    <ul>
+      <li>Ajoutez les règles suivantes à votre fichier iptables_rules.sh et sauvegardez le :
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables -A FORWARD -s 10.30.x.0/24 -p tcp --dport 23 -j ACCEPT
+    iptables -A FORWARD -d 10.30.x.0/24 -p tcp --sport 23 -j ACCEPT 
+    </code></pre></div>    </div>
+      </li>
+      <li>exécutez votre script : <code class="highlighter-rouge">./iptables_rules.sh</code></li>
+    </ul>
+
+    <p>Testez vos règles en faisant connexion <code class="highlighter-rouge">telnet</code> de votre Windows VM au compte d’alice sur le Server VM. Soyez bien de comprendre pourquoi ces règles permettent à la connexion <code class="highlighter-rouge">telnet</code> de traverser le coupe-feu, tout en bloquant tout autre trafic TCP. essayez de faire ping du compte d’alice sur le Server VM vers votre Windows VM pour constater que le trafic dans cette direction est bien bloqué.</p>
+
+    <p>(#7) Expliquez pourquoi deux règles sont nécessaire dans votre rapport.</p>
+
+    <p>Les règles permettant la connexion telnet semblent bien simple, mais elles sont trop génériques; elles créent en effet un trou dans notre coupe-feu qui peut donner accès à notre réseau à des attaquants. Ceux-ci peuvent utiliser le fait que nous permettons à tout le trafic TCP avec le port source 23 de traverser le coupe-feu pour rejoindre le Réseau d’équipe de façon malicieuse. Les attaquants tentent souvent d’utiliser du trafic traversant le coupe-feu pour faire reconnaissance d’un réseau, comme nous pouvons le démontrer à l’aide de <code class="highlighter-rouge">hping3</code>. Utilisons le Server VM pour représenter un attaquant malicieux à l’extérieur de notre enclave protégée; vous pouvez utiliser une connexion <code class="highlighter-rouge">telnet</code> avec le Server VM de votre Windows VM avec le compte d’alice puisque alice a accès à <code class="highlighter-rouge">hping3</code>. Essayez le tout avec les ports 53, 139, 445, et 12000.</p>
+
+    <ul>
+      <li>par exemple, du compte d’alice sur le Server VM, tapez :
+        <ul>
+          <li><code class="highlighter-rouge">sudo hping3 -c 1 --syn --baseport 23 --destport 53 10.30.x.20</code></li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>Utilisez <code class="highlighter-rouge">tcpdump</code> pour observer ce qui ce passe (vous aurez avantage à utiliser des filtres avec <code class="highlighter-rouge">tcpdump</code> pour éliminer le trafic <code class="highlighter-rouge">telnet</code> entre votre Windows VM et votre Server VM). Le comportement observé n’est pas le même pour tout les ports testés; vous pouvez faire un balayage de l’ordi interne au travers du coupe-feu dans certains cas!</p>
+
+    <p><code class="highlighter-rouge">(#8)</code> Fournissez une explication des comportements différents dans votre rapport; Et expliquez comment des hackers pourraient utiliser ceci pour scanner votre réseau.</p>
+
+    <p>Afin de boucher ce trou, et en interdisant ainsi le trafic essayant de se masquarader comme du trafic telnet légitime sur le port 23, nous pouvons modifier nos règles.</p>
+
+    <ul>
+      <li>Modifiez les dernières règles que vous avez ajoutées dans votre fichier <code class="highlighter-rouge">iptables_rules.sh</code> et sauvegardez le :
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables -A FORWARD -s 10.30.x.0/24 -p tcp --dport 23 -m state --state NEW,ESTABLISHED \
+    -j ACCEPT
+    iptables -A FORWARD -d 10.30.x.0/24 -p tcp --sport 23 -m state --state ESTABLISHED \
+    -j ACCEPT
+    </code></pre></div>    </div>
+      </li>
+      <li>Exécutez votre script: <code class="highlighter-rouge">./iptables_rules.sh</code></li>
+    </ul>
+
+    <p>Les changements que vous venez de faire transforme votre coupe-feu en coupe-feu dynamique (<code class="highlighter-rouge">stateful firewall</code>). Le coupe-feu note maintenant certains paramètres (tel les adresses IP, les ports, etc) associés avec chaque connexion TCP au port 23 de notre Réseau d’équipe à une adresse externe. Les paquets associés avec une connexion établie (<strong>ESTABLISHED</strong>) seront les seuls à pouvoir traverser le coupe-feu. Les paquets venant de l’externe vers notre Réseau d’équipe n’appartenant pas à une connexion établie seront bloqués.</p>
+
+    <p><code class="highlighter-rouge">(#9)</code> Essayez votre technique de balayage SYN de <code class="highlighter-rouge">hping3</code> de nouveau  pour voir si votre coupe-feu dynamique fonctionne. En utilisant vos propres mots, expliquez en quoi le coupe-feu est maintenant ‘dynamique’; Cela vous aidera de comparer son comportement avec un coupe-feu statique.</p>
+
+    <p><code class="highlighter-rouge">(#10)</code> Vous allez remarquer que vous ne pouvez pas avoir accès à l’interface Web de l’imprimante; expliquez pourquoi vous ne pouvez pas le faire, et dites-nous ce que vous devriez faire pour remédier à la situation. Il serait peut être utile de rechercher quel port est utilisé par une interface Web.</p>
+
+    <h2 id="partie-3---comment-inclure-la-traduction-dadresse-réseau-avec-le-filtrage-de-paquets-diptables">Partie 3 - Comment inclure la traduction d’adresse réseau avec le filtrage de paquets d’iptables</h2>
+    <h4 id="tables-et-chaînes">Tables et chaînes</h4>
+    <p>Souvenez-vous que nous avons examiné les chaînes <strong>FORWARD</strong>, <strong>INPUT</strong> et <strong>OUTPUT</strong> du coupe-feu <code class="highlighter-rouge">iptables/netfilter</code> (en bleu dans la figure 3). Ces chaînes font partie d’une <em>table</em> appelée <em>filter</em>. Vous n’avez pas eu à spécifier cette table lorsque vous avez composé vos règles iptables puisque c’est la table de défaut. <code class="highlighter-rouge">iptables/netfilter</code> utilise deux autres tables (en rouge dans la figure 3) appelées <em>nat</em> et <em>mangle</em> tables. La table mangle est utilisée pour modifier les paquets en changeant une partie de leur en-tête TCP; nous n’en discutons pas plus ici</p>
+
+    <h4 id="nat">NAT</h4>
+    <p>Deux chaînes peuvent être appelées de la table nat : <strong>PREROUTING</strong> et <strong>POSTROUTING</strong>. Les paquets sont traités par ces chaînes immédiatement avant (pour <strong>PREROUTING</strong>) ou immédiatement après (pour <strong>POSTROUTING</strong>) le traitement par les chaînes <strong>FORWARD</strong>, <strong>INPUT</strong> or <strong>OUTPUT</strong> de la table <em>filter</em>.</p>
+
+    <p><img src="./Lab6_Figure3.jpg" alt="iptables Traffic Flow by Daniel Miessler" title=" Figure 3 Flux de Trafic dans IPtables par Daniel Miessler [7]" /></p>
+
+    <p>Souvenez-vous que les cibles principales des règles de la table <em>filter</em> sont <strong>DROP</strong> ou <strong>ACCEPT</strong>. Les cibles principales de la table nat sont <strong>MASQUERADE</strong>, <strong>SNAT</strong> ou <strong>DNAT</strong>. La cible <strong>MASQUERADE</strong> est habituellement utilisée sur la chaîne <strong>POSTROUTING</strong> puisqu’elle cause la substitution de l’adresse IP source du paquet par une autre adresse (celle du coupe-feu par défaut). <strong>MASQUERADE</strong> note ces substitutions pour pouvoir modifier les paquets reçus en réponse de l’externe afin qu’ils soit acheminés au bon ordi interne. Les cibles <strong>SNAT</strong> et <strong>DNAT</strong> sont utilisées pour spécifier des traductions d’adresses source ou destination respectivement.</p>
+
+    <h3 id="nat-masquerade">NAT Masquerade</h3>
+
+    <p>Vous allez maintenant configurer votre coupe-feu pour cacher tout votre Réseau d’équipe derrière l’adresse externe du coupe-feu (10.12.x.30). Avant de procéder, soyez bien certain de comprendre les adresses source et destination du trafic <code class="highlighter-rouge">telnet</code> de la partie 2.</p>
+
+    <p>Retournez au terminal que vous utilisez pour gérer votre coupe-feu et imprimez les règles nat courantes; il ne devrait pas y en avoir :</p>
+
+    <p><code class="highlighter-rouge">sudo iptables -nvL -t nat</code></p>
+
+    <p><code class="highlighter-rouge">(#11)</code> Ajoutez maintenant une règle de masquerade à votre fichier <code class="highlighter-rouge">iptables_rules.sh</code> (assurez-vous de bien commenter votre script puisque vous devez le soumettre avec votre rapport)</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables -t nat --flush
+    iptables -A POSTROUTING -t nat -o external_interface -s 10.30.x.0/24 -d 0/0 -j MASQUERADE
+    iptables -nvL -t nat
+    </code></pre></div></div>
+    <p>Exécutez votre script pour rafraichir les règles :</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">./iptables_rules.sh</code></li>
+    </ul>
+
+    <p>Soyez bien certain que vous comprenez chaque partie de cette règle. La commande ajoute une règle à la chaîne <strong>POSTROUTING</strong> de la table <em>nat</em>, qui se conforme aux paquets sortant de l’adaptateur externe et provenant du sous-réseau <code class="highlighter-rouge">10.30.x.0/24</code> et destinés à un autre réseau. La cible de cette règle (c’est-à-dire l’action a prendre lorsque la règle est déclenchée) et de <strong>MASQUERADE</strong>; c’est-à-dire de substituer l’adresse IP de source avec l’adresse IP du coupe-feu, et d’enregistrer cette substitution à une table afin d’acheminer les paquets reçus en réponse.</p>
+
+    <p><code class="highlighter-rouge">(#12)</code> Faites de nouveau une connexion <code class="highlighter-rouge">telnet</code> de votre Windows VM au compte d’alice de votre Server VM. Examinez les adresses de source et de destination de chaque côté du coupe-feu. Faites commentaires sur ce les différence que vous observe du comportement de la question (#1) dans votre rapport, et incluez une capture de trafic dans celui-ci.</p>
+
+    <h2 id="conclusion">Conclusion</h2>
+
+    <p>Une fois que vous êtes confiants que vous avez tout ce dont vous avez besoin pour votre rapport de labo, suivez les instructions du préambule pour éteindre vos VMs et fermez votre session avec l’ordi hôte. Soyez bien certain de laisser la cage dans le même état que vous l’avez trouvé, et demandez à l’instructeur la combinaison de la clé si vous désirez travaillez hors la session de labo.</p>
+
+    <p>Votre rapport est à remettre <strong>Mercredi 17 Mars avant 14h00</strong>. Votre rapport doit suivre <a href="../lab-report-template.docx">le modèle suivant</a>. Vous devez nommer votre rapport de la façon suivante : <code class="highlighter-rouge">GEF330_lab6_NomEtudiant1_NomEtudiant2.zip</code> Pour ce labo, votre rapport doit contenir :</p>
+
+    <ul>
+      <li>Les énoncés des questions.</li>
+      <li>Les réponses à celles-ci.</li>
+      <li>Des captures de trafic appropriées.</li>
+    </ul>
+
+
+
+
+
+    
+
+
+  </br></br>
+  </div>
+
+
+<!-- Copyright Section -->
+<section class="copyright py-4 text-center text-white">
+  <div class="container">
+    <small>Copyright &copy; Mariam El Mezouar 2021</small>
+  </div>
+</section>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-to-top d-lg-none position-fixed ">
+  <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+    <i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="../js/jqBootstrapValidation.js"></script>
+<script src="../js/contact_me.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/freelancer.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>GEF330 Devoir 2</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Custom fonts for this theme -->
+  <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="../../../css/freelancer.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="../../index.html">GEF 330</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+        type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#horaire">Horaire</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <h2 class="mt-4">Devoir 2: </h2>
+    <h5 class="subtitle">Comprendre la pile TCP / IP</h5>
+    
+
+    <p>-Reference: Matthews, Jenna. Computer Networking. John Wiley &amp; Sons, Inc, 2000.</p>
+
+<p>Pour ce devoir, vous utiliserez le PCAP suivant: <a href="simpleHttp.pcap">simpleHttp.pcap</a>.</p>
+
+<ul>
+  <li>Ce devoir peut être effectué sur votre ordinateur personnel si vous <a href="https://www.wireshark.org/">téléchargez et installez Wireshark</a>.</li>
+  <li>Vous pouvez également utiliser la machine virtuelle Windows ou Linux dans l'environnement de laboratoire.
+    <ul>
+      <li>Tout d'abord, configurez votre VM pour utiliser l'interface <strong>External</strong>, conformément au Lab 2.</li>
+      <li>Déplacez le fichier de capture simpleHTTP.pcap vers votre VM via le serveur SFTP. Le processus se trouve dans le préambule du laboratoire 1.</li>
+    </ul>
+  </li>
+  <li>Reférez vous à <a href="../../ressources/TCP-IP-tcpdump_PocketReference_SANS.pdf">TCP/IP Cheat Sheet</a> si nécessaire.</li>
+</ul>
+
+<p>Vous allez maintenant utiliser Wireshark pour inspecter la capture de paquets et examiner les données. Wireshark est un outil open source gratuit pour inspecter et analyser le trafic réseau. Vous devriez lire le chapitre 4 de Practical Packet Analysis pour vous aider dans votre utilisation de l'outil.</p>
+
+<p>À l'aide de l'outil Wireshark et de la capture de paquets fournie, répondez aux questions suivantes. Ils se concentrent sur l'exploration de la pile du réseau TCP / IP et la mise en évidence de la séparation de chaque couche. Les notes du cours et la cheat sheet TCP/IP fournis en classe peuvent être utiles pour répondre aux questions.</p>
+
+<ol>
+  <li>Nommez et décrivez brièvement les sept couches du modèle OSI.</li>
+  <li>Quelle est l'adresse IP du PC et du routeur?</li>
+  <li>Quelle sonts les adresses MAC du PC et du routeur?</li>
+  <li>Examinez le paquet 4. Quelle est la taille des éléments suivants?
+    <ul>
+      <li>a. L'en-tête Ethernet.</li>
+      <li>b. La trame Ethernet.</li>
+      <li>c. L'en-tête IP.</li>
+      <li>d. Le datagramme IP.</li>
+      <li>e. L'en-tête TCP.</li>
+      <li>f. Le segment de donnée TCP.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Fournissez une illustration de la façon dont le paquet est en couche, et nommez chacun de ces éléments.</p>
+
+<ol start="5">
+  <li>Lorsque vous utilisez <code>tcpdump</code> pour capturer le trafic réseau, il existe une option de longueur de capture qui limitera la taille du paquet à capturer. L'option par défaut est de capturer le paquet dans son intégralité. Si vous souhaitez limiter la quantité de données à capturer pour capturer uniquement les en-têtes des couches Ethernet, IP et TCP, sur quoi devez-vous définir la longueur de capture?</li>
+  <li>Quel est le plus grand paquet IP possible? Comment avez-vous trouvez la réponse?</li>
+</ol>
+
+<p>Rappelez à votre instructeur de publier la solution à ce devoir après le quiz.</p>
+
+    
+  </div>
+
+
+<!-- Copyright Section -->
+<section class="copyright py-4 text-center text-white">
+  <div class="container">
+    <small>Copyright &copy; Mariam El Mezouar 2021</small>
+  </div>
+</section>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-to-top d-lg-none position-fixed ">
+  <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+    <i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="../js/jqBootstrapValidation.js"></script>
+<script src="../js/contact_me.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/freelancer.min.js"></script>
+
+</body>
+
+</html>
