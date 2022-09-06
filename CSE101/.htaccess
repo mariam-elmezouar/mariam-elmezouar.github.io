@@ -2,5 +2,5 @@
 AuthName "Dialog prompt"
 AuthType Basic
 AuthUserFile 
-/Users/mariamelmezouar/Dropbox/Fall22/github-pages/mariam-elmezouar.github.io/CSE101/.htpasswd
+/mariam-elmezouar.github.io/CSE101/.htpasswd
 Require valid-user
