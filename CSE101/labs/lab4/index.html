@@ -144,6 +144,28 @@
 
       <h4>Exercice 3</h4>
 
+      <p>In a matlab function file called <em>treasure.m</em>, write a function treasure(x) that takes in a square array (i.e. nxn) that contains integers from 11 to 99. This array represents the treasure map. Your function must output a vector that contains all the positions (i.e. the path) that the pirate must visit in order to find the treasure. The method to follow the treasure map is described below :</p>
+
+      <ul>
+        <li>The pirate always starts at position (1,1) on the map.;</li>
+        <li>Each position that the pirate visits contains an indication about which position the pirate is to visit next. Ex : if the position (1,1) contains the number 57 then the next position that the pirate must move to is (5,7);</li>
+        <li>The treasure is found when the position on the map and the number it contains are the same. Ex : if position (3,2) contains the number 32 then the treasure has been found.</li>
+      </ul>
+
+      <p>Here is an example given the following map:</p>
+
+      <pre> 
+        <code>
+          map = [55 55 15 53 41
+                 51 35 23 45 41
+                 55 44 42 41 41
+                 23 21 15 42 51
+                 32 44 13 34 15]
+        </code>
+        </pre>
+
+    <p>When you execute <code>path = treasure(map)</code>, then the function should return the vector [55,15,41,23]</p>
+
     <h3>Submission</h3>
 
     <p>Place your file matlab file into a folder <em>lastname_lab4</em>, compress it, and submit the compressed file in Moodle by Monday October 17rd at 11:59pm.</p>
