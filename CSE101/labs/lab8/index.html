@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    figure {
+      
+      padding: 4px;
+      margin: auto;
+    }
+
+    figcaption {
+      color: black;
+      font-style: italic;
+      padding: 2px;
+      text-align: center;
+    }
+    </style>
+  <title>CSE101 Lab 8</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Custom fonts for this theme -->
+  <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="../../../css/freelancer.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="../../index.html">CSE 101</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+        type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#laboratories">Laboratories</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#schedule">Schedule</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <h2 class="mt-4">Lab 8: File I/O in Matlab</h2>
+    <h5 class="subtitle">CSE101 Fall 2022</h5>
+    
+    <h3 id="introduction">Introduction</h3>
+    <p> During this lab, you will learn how to read/write from/to files in Matlab. </p>
+
+    <h3 id="liens">Objectives</h3>
+    <p>The objective of this lab is:</p>
+
+    <ul>
+      <li>To use MATLAB to work with character arrays and with file input/output. </li>
+      <li>To solve problems in teams.</li>
+      <li>To test and debug code; develop good programming skills</li>
+    </ul>
+
+    <h3 id="liens">Getting setup</h3>
+    <p>The following <a href="lab8.zip">starting code</a> contains two files that you will need for part 0.</p>
+
+    <p>Few rules to note about this lab:</p>
+    <ul>
+      <li>This lab can be perform in groups of up to 3 students.</li>
+      <li>At the top of each function file, add a comment as follows
+        <code>%Names: X, Y, and Z</code>
+      </li>
+      <li>Part of your grade on this lab will be based on the documentation of your code, i.e. adding comments that explain your logic and what your code is doing. Add comments as needed and as clearly as possible.</li>
+      <li>Use proper indentation and meaningful variable names.</li>
+    </ul>
+
+    <h3 id="liens">Introduction</h3>
+
+
+    <ul>
+      <li>File input/output refers to reading data from (and writing data to) a file that is saved on a computer's external memory (e.g., hard drive, memory key, network drive, tape drive, etc.).      </li>
+      <li>MATLAB provides a variety of functions for text file input and output.</li>
+      <li>The Matlab input functions: fgetl(), fgets, fscanf(), etc </li>
+      <li>The Matlab output functions: fprintf() </li>
+      <li>The Matlab file related functions: fopen(), fclose(), feof(), etc</li>
+      <li>Part of your task in this lab is to figure out how to use these functions to achieve the desired results.</li>
+    </ul>
+
+    <p>There are 3 basic steps to accessing data in a file:</p>
+    <ol>
+      <li>Open the file</li>
+      <li>Read data from the file OR write data to the file (but typically not both)</li>
+      <li>Close the file</li>
+    </ol>
+
+    <p>To open a file</p>
+
+    <ul>
+      <li>Use <code>File_ID = fopen(File_name, Access_mode) function.</code></li>
+        <ul>
+          <li>The first argument to fopen() is the name of the file.</li>
+          <li>The second argument to fopen() is a string that specifies the type of access that is desired to the file. Some of the options are:</li>
+          <ul>
+            <li>'r'	open an existing file for reading only (default permission)</li>
+            <li>'r+'	open an existing file for reading and writing</li>
+            <li>'w'	delete/create a file and open it for writing</li>
+            <li>'a'	open/create a file for appending (writing data after the existing contents of the file)</li>
+          </ul>
+        </ul>
+    </ul>
+
+    <p>To read (or write) data to a file</p>
+
+    <ul>
+      <li>To read data from a file: fgetl(), fgets, fscanf(), etc</li>
+      <li>To write data to a file: 	fprintf()</li>
+    </ul>
+
+
+    <h3 id="liens">Part 0: Reading and writing to files</h3>
+
+    <p>In this part of the lab, you will be introduced to the basic Matlab functions used to read and write from/to files. Once you complete part 0, move on to part 1. You do not need to submit anything for part 0</p>
+
+    <p>Inside the folder part0 inside the folder lab8, open the Matlab file called part0.m. Read and try to understand the code, then run the code to see what it does. Note: it reads from the text file in the same folder called aFile.txt.</p>
+
+
+    <ol>Modify the code to append to the existing content the text: <code>I appending extra text.</code></ol>
+    <ol>Modify the code to  read the values in the second line and calculate their sum.</ol>
+    <ol>Modify the code to overwrite the existing content with the text: <code>I overwrote the previous content.</code></ol>
+
+    <h3 id="liens">Part 1: Nonsensical Paragraph Generator</h3>
+
+    <p>We will write a program that generates a random essay using words that are found in another piece of text.  The text that we'll use is found at this url:  https://www.cs.queensu.ca/home/cords2/cs.txt</p>
+
+    <p>To read and store text from a url, use the following code:</p>
+
+    <pre>
+      <code>
+        url = " https://www.cs.queensu.ca/home/cords2/cs.txt";
+        code = webread(url);
+        str = extractHTMLText(code); 
+      </code>
+    </pre>
+    
+    <p>This text was taken from an article written by  Joy Buolamwini published in TIME on February 7, 2019.  Buolamwini is a computer scientist, founder of the Algorithmic Justice League and a poet of code.</p>
+
+    <p>Your program will read the text from the website, generate a dictionary of words sorted by the first letter of the word. Your program will then use this dictionary to generate paragraphs of text to form an essay using randomly generated choices for the words.</p>
+
+    <p>Here is an outline of the functions that are required to achieve the goal, their inputs and what they should return.  Your program must follow this outline and not deviate.  Deviations from the outline (that is, changing the inputs or outputs, adding functions, leaving out functions etc) will result in a lower mark.</p>
+
+    <ul>
+      <li> <code>wordList = readWebPage(url)</code> - this function takes one input, the URL from which to read the text, and it returns a vector where each element is a word in the text found on the website.  The function should read the contents of the website into a string and split the string to a list of words (<em>hint</em>: use the function <code>split()</code>). </li>
+
+      <li> <code>cleanedWordList = cleanDictionary(wordList) </code> - this function takes as a parameter a list of words and modifies the words in the list to remove punctuation marks that appear at the end of some of the words. You should check the last character against all types of punctuation, not just periods or commas.</li>
+
+      <li> <code>sortedWordList = sortDictionary(cleanedWordList) </code> - this function takes as a parameter a list of cleaned words and sorts the words in the list in alphabetical order.</li>
+
+      <li><code> paragraph = makeParagraph(sortedWordList, numberofWords) </code> – this function takes the dictionary of words and creates a paragraph (a string) consisting of numberofWords words. The choice of the words is random . The paragraph is returned.  </li>
+
+      <li><code>text = createEssay(sortedWordList) </code>  - in this function you will ask the user how many paragraphs they want to generate.  For each paragraph, you will ask the user how many words should be in that paragraph.  To generate each paragraph, you will call makeParagraph() and add the string that is returned to the "essay".   Be sure to add a new line "\n" after each paragraph so that it will appear on a new line when you write it to a file.</li>
+
+      <li> <code>writeToFile(text)</code> – this function takes a string as a parameter.  It opens a file called "essay.txt" and writes the text string to the file.  Be sure to check that the file was opened properly.  </li>
+
+      <li>The functions will be called in this order with the proper inputs:</br>
+
+        readWebPage() </br>
+        cleanDictionary()</br>
+        sortDictionary</br>
+        createEssay() -- createParagrapgh will be called inside createEssay()</br> 
+        writeToFile()
+      </li>
+
+    </ul>
+
+    <h3>Submission</h3>
+
+    <p>Rename the folder containing the matlab files to <em>lastname_lab8</em>, compress it, and submit the compressed file in Moodle by Monday December 6th at 11:59pm.</p>
+
+    
+
+  </br></br>
+  </div>
+
+
+<!-- Copyright Section -->
+<section class="copyright py-4 text-center text-white">
+  <div class="container">
+    <small>Copyright &copy; Mariam El Mezouar 2022</small>
+  </div>
+</section>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-to-top d-lg-none position-fixed ">
+  <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+    <i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="../js/jqBootstrapValidation.js"></script>
+<script src="../js/contact_me.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/freelancer.min.js"></script>
+
+</body>
+
+</html>
