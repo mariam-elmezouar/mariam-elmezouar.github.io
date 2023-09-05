@@ -61,78 +61,181 @@
   <div class="container">
     
     <h2 class="mt-4">Lab 0: Getting setup</h2>
-    <h5 class="subtitle">CSE101 Fall 2022</h5>
+    <h5 class="subtitle">CSE101 Fall 2023</h5>
     
     <h3 id="introduction">Introduction</h3>
-    <p> During this lab, you will learn to setup your Matlab environment, as well as learn some basics of using Matlab</p>
+    <p> Welcome to your first CSE101 lab. As a special, one-time only bonus, there is no formal submission required for this lab - but we will be running through all the questions near the end of the lab period so <em>find the answers</em>. </p>
+      
+    <p>The objective of this lab exercise is to familiarize you with the Python environment and to give you practice creating and running simple program scripts. You will also explore the Python documentation and the Python 101 handout.</p>
 
     <h3 id="liens">Objectives</h3>
     <p>The objective of this lab is to:</p>
 
     <ul>
-      <li>Create MathWorks accounts to access both Matlab online and the Matlab installer.</li>
-      <li>Learn basic Matlab commands.</li>
-      <li>Get familiar with the Matlab interface.</li>
+      <li> </li>
+      <li></li>
+      <li></li>
     </ul>
 
-    <h3 id="liens">Tasks</h3>
-    <h5>Creation of a Mathworks account</h5>
+    <h3 id="liens">Task 0: Understanding the File System Structure in Windows</h3>
+    
+    <h4>Introduction</h4>
+    <p>The file system in Windows is like the digital filing cabinet for your computer. It's how your computer organizes and stores files and folders, making it easier for you to find and manage your information. In this part of the lab, we'll break down the key concepts of the Windows file system structure.</p>
 
-    <ul>
-      <li>Click <a href="https://www.mathworks.com/mwaccount/register" target=”_blank”>here</a> to create your Mathworks account</li>
-      <li>Fill the required fields. Make sure you use your RMC email with the domain rmc.ca <em>only</em> (see image below).
-
-    </ul>
-
-    <p><centering><img src="image1.png" alt="missing picture" width="600"></centering></p>
-
-
-    <h5>Setting up the Matlab environment:</h5>
-
-    <p>There are a few ways that you can use to access Matlab. In today's lab, you need to make sure that you are able to access Matlab using <em>at least</em> one of them.</p>
-
-    <ol type="1">
-      <li><b>Accessing Matlab online: This task can be performed on the computer lab or your personal computer.</b>
-        <ul>
-          <li>Make sure you are signed in the Mathworks account created in the step above.</li>
-          <li>Access the matlab page <a href="https://matlab.mathworks.com/" target=”_blank”>here</a></li>
-          <li>Click on the blue button that says "Open Matlab Online" as seen in the image below</li>
-          
-        </ul>
-        <p><centering><img src="image2.png" alt="missing picture" width="800"></centering></p>
-        <ul>
-          <li>After a few seconds of loading, you should now be able to see a Matlab editor that looks like the image below. You are not required to do anything further at this point. The different components of this window will be explored in a later task.</li>          
-        </ul>
-        <p><centering><img src="image3.png" alt="missing picture" width="800"></centering></p>
-       </li>
-      <li><b>Installing Matlab on your personal computers: This task can only performed on your personal computers</b>
-        <ul>
-          <li>Again, make sure you are signed in the Mathworks account created in the step above.</li>
-          <li>Again, access the matlab page <a href="https://matlab.mathworks.com/" target=”_blank”>here</a></li>
-          <li>This time click on the button that says "Install Matlab" and follow the installation steps</li>
-          <li>When the installation is complete, launch Matlab in the same manner as other applications on your computer.</li>
-          <li>The Matlab window should be faily similar to the Matlab online window. You are done with this step.</li>
-        </ul>
-      </li>
-      <li><b>Accesing Matlab on the computer labs in Currie Hall</b>: The installation of Matlab in the computer labs is still ongoing. An email will be sent you when completed.</li>
+    <h4>Key Concepts</h4>
+    <ol>
+        <li><strong>Drives</strong>: Think of drives as the different storage spaces in your computer. They can be physical drives like your main hard disk or external USB drives. In Windows, each drive is typically assigned a letter, like "C:", "D:", and so on.</li>
+        <li><strong>Folders (Directories)</strong>: Folders are like digital containers for files. They help you group and organize related files. Just like real folders in a cabinet, digital folders hold files and other folders. Your documents, pictures, and videos are often organized into separate folders for better management.</li>
+        <li><strong>Files</strong>: Files are the actual documents, pictures, videos, and programs stored on your computer. They can be anything from a Word document to a song or a photo. Each file has a name, and it's stored inside a folder.</li>
+        <li><strong>Path</strong>: A path is like a set of directions to find a file or folder. It's made up of the drive letter, folder names, and the file name. For example, <code>C:\Users\YourUsername\Documents\my-file.docx</code> is a path to a Word document on the "C:" drive.</li>
     </ol>
 
-    <h5>A gentle introduction to Matlab</h5>
+    <h4>Exploring the File System</h4>
+    <p>Let's use an analogy to understand the file system better:</p>
+    <p>Imagine your computer is a big city with different neighborhoods (<em>drives</em>). Each neighborhood has houses (<em>folders</em>), and inside each house, you can find things like books, photos, and toys (<em>files</em>).</p>
 
-    <p>In this task, you will complete the first three modules of <a href="https://matlabacademy.mathworks.com/details/matlab-onramp/gettingstarted">this online training</a>. This requires you to be logged in your MathWorks account.</p>
+    <ol>
+        <li><strong>Navigate Between Drives and Folders:</strong>
+            <ul>
+                <li>Open "File Explorer" (you can find it in the taskbar or press <kbd>Win + E</kbd>).</li>
+                <li>On the left, click on <em>This PC</em> you'll see the drives (C:, D:, etc.). Clicking a drive shows its folders.</li>
+                <li>Click on a folder to see its contents.</li>
+            </ul>
+        </li>
+        <li><strong>Create a New Folder:</strong>
+            <ul>
+                <li>Locate and open the 'U:' drive. This drive will also be named after your username (refer to the picture below). This drive is unique because whatever you place in it: 1) will still be accessible when you log in later (this guarantee might not apply to other drives), and 2) its contents can be accessed similarly when logging into a different computer on the RMC network.</li>
+                <li>Once inside the U: drive, right-click, choose "New," and select "Folder." Name it 'CSE101-labs'. Remember this folder, you will use it to organize all the files related to the course labs</li>
+                <li>Repeat the same process to create a folder called 'Lab0' under 'CSE101-labs'.</li>
+            </ul>
+        </li>
+        <li><strong>Create a Text File:</strong>
+            <ul>
+                <li>Once inside the folder 'Lab0', right-click, choose "New," and select "Text Document." Name it something like "task0.txt."</li>
+            </ul>
+        </li>
+        <li><strong>Move/copy Files and Folders:</strong>
+            <ul>
+                <li>Right-click a file/folder, select "Cut" (to move) or "Copy" (to create a copy), go to another folder, and right-click to "Paste".</li>
+                <li>Practice dragging a file or folder and dropping it into another folder to move it.</li>               
+            </ul>
+        </li>
+        <li><strong>Understand Paths:</strong>
+            <ul>
+                <li>Look at the address bar when you're inside a folder. It shows the path.</li>
+                <li>Experiment by copying a path and pasting it into the address bar to navigate directly.</li>
+            </ul>
+        </li>
+    </ol>
 
-    <p>After you complete the first three modules, your window should look like the following image. If it does, congratulations! you have completed your first Matlab lab. At this point, you can call your instructor to show them your completed tasks.</p>
-    <p><centering><img src="image4.png" alt="missing picture" width="800"></centering></p>
+    <h4>Takeaway</h4>
+    <p>Understanding the file system of your computer is crucial for effective organization and management of your files for this lab and for your courses in general. Remember the key concepts: drives, folders, files, and paths. By using File Explorer and practicing basic tasks, you'll become more comfortable with the structure and navigation of your computer's file system.</p>
+    
 
+    <h3 id="liens">Task 1: PyCharm - a Python IDE</h3>
+    
+    <h4>What is PyCharm?</h4>
+    <p>PyCharm is an Integrated Development Environment (IDE) designed specifically for Python programming. An IDE is like a digital workshop where you write, test, and manage your code more efficiently. PyCharm provides tools and features that help programmers, especially beginners, create Python programs with ease.</p>
+
+
+
+    <h4>Getting Started</h4>
+    <ol>
+        <li><strong>Installation</strong>:
+            <ul>
+                <li>PyCharm is pre-installed on the lab computers. To open PyCharm, simply type its name into the Windows search bar located at the bottom left corner of the screen.</li>
+                <li>If you prefer to access PyCharm on your personal computers as well, you will need to first download and install Python (<a href="https://www.python.org/downloads/" target="_blank">here</a>). Then, you can download and install PyCharm from the JetBrains website (<a href="https://www.jetbrains.com/pycharm/download" target="_blank">here</a>). Choose the free "Community" edition if prompted.</li>
+            </ul>
+        </li>
+        <li><strong>Creating a Project</strong>:
+            <ul>
+                <li>Open PyCharm and click "Create New Project."</li>
+                <li>Select a location<b>*</b> for your project and give it a MEANINGFUL name (e.g. 'lastname_lab0'). <b>*IMPORTANT</b>: remember to always store your projects under the folder we created in Task 0 under the U: drive. This will spare you the hassle of wondering where your files and folders are, and allow you to access your projects from different lab computers.</li>
+                <li>Unselect "Create a main.py welcome script"</li>
+                <li>Leave the rest as is and click on 'create'</li>
+            </ul>
+        </li>
+
+        <li><strong>Creating a Python file</strong>:
+          <ul>
+              <li>In the left panel of the PyCharm interface, where you see the list of files and folders for your project, right-click on the name of the project.</li>
+              <li>From the context menu that appears, select "New" > "Python File."</li>
+              <li>Give your file a meaningul name. In this case, let's call it <em>my_first_program.py</em>. Think of the meaning of this file ending with '.py'. Does it remind you of anything you have seen before? </li>
+          </ul>
+      </li>
+
+        <li><strong>Writing Code</strong>:
+            <ul>
+                <li>In the code editor, you can start writing Python code.</li>
+                <li>Start by writing the following line of code <code>print("Hello, World!")</code> (This is the classic first program for all beginners).</li>
+                <li>Save your file/li>
+            </ul>
+        </li>
+        <li><strong>Running Code</strong>:
+            <ul>
+                <li>Right-click your Python file and choose "Run" to execute your code.</li>
+                <li>What happens? What changed in the interface of PyCharm?</li>
+            </ul>
+        </li>
+        <li><strong>Using the Console</strong>:
+            <ul>
+                <li>At the bottom of the PyCharm window, you'll find the Python console.</li>
+                <li>You can type and run code snippets here for quick tests.</li>
+            </ul>
+        </li>
+    </ol>
+
+    
+
+    <h3 id="liens">Task 2: The Guessing Game with Python</h3>
+
+    <p>Create a new Python file called <tt>playerguess.py</tt> and type the program below into it exactly as written.</p>
+
+    <p>Do not copy and paste! Part of the point of this lab is to get you used to writing code precisely the way Python needs it entered. PyCharm will give you hints about typos or other errors (e.g., using the wrong indentation, etc.) by red underlining or colouring.</p>
+
+    <pre><code>
+import random
+
+target = random.randint(1, 100)
+guess = -1
+
+print("\nI've picked a number between 1 and 100.")
+print("Try to guess what it is.\n")
+
+while guess != target:
+    guess = int(input("What is your guess? "))
+    if target > guess:
+        print("higher...")
+    elif target < guess:
+        print("lower...")
+
+print("\n******\nYou guessed it!\n******")
+    </code></pre>
+
+    <p>Once you have the program entered, try to run it. If PyCharm gives you an error message, try to figure out where you've made your mistake. Fix any errors until the program seems to work correctly.</p>
+
+    <h5>Questions</h5>
+
+    <ol>
+      <li>What does the first line of this program accomplish?</li>
+      <li>The variable called <tt>target</tt> is set to the result of executing the <code>random.randint</code> function with the parameters 1 and 100. Read the documentation for the <code>random.randint</code> function <a href="https://www.w3schools.com/python/ref_random_randint.asp" target="_blank">here</a>. What, exactly, does it do when used the way we've used it here?</li>
+      <li>What is the <code>print</code> function used for? Read the documentation for <code>print</code> <a href="https://www.w3schools.com/python/ref_func_print.asp" target="_blank">here</a>.</li>
+      <li>What is the meaning of <tt>'\n'</tt> in a <code>print</code> function?</li>
+      <li>What is the <code>input</code> function used for? (documentation <a href="https://www.w3schools.com/python/ref_func_input.asp" target="_blank">here</a>)</li>
+      <li>What does != mean?</li> 
+      <li>What does the line <code>while guess != target</code> accomplish?</li>
+      <li>What do you think is the meaning of indentation in this piece of code?</li>
+  </ol>
+  
      
   </br></br>
   </div>
 
-
+  
 <!-- Copyright Section -->
 <section class="copyright py-4 text-center text-white">
   <div class="container">
-    <small>Copyright &copy; Mariam El Mezouar 2022</small>
+    <small>Copyright &copy; Mariam El Mezouar 2023</small>
   </div>
 </section>
 

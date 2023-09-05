@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    figure {
+      
+      padding: 4px;
+      margin: auto;
+    }
+
+    figcaption {
+      color: black;
+      font-style: italic;
+      padding: 2px;
+      text-align: center;
+    }
+    </style>
+  <title>CSE101 Lab 6</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Custom fonts for this theme -->
+  <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="../../../css/freelancer.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="../../index.html">CSE 101</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+        type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#laboratories">Laboratories</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#schedule">Schedule</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <h2 class="mt-4">Lab 6: Strings</h2>
+    <h5 class="subtitle">CSE101 Fall 2022</h5>
+    
+    <h3 id="introduction">Introduction</h3>
+    <p> During this lab, you will gain a deeper understanding of string manipulation in Matlab. </p>
+
+    <h3 id="liens">Objectives</h3>
+    <p>The objective of this lab is:</p>
+
+    <ul>
+      <li>To learn how to manipulate strings.</li>
+      <li>To use MATLAB to solve more complex problems, involving the string functions.</li>
+      <li>To practice programming within the Matlab IDE</li>
+      <li>To test your code</li>
+    </ul>
+
+    <h3 id="liens">Getting setup</h3>
+    <p>The following <a href="lab6.zip">starting code</a> contains four files: three Matlab function files and one test file . Keep all files together in the same folder. Open the four files in Matlab, and try running test.m. Nothing should happen at this point since the functions are not implemented yet. The purpose of the test files is to test the three functions you will be implementing in this lab.</p>
+
+    <p>Few rules to note about this lab:</p>
+    <ul>
+      <li>You can work in teams of up to three students. All members should contribute <em>equally</em>. If not, the members will not get the same grade on this lab.</li>
+      <li>At the top of each function file, add a comment as follows
+        <code>%Team members: X, Y, and Z.</code>
+      </li>
+      <li>Part of your grade on this lab will be based on the documentation of your code, i.e. adding comments that explain your logic and what your code is doing. Add comments as needed and as clearly as possible.</li>
+      <li>Use proper indentation and meaningful variable names.</li>
+    </ul>
+
+    <h3 id="liens">Part 1: hullabaloo</h3>
+
+    <p>Write a Matlab function <em>hullabaloo</em> which returns a shuffled version of the received character string. For example, if the word received as input is 'plane' the returned string could be 'naple' or 'enapl' or even 'enpla' etc. Attention: the returned word must contain exactly the same letters, only in a shuffled order! The shuffled word should never be the same as the initial word, except of course, if the initial word has only one letter.</p>
+    
+    <p>You can access a string as if it were an array. So length(s1) returns the length of the word, s1(1) the first letter, s1(n), the nth letter, etc.
+      You must use the rand function which generates a random real number between 0 and 1. Use <em>help rand</em> to see the details. The function <em>fix</em> which removes the digits after the decimal point (you can use round) will also be useful to you. For example, if we want an integer between 1 and 10, we can use this code:</p>
+      
+      <code>fix(rand()*10)+1</code>
+    
+    <p>Test the program by calling your function with various words and checking that no letters are missing. Your program should work correctly in all cases, even if the string is empty, and even if there are repeated letters in the word. For example, for the word 'bonbon', 'nbonbn' would not be a good answer.
+    Your program should follow coding conventions (comments, proper indentation, and representative variable names).</p>
+
+
+    <h3 id="liens">Part 2: Palindrome</h3>
+
+    <p>A palindrome is a word, or group of words, that reads the same way forwards and backwards. For example: 'laval', 'rotor' 'radar', and 'aabbcbbaa' are palindromes. Write a Matlab function that receives a string as input argument and returns true if the string is a palindrome and false if it is not. </p>
+
+    <h3 id="liens">Part 3: Largest common substring</h3>
+
+    <p>Write a function that receives two strings and finds the largest common substring. Use the strcmp and strfind functions from Matlab. For example, if you receive s1 = 'abcabbaccb' and s2 = 'abcba', the largest common substring is 'abc'. Be careful, this problem will require that you think carefully about your algorithm before coding it. If the shortest string is 8 characters, you must first find out if it is included in the longest. Otherwise you have to try the 2 substrings of 7 characters long, otherwise the 3 substrings of 6 characters long, etc, until you find a match. Otherwise, return an empty string ''.</p>
+
+    <p>Test your algorithm on the following strings:</p>
+     
+    <p>‘abcabbaccb’ and ‘abcba’ (answer ‘abc’) </br>
+      ‘adhfkuhakjhfkjsdghkjsa’ and ‘hakjhfddhajskh’ (answer ‘hakjhf’) </br>
+      ‘askjdhfysadghfjkahdfgfg’ and ‘jkahdfgftyuewh’ (answer ‘jkahdfgf’) </br>
+      'lahfdusadfilrug' and 'lrugjhflyhewarfhewi' (answer 'lrug') </br>
+      'ladshuifuik' and 'fgakgfaifuiahfuiehw' (answer 'ifui') </br>
+      ‘afhgaehflrghrulgfla’ and ‘ndegfghrulgfelhfkw’ (answer ‘ghrulgf’) </br>
+      ‘askfghfu’ and ‘hfiasdhkaskf’ (answer ‘askf’)</p>
+      
+    <h3>Submission</h3>
+
+    <p>Rename the folder containing the matlab files to <em>lastname(S)_lab5</em>, compress it, and submit the compressed file in Moodle by Monday November 7th at 11:59pm.</p>
+
+    
+
+  </br></br>
+  </div>
+
+
+<!-- Copyright Section -->
+<section class="copyright py-4 text-center text-white">
+  <div class="container">
+    <small>Copyright &copy; Mariam El Mezouar 2022</small>
+  </div>
+</section>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-to-top d-lg-none position-fixed ">
+  <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+    <i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="../js/jqBootstrapValidation.js"></script>
+<script src="../js/contact_me.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/freelancer.min.js"></script>
+
+</body>
+
+</html>
