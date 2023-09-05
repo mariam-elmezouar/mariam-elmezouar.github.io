@@ -66,15 +66,15 @@
     <h3 id="introduction">Introduction</h3>
     <p> Welcome to your first CSE101 lab. As a special, one-time only bonus, there is no formal submission required for this lab - but we will be running through all the questions near the end of the lab period so <em>find the answers</em>. </p>
       
-    <p>The objective of this lab exercise is to familiarize you with the Python environment and to give you practice creating and running simple program scripts. You will also explore the Python documentation and the Python 101 handout.</p>
+    <p>The objective of this lab exercise is to familiarize you with the Python environment and to give you practice creating and running simple program scripts.</p>
 
     <h3 id="liens">Objectives</h3>
     <p>The objective of this lab is to:</p>
 
     <ul>
-      <li> </li>
-      <li></li>
-      <li></li>
+      <li>Get familiar with file system in Windows</li>
+      <li>Get familiar with PyCharm</li>
+      <li>Learn how to read some Python code</li>
     </ul>
 
     <h3 id="liens">Task 0: Understanding the File System Structure in Windows</h3>
@@ -84,7 +84,7 @@
 
     <h4>Key Concepts</h4>
     <ol>
-        <li><strong>Drives</strong>: Think of drives as the different storage spaces in your computer. They can be physical drives like your main hard disk or external USB drives. In Windows, each drive is typically assigned a letter, like "C:", "D:", and so on.</li>
+        <li><strong>Drives</strong>: Think of drives as the different storage spaces in your computer. They can be physical drives like your main hard disk or external USB drives. In Windows, each drive is typically assigned a letter, like "C:", "U:", and so on.</li>
         <li><strong>Folders (Directories)</strong>: Folders are like digital containers for files. They help you group and organize related files. Just like real folders in a cabinet, digital folders hold files and other folders. Your documents, pictures, and videos are often organized into separate folders for better management.</li>
         <li><strong>Files</strong>: Files are the actual documents, pictures, videos, and programs stored on your computer. They can be anything from a Word document to a song or a photo. Each file has a name, and it's stored inside a folder.</li>
         <li><strong>Path</strong>: A path is like a set of directions to find a file or folder. It's made up of the drive letter, folder names, and the file name. For example, <code>C:\Users\YourUsername\Documents\my-file.docx</code> is a path to a Word document on the "C:" drive.</li>
@@ -98,17 +98,24 @@
         <li><strong>Navigate Between Drives and Folders:</strong>
             <ul>
                 <li>Open "File Explorer" (you can find it in the taskbar or press <kbd>Win + E</kbd>).</li>
-                <li>On the left, click on <em>This PC</em> you'll see the drives (C:, D:, etc.). Clicking a drive shows its folders.</li>
+                <li>On the left, click on <em>This PC</em> you'll see the drives (C:, U:, etc.). Clicking a drive shows its folders.</li>
                 <li>Click on a folder to see its contents.</li>
             </ul>
         </li>
         <li><strong>Create a New Folder:</strong>
             <ul>
-                <li>Locate and open the 'U:' drive. This drive will also be named after your username (refer to the picture below). This drive is unique because whatever you place in it: 1) will still be accessible when you log in later (this guarantee might not apply to other drives), and 2) its contents can be accessed similarly when logging into a different computer on the RMC network.</li>
-                <li>Once inside the U: drive, right-click, choose "New," and select "Folder." Name it 'CSE101-labs'. Remember this folder, you will use it to organize all the files related to the course labs</li>
+                <li>Locate and open the 'U:' drive. This drive will also be named after your username (refer to the picture below). This drive is unique because whatever you place in it: 1) will still be accessible when you log in later, and 2) its contents can be accessed similarly when logging into a different computer on the RMC network. The 'C:' drive should also keep your files intact, but only if you access them from the same computer each time.</li>
+                <li>Once inside the U: drive, right-click, choose "New," and select "Folder." Name it 'CSE101-labs'. Remember this folder, you can use it to organize all the files related to the course labs</li>
                 <li>Repeat the same process to create a folder called 'Lab0' under 'CSE101-labs'.</li>
             </ul>
         </li>
+
+
+        <figure>
+          <img src="Capture1.png" alt="U drive">
+          <figcaption>'U:' drive</figcaption>
+        </figure>
+
         <li><strong>Create a Text File:</strong>
             <ul>
                 <li>Once inside the folder 'Lab0', right-click, choose "New," and select "Text Document." Name it something like "task0.txt."</li>
@@ -168,7 +175,7 @@
             <ul>
                 <li>In the code editor, you can start writing Python code.</li>
                 <li>Start by writing the following line of code <code>print("Hello, World!")</code> (This is the classic first program for all beginners).</li>
-                <li>Save your file/li>
+                <li>Save your file</li>
             </ul>
         </li>
         <li><strong>Running Code</strong>:
