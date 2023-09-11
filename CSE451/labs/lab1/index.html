@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Lab 1</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Custom fonts for this theme -->
+  <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="../../../css/freelancer.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="../../index.html">CSE451</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+        type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#laboratoires">Laboratories</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#horaire">Schedule</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <h2 class="mt-4">Lab 1 </h2>
+    <h5 class="subtitle">CSE451 Fall 2023</h5>
+    
+    <h2 id="introduction">Introduction</h2>
+    <p>In this lab, you'll dive into data science using Jupyter Notebooks. Data science combines programming and statistics to extract insights from data. This introductory lab focuses on data exploration and visualization, two key data science skills. </p>
+
+    <h2 id="liens">Objectives</h2>
+    <ul>
+      <li><b>Jupyter Notebook Basics</b>: Get comfortable with Jupyter Notebooks by learning how to create, edit, and run code and Markdown cells.</li>
+      <li><b>Data Exploration</b>: Learn to load datasets, examine data structure, identify missing values, and gain insights through basic summary statistics.</li>
+      <li><b>Data Visualization</b>: Use Python libraries like Matplotlib and Seaborn to create essential visualizations like bar charts, scatter plots, and histograms. </li>
+    </ul>
+
+
+    <h2 id="liens">Task 1: Data loading and inspection</h2>
+    <p><strong>Objective:</strong> Learn how to load datasets and perform initial inspections.</p>
+    <ul>
+      <li>Launch Jupyter Notebook and create a new textbook.</li>
+      <li>Create a new code cell and include the following import <code>import pandas as pd</code>. <code>pandas</code> is a widely-used Python library used for data analysis, data cleaning, data transformation, and data preparation tasks.</li>
+      
+      <li>Download the <a href="spotify-2023.csv">provided dataset</a>. The dataset contains the most streamed songs in Spotify in 2023. The columns of the dataset are described below:</li>
+
+      <pre><code>
+track_name: Name of the song
+artist(s)_name: Name of the artist(s) of the song
+artist_count: Number of artists contributing to the song
+released_year: Year when the song was released
+released_month: Month when the song was released
+released_day: Day of the month when the song was released
+in_spotify_playlists: Number of Spotify playlists the song is included in
+in_spotify_charts: Presence and rank of the song on Spotify charts
+streams: Total number of streams on Spotify
+in_apple_playlists: Number of Apple Music playlists the song is included in
+in_apple_charts: Presence and rank of the song on Apple Music charts
+in_deezer_playlists: Number of Deezer playlists the song is included in
+in_deezer_charts: Presence and rank of the song on Deezer charts
+in_shazam_charts: Presence and rank of the song on Shazam charts
+bpm: Beats per minute, a measure of song tempo
+key: Key of the song
+mode: Mode of the song (major or minor)
+danceability_%: Percentage indicating how suitable the song is for dancing
+valence_%: Positivity of the song's musical content
+energy_%: Perceived energy level of the song
+acousticness_%: Amount of acoustic sound in the song
+instrumentalness_%: Amount of instrumental content in the song
+liveness_%: Presence of live performance elements
+speechiness_%: Amount of spoken words in the song
+      </code>
+
+      </pre>
+
+      <li>In a new code cell, load the dataset into a Jupyter Notebook using the following function <code>df = pd.read_csv(dataset_path)</code>. Replace <em>dataset_path</em> with the path to the dataset. <code>df</code> is a dataframe, the primary Pandas data structure. It is a two-dimensional, size-mutable, and tabular data structure with labeled axes (rows and columns). Dataframes are similar to spreadsheets or SQL tables and can hold data of different types (e.g., numbers, strings, dates).
+
+      </li>
+      <li>Using different code cells, examine the dataset's structure (columns, rows) using the following functions: <code>head()</code>,
+        <code>tail()</code>,
+        <code>shape</code>,
+        <code>columns</code>,
+        <code>info()</code>,
+        <code>describe()</code>,
+        <code>dtypes</code>,
+        <code>sample()</code>. Inspect the output from each function and provide a brief description of what each functions does as markdown text on top of the associated code cell.</li>
+      <li>In a new code cell, identify and handle missing values if present. What functions allow you to do that?</li>
+      <li>In a new code cell, find out which function(s) you can use to find out the size of the dataset in terms of rows and columns. </li>
+      <li>If any, what were your observations about the dataset from this initial exploration?</li>
+  </ul>
+
+
+  <h2>Task 2: Basic Data Summary and Visualization</h2>
+  
+        <p><strong>Objective:</strong> Explore the dataset in more depth through summary statistics and basic visualizations.</p>
+        <ul>
+            <li>Identify which attributes (columns) are numerical and which are categorical.</li>
+            <li>In a new code cell, calculate basic summary statistics such as mean, median, and standard deviation for the numerical attributes.</li>
+            <li>Next, we will visualize some attributes of the dataset using simple plots. Two commonly used Python libraries used for visualizations are Matplotlib and Seaborn. In the initial code cell where pandas was imported, add the following imports: <code>import matplotlib.pyplot as plt</code> and <code>import seaborn as sns</code></li>
+
+            <ul>
+              <li>
+                <p><strong>Matplotlib</strong>: a versatile Python library for creating various plots and charts, offering extensive customization options.</p>
+                  <ul>
+                      <li>Highly customizable.</li>
+                      <li>Supports a wide range of plot types.</li>
+                      <li>Can be used with other libraries like NumPy and Pandas.</li>
+                      <li>Ideal for creating publication-quality static plots.</li>
+                  </ul>
+              </li>
+              <li>
+                <p> <strong>Seaborn</strong> is a Python library built on Matplotlib, designed for creating visually appealing statistical graphics with ease.</p>
+                  <ul>
+                      <li>Offers built-in themes and color palettes for aesthetics.</li>
+                      <li>Provides high-level functions for complex plots.</li>
+                      <li>Simplifies statistical visualization.</li>
+                      <li>Integration with Pandas for seamless data handling.</li>
+                  </ul>
+              </li>
+          </ul>
+          
+
+           
+            <li>Numerical attributes: using the code template below, construct a histogram to understand the distribution of some numerical attributes of your choice. Try to play around with the paramaters of the functions, and check if they has more parameters you can use.</li>
+
+            <pre>
+              <code>
+plt.figure(figsize=(8, 6))
+plt.hist(df['numerical_attribute'], bins=20, color='skyblue', edgecolor='black')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+plt.title('Histogram of Numerical Attribute')
+plt.show()
+              </code>
+            </pre>
+            <li>Categorical attributes: using the code template below, construct a bar chart to understand the distribution of some categorical attributes of your choice.</li>
+         
+            <pre>
+              <code>
+plt.figure(figsize=(8, 6))
+sns.countplot(x='categorical_attribute', data=df, palette='Set3')
+plt.xlabel('Category')
+plt.ylabel('Count')
+plt.title('Bar Chart of Categorical Attribute')
+plt.xticks(rotation=45)  # Rotate x-axis labels if needed
+plt.show()
+              </code>
+            </pre>
+            <li>Next, we visualize relationships between attributes: using the code template below, generate a scatter plot to visualize relationships between pairs of numberical attributes of your choice.</li>
+            
+            <pre>
+              <code>
+sns.set(style='whitegrid')  # Optional: Set the plot style
+plt.figure(figsize=(8, 6))
+sns.scatterplot(x='numerical_attribute1', y='numerical_attribute2', data=df, color='green', alpha=0.5)
+plt.xlabel('Numerical Attribute 1')
+plt.ylabel('Numerical Attribute 2')
+plt.title('Scatter Plot between Numerical Attribute 1 and Numerical Attribute 2')
+plt.show()
+              </code>
+            </pre>
+            
+            
+            <li>Reflect on the insights gained through visualization.</li>
+
+            <li>Once happy with your data exploration, clean up the notebook and add explanation/comments/insights as appropriate. Then, share your notebook with your instructor on Moodle.</li>
+        </ul>
+    
+    
+  </div>
+
+
+<!-- Copyright Section -->
+<section class="copyright py-4 text-center text-white">
+  <div class="container">
+    <small>Copyright &copy; Mariam El Mezouar 2023</small>
+  </div>
+</section>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-to-top d-lg-none position-fixed ">
+  <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+    <i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="../js/jqBootstrapValidation.js"></script>
+<script src="../js/contact_me.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/freelancer.min.js"></script>
+
+</body>
+
+</html>
