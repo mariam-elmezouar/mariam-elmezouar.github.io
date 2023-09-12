@@ -60,82 +60,103 @@
 
   <div class="container">
     
-    <h2 class="mt-4">Lab 1: Understanding variables and operations</h2>
-    <h5 class="subtitle">CSE101 Fall 2022</h5>
+    <h2 class="mt-4">Lab 1: Simple calculations</h2>
+    <h5 class="subtitle">CSE101 Fall 2023</h5>
     
     <h3 id="introduction">Introduction</h3>
-    <p> During this lab, you will get more familiar using Matlab arrays and applying operations on them. </p>
+    <p> During this lab, you will write Python programs (scripts) that implement the requirements shown below. All work is to be done individually. If you receive assistance from anyone other than me, you must indicate this in your submission. Copying someone else's code or providing someone with your code to copy is not permitted. </p>
 
     <h3 id="liens">Objectives</h3>
-    <p>The objective of this lab is:</p>
+    <p>The objective of this lab is to give you practice with:</p>
 
     <ul>
-      <li>To get familiar with arrays</li>
-      <li>To practice programming within the Matlab IDE</li>
-      <li>To test your code</li>
+      <li>obtaining input values from the user,</li>
+      <li>performing simple calculations,</li>
+      <li>providing output to the user, and</li>
+      <li>performing simple looping operations.</li>
     </ul>
 
-    <h3 id="liens">Section 1</h3>
-    <p>In this task, you will learn how to create arrays using different approaches, and how to manipulate arrays. </p>
+    <div class="section">
+      <h2>Setup</h2>
+      Launch PyCharm and create a new project named <em>lab1_lastname</em>. For every task listed below, generate a new Python file within the project, using the name specified in the task.
+    </div>
 
-    <ul>
-      <li>Log into your MathWorks account</li>
-      <li>Complete the next three modules from the <a href="https://matlabacademy.mathworks.com/details/matlab-onramp/gettingstarted">online training</a> that was started in the previous lab</li>
-    </ul>
-
-    <p>The tasks to be completed are <em>Vectors and Matrices</em>, <em>Indexing into and Modifying Arrays</em>, and <em>Array Calculations</em>.</p>
-
-    <p>You do not need to show the completion of your tasks to the instructor. What you have learned will be used in the following section. You can move on to the next section.</p>
+    <div class="section" id="celsius-to-fahrenheit">
+      <h2>
+        1.&nbsp;&nbsp;&nbsp;Celsius to Fahrenheit
+      </h2>
+      <p>
+        The program, called <tt class="docutils literal">c2f.py</tt>, asks the user for a temperature in Celsius and displays the equivalent temperature in Fahrenheit to two decimal places. Here is a sample run of the desired program:
+      </p>
+      <pre class="literal-block">
+What is the Celsius temperature? 21
+That is equivalent to 69.80 degrees Farenheit.
+</pre>
+      <p>
+        <em>Hints:</em> To format and display the result, you should use <tt class="docutils literal">print</tt>. Read the documentation of the print function <a href="https://www.pythonmorsels.com/string-formatting/#formatting-numbers" target="_blank">here</a>, to figure out how to format the numbers to get two decimal places only.
+        Include a new line character (\n) after the result to ensure that the next thing show in the console window starts on a new line.
+      </p>
+    </div>
     
-    <h3 id="liens">Section 2</h3>
+    <div class="section" id="fahrenheit-to-celsius">
+      <h2>
+        2.&nbsp;&nbsp;&nbsp;Fahrenheit to Celsius
+      </h2>
+      <p>
+        The program, called <tt class="docutils literal">f2c.py</tt>, performs the inverse of the <tt class="docutils literal">c2f.m</tt> conversion and produces similar output.
+      </p>
+    </div>
+    <div class="section" id="average-of-2-values">
+      <h2>
+        3.&nbsp;&nbsp;&nbsp;Average of 2 values
+      </h2>
+      <p>
+        The program, called <tt class="docutils literal">average2.py</tt>, asks the user to provide two values (one at a time) then displays the average of those values to three decimal places. Sample run:
+      </p>
+      <pre class="literal-block">
+Enter two values to compute their average.
+First value: 12
+Second value: 13
 
-    <p>Open the Matlab editor. For each of the following exercises, open a new .m file and save it with the name <em>lastname_exerciseX.m</em>, where X refers to the exercise number. Make sure you know where the Matlab files are saved. You will need to submit them to your instructor.</p>
+The average is 12.500
+</pre>
+    </div>
 
-    <h5>Exercise 1</h5>
+    <div class="section" id="average-of-several-values">
+      <h2>
+        4.&nbsp;&nbsp;&nbsp;Average of several values
+      </h2>
+      <p>
+        The program, called <tt class="docutils literal">averagemany.py</tt>, asks the user how many values must be averaged, asks the user to provide each value in turn, then displays the average of those values to three decimal places. Sample run:
+      </p>
+      <pre class="literal-block">
+How many values do you need to average? 3
+Value 3: 10
+Value 2: 20
+Value 1: 50
 
-    <p>Create a row vector of the even integers between 10 and 20 inclusive.</p>
+The average is 26.667
+</pre>
+<p>
+  <em>Hint:</em> You may use either a <tt class="docutils literal">for</tt> loop or a <tt class="docutils literal">while</tt> loop to ask the user for the required values. The <tt class="docutils literal">for</tt> loop is actually simpler, but perhaps slightly more difficult to understand.
+  Here is an example of a <tt class="docutils literal">while</tt> that asks the user for input 3 times.
+  <pre class="literal-block">
+count = 3
 
+while count > 0:
+    value = input(f"Value {count}: ")
+    count = count - 1
+    </pre>
+</p>
 
-    <h5>Exercise 2</h5>
+     
+      
+    </div>
 
-    <p>Let x = [5 1 3 7] and y = [5 2 1 3] (Note that x and y are row vectors)</p>
-
-    <ul>
-      <li>Raise each element of x to the power specified by the corresponding element in y</li>
-      <li>Divide each element of y by the corresponding element in x</li>
-      <li>Multiply each element in x by the corresponding element in y, calling the result "z"</li>
-      <li>Add up the elements in z and assign the result to a variable called "w"</li>
-    </ul>
-
-    <h5>Exercise 3</h5>
-    
-    <p>Given the array A = [ 2 4 1 ; 6 7 2 ; 3 5 9], provide the commands needed to</p>
-
-    <ul>
-      <li>assign the first row of A to a vector called x1</li>
-      <li>assign the last 2 rows of A to an array called y</li>
-      <li>compute the sum over the columns of A</li>
-      <li>compute the sum over the rows of A</li>
-    </ul>  
-
-    <h5>Exercise 4</h5>
-    
-    <p>Given that x = [1 5 2 8 9 0 1] and y = [5 2 2 6 0 0 2], execute and explain the results (as comments in the code using the symbol %) of the following commands:</p>
-
-     <ul>
-      <li>x > y</li> 
-      <li>y < x</li>
-      <li>x == y</li> 
-      <li>x <= y</li> 
-      <li>y >= x</li> 
-      <li>x | y</li> 
-      <li>x & y</li> 
-      <li>x & (~y)</li> 
-    </ul> 
 
     <h3>Submission</h3>
 
-    <p>Prepare a zipped file (.zip) of your four matlab files, and name it <em>lastname_lab1.zip</em>. Submit the zipped file in Moodle by Monday September 19th at 11:59pm.</p>
+    <p>Prepare a zipped file (.zip) of your four python files, and name it <em>lab1_lastname.zip</em>. Submit the zipped file in Moodle by Monday September 18th at 11:59pm.</p>
 
   </br></br>
   </div>
@@ -144,7 +165,7 @@
 <!-- Copyright Section -->
 <section class="copyright py-4 text-center text-white">
   <div class="container">
-    <small>Copyright &copy; Mariam El Mezouar 2022</small>
+    <small>Copyright &copy; Mariam El Mezouar 2023</small>
   </div>
 </section>
 
