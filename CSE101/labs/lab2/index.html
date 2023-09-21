@@ -16,7 +16,7 @@
       text-align: center;
     }
     </style>
-  <title>CSE101 Lab 2</title>
+  <title>CSE101 Lab 1</title>
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -60,66 +60,106 @@
 
   <div class="container">
     
-    <h2 class="mt-4">Lab 2: Selection and Repetition</h2>
-    <h5 class="subtitle">CSE101 Fall 2022</h5>
+    <h2 class="mt-4">Lab 2: Fun with Loops</h2>
+    <h5 class="subtitle">CSE101 Fall 2023</h5>
     
     <h3 id="introduction">Introduction</h3>
-    <p> During this lab, you will get to write longer and more complex MATLAB solutions that combine the use of variables, operations, selection and repetitions, as needed. </p>
+    <p> The objective of this lab is to give you practice with while and for loops, as well as if statements.</p>
 
-    <h3 id="liens">Objectives</h3>
-    <p>The objective of this lab is:</p>
+    <h3 id="liens">Requirements</h3>
+    <p>Write Python scripts as specified, that implement the requirements shown below. All work is to be done individually. If you receive assistance from anyone other than me, you must indicate this in your submission. Copying someone else's code or providing someone with your code to copy is not permitted.</p>
+
+    <p><b>Use of comments:</b> Starting this lab, you will be required to use comments in your code. What are comments? comments are a programmer-readable explanation or annotation in the source code of a computer program that will be generally ignored by the Python compiler. They are used to explain the code, and make it more readable (read more <a href="https://www.w3schools.com/python/python_comments.asp", target="_blank">here</a>). </p>
+
+    <p>There are two types of comments:</p>
 
     <ul>
-      <li>To solidify the concepts of selection and repetition in MATLAB</li>
-      <li>To practice programming within the Matlab IDE</li>
-      <li>To test your code</li>
+      <li>Comments that start with a <code>#</code>: use them to explain steps in your algorithms. Example:</li>
+      <pre class="literal-block">
+# Assign a value to a variable
+age = 30  # This variable stores the age of a person
+
+# Perform a calculation
+double_age = age * 2  # Multiply the age by 2
+
+# Display the result
+print(f"The person's age is {age}.")  # Print the age
+print(f"Twice the age is {double_age}.")  # Print double the age</pre>
+
+      <p>Use comments when necessary for clarity. Do not overuse.</p>
+
+      <li>Multiline comments with triple quotes: use them at the begining of your Python file as follows: </li>
+
+      <pre class="literal-block">
+        """
+        Name: firstname lastname        
+        Student number: xxxxxxx
+        """</pre>
+
     </ul>
-
-    <h3 id="liens">Problem 1</h3>
-    <p>Create a new matlab file, name it <em>lastname_prob1.m</em>. Write the solution to the problem below in the file you have just created.</p>
-    <p>Write MATLAB code to solve the quadratic equation using the formula:</p>
-
-    <p><img src="equation.png" width="190"></p>
-
-    <p>Your code must: </p>
-    <ul>
-      <li>Verify if there will be a division by zero. If so, do not perform the division, but give the user an appropriate message informing them of the problem;</li>
-      <li>Verify if the root will be real. If it is imaginary then give appropriate message to inform the user; </li>
-      <li>If the roots are real then display both values of x. </li>
-    </ul>
-
-    <p>Note: Make sure that you test your code with various values of a,b, and c to ensure that you have tested each possible case of output.</p>
-
-    <h3>Problem 2</h3>
-    <p>Create a new matlab file, name it <em>lastname_prob2.m</em>. Write your solution to the problem below in the file you just created.</p>
-
-    <p>Given the vector x = [5 3 5 0 1 4], write code that will:</p>
-    <ul>
-      <li>Add up the values of the elements (without using the Matlab function sum), and displays the total</li>
-      <li>Computes and displays the running sum. For element i, the running sum is the sum of the elements from 1 to i, inclusive (do not use the Matlab function cumsum).</li>
-    </ul>
-
-    <h3 id="liens">Problem 3</h3>
-    <p>Create a new matlab file, name it <em>lastname_prob3.m</em>. Write your solution to the problem below in the file you just created.</p>
-
-    <p>You have a mortgage of $300,000. At the end of each month the bank will charge you 0.5% interest on the remaining mortgage. At the end of each month, you will pay a fixed amount of $1800 to reduce the mortgage. </p>
-
-    <p>Your code must answer the following questions: </p>
-   
-    <ul>
-      <li>In how many years will you be done paying for your house?</li>
-      <li>How many payments exactly will you have made? </li>
-      <li>How much will you have paid in interest during these years? </li>
-    </ul>
-
-    <p>Note: make sure that the output of your program is clear and informative by displaying appropriate messages.</p>
 
     
+    <h2>
+      1.&nbsp;&nbsp;&nbsp;Syracuse sequence
+    </h2>
+    <p>
+      The Syracuse sequence is generated by starting with a natural number and repeatedly applying the following function until reaching 1:
+    </p>
+    <p style="text-align:center">
+      <h:math>
+      syr(x) = x/2 if x is even, 3x + 1 if x is odd
+      </h:math>
+    </p>
+    
+    <p>
+      Write a Python script called <tt class="docutils literal">syracuse.py</tt> to compute and display the Syracuse sequence for a value provided by the user. Your program must display its output <em>exactly</em> as illustrated below (including all punctuation and spacing) when given an input of 3.
+    </p>
+    <pre class="literal-block">
+Give me a starting number: 3
+The Syracuse sequence for 3 is 
+3, 10, 5, 16, 8, 4, 2, 1
+</pre>
+    <p>
+      Of course, it must display similarly-formatted and correct output for any other natural number given by the user!
+    </p>
+    <p>
+      <em>Hint:</em> You can append the numbers of the sequence in a  <b>list</b> as you compute them (learn more about Python lists <a href="https://www.w3schools.com/python/python_lists.asp", target="_blank">here</a>, <a href="https://www.w3schools.com/python/python_lists_access.asp", target="_blank">here</a>, and <a href="https://www.w3schools.com/python/python_lists_add.asp", target="_blank">here</a>). Once done, you can print the list at the end as shown above (read <a href="https://www.geeksforgeeks.org/print-lists-in-python-4-different-ways/" target="_blank">here</a> to explore different ways to print lists.).
+    </p>
+  
+
+    <div class="section" id="prime-test">
+      <h2>
+        2.&nbsp;&nbsp;&nbsp;Prime test
+      </h2>
+      <p>
+        A prime number is a natural number that has exactly two distinct natural number divisors: 1 and itself. The number 1 is not prime, but 2 is.
+      </p>
+      <p>
+        A positive whole number <em>n</em> &gt; 2 is prime if no number between 2 and the square root of <em>n</em> (inclusive) evenly divides <em>n</em>. Write a Python script called <tt class="docutils literal">primetest.py</tt> that accepts a value of <em>n</em> as input and determines whether the value is prime using a <tt class="docutils literal">while</tt> loop. If <em>n</em> is not prime, your program should stop searching as soon as it finds the first divisor of <em>n</em>. Here is a sample of the output your program should produce for a number that is prime:
+      </p>
+      <pre class="literal-block">
+Give me a number: 67
+67 is prime.
+</pre>
+      <p>
+        and a sample for a number that is not prime:
+      </p>
+      <pre class="literal-block">
+Give me a number: 121
+121 is divisible by 11.
+</pre>
+      <p>
+        Your program must correctly handle the cases where the user provides an <em>n</em> of 1 or 2.
+      </p>
+    
+      <hr class="docutils">
      
+    </div>
+  
 
     <h3>Submission</h3>
 
-    <p>Prepare a zipped file (.zip) of your three matlab files, and name it <em>lastname_lab2.zip</em>. Submit the zipped file in Moodle by Monday September 26th at 11:59pm.</p>
+    <p>Prepare a zipped file (.zip) of your two python files (only the 2 python files - not the entire project!), and name it <em>lab2_lastname.zip</em>. Submit the zipped file in Moodle by Monday October 2nd at 11:59pm.</p>
 
   </br></br>
   </div>
@@ -128,7 +168,7 @@
 <!-- Copyright Section -->
 <section class="copyright py-4 text-center text-white">
   <div class="container">
-    <small>Copyright &copy; Mariam El Mezouar 2022</small>
+    <small>Copyright &copy; Mariam El Mezouar 2023</small>
   </div>
 </section>
 
