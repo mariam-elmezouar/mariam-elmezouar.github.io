@@ -60,83 +60,98 @@
 
   <div class="container">
     
-    <h2 class="mt-4">Lab 3: functions</h2>
-    <h5 class="subtitle">CSE101 Fall 2022</h5>
+    <h2 class="mt-4">Lab 3: Graphics and Functions</h2>
+    <h5 class="subtitle">CSE101 Fall 2023</h5>
     
     <h3 id="introduction">Introduction</h3>
-    <p> During this lab, you will practice the use of functions to write modular and reusable programs. </p>
+    <p> The objective of this lab is to give you practice with defining and using functions. In addition, you will be introduced to the <tt class="docutils literal"><span class="pre">GoGoGraphics</span></tt> library. In the process you will also review loops and if-else statements.</p>
 
-    <h3 id="liens">Objectives</h3>
-    <p>The objective of this lab is:</p>
+    <h3 id="liens">Requirements</h3>
+    <p>Write Python scripts as specified, that implement the requirements shown below. All work is to be done individually. If you receive assistance from anyone other than me, you must indicate this in your submission. Copying someone else's code or providing someone with your code to copy is not permitted.</p>
 
-    <ul>
-      <li>To practice the concept of functions in MATLAB</li>
-      <li>To solidify the concepts of selection and repetition in MATLAB</li>
-      <li>To practice programming within the Matlab IDE</li>
-      <li>To test your code</li>
+    <p><b>Comments:</b>  Use comments as specified in lab 2.</p>
+
+    <p>IMPORTANT: Before starting the tasks below, visit the <a class="reference external" href="../../software/index.html" target="_blank">GoGoGraphics</a> package page, and spend some time getting familiar with it.</p>
+
     </ul>
 
-    <h3 id="liens">Part 1</h3>
-
-    <p>To start, we will practice with simple functions. The first function is <em>mysum</em> that you save in a file called <em>mysum.m</em>. This function takes two inputs <em>a</em> and <em>b</em> and returns their sum.</p>
-
-    <p><b>function c = mysum(a, b)</b></p>
-
-    <p>Next, write the function <em>multiply_with_sum</em> in the same file. This function takes two inputs <em>a</em> and <em>b</em>. Then, using a loop, it returns the multiplication of <em>a</em> and <em>b</em> using the sum as explained below.</p>
+    <div class="section" id="floating-cloud">
+      <h2>
+        1.&nbsp;&nbsp;&nbsp;Floating cloud
+      </h2>
+      <p>
+        Write a Python script called <tt class="docutils literal">animate.py</tt> to animate a fluffy cloud drifting across the sky using the <a class="reference external" href="../../software/index.html" target="_blank">GoGoGraphics</a> library.
+      </p>
+      <p>
+        When your script runs it should display an image to the user that looks roughly like figure 1 below, with green grass, a blue sky, a light-grey fluffy cloud, and the message “Click to animate.”
+      </p>
+      <div class="figure">
+        <img alt="03/cloud-start.png" src="03/cloud-start.png">
+        <p class="caption">
+          Figure 1: Initial view of the floating cloud.
+        </p>
+      </div>
+      <p>
+        When the user clicks anywhere on the image, the “Click to animate” message should disappear and the cloud should begin to drift smoothly across the picture, from left to right, until it is somewhere near the right-hand edge. The animation should take about two seconds to complete. It should then stop, and the message “Done” should appear on the screen. The final state of the screen should look something like figure 2.
+      </p>
+      <div class="figure">
+        <img alt="03/cloud-end.png" src="03/cloud-end.png">
+        <p class="caption">
+          Figure 2: Final view of the floating cloud.
+        </p>
+      </div>
     
-    <p><em>a * b = a + a + .... + a (<b>b times</b>) </em></p>
+  
 
-    <p>An incomplete implementation of this function is provided below:</p>
-
-    <pre> 
-    <code>function c = multiply_with_sum(a, b)
-          c = 0
-          for i = [1:b]
-              % complete this line
-          end
-      end</code>
-    </pre>
-   
-    
-    <p>At first, you can use the symbole + to complete the missing line above. Once you get your code to work properly, you can instead call your function <em>mysum</em> to perform the addition. Test your code thoroughly by calling the functions with different values.</p>
-    
-    <p>At this point, call your instructor to see the final program. <b>You do not need to submit Part 1.</b></p>
-     
-
-    <h3 id="liens">Part 2</h3>
-
-    You matlab file in Part 2 needs to be a function, i.e., it needs to start with the following declarative line:
-
-    <pre> 
-      <code>function v2 = inverse_lastname(v1)
-        %This function will inverse the content of the vector v1</code>
-      </pre>
-
-    <p>where <code>lastname</code> is your last name. <code>v1</code> is the input of the function and <code>v2</code> is the output of the function. <code>v2</code> should have the same elements as <code>v1</code> in reverse order. The name of the Matlab file shoule be the same as the name of the function, i.e. <em>inverse_lastname.m</em>. Tip: use a second vector to place the elements gradually as they are being reversed, and then return that vector.</p>
-
-    <p>To find out the length of a vector <em>v</em>, Use the Matlab function <code>length(v)</code>. To access the i-th element of a vector <code>v</code>, use the notation <code>v(i)</code>.</p>
-
-    <p>Test the program by calling your function with various vectors and verifying that they are inverted. Your program must work correctly in all cases (empty vector, vector with only 1 element, vector with 2 elements, etc.).</p>
-
-    <p>Your program should follow good coding conventions (use of comments, indentation, and meaningful variable names).</p>
-
-    <h3 id="liens">General tips</h3>
-
-    <ul>
-      
-      <li>Read the instructions several times if necessary, analyze, fully understand what is required.</li>
-      <li>Take notes, make diagrams to visualize your ideas if necessary.</li>
-      <li>Solve by hand, on paper: these will be the general steps of the algorithm.</li>
-      <li>Avoid details initially. Add details in later refinement iterations of the algorithm.</li>
-      <li>Refine each step.</li>
-      <li>Test the algorithm by testing with small vectors, even empty ones.</li>
-      <li>Once the algorithm is completed to your liking, translate it into Matlab</li>
-    </ul>
-
+      <div class="section" id="body-mass-index">
+        <h2>
+          2.&nbsp;&nbsp;&nbsp;Body Mass Index
+        </h2>
+        <p>
+          A person’s body mass index is calculated by taking their weight in kilograms divided by their height in metres, squared. For people of average physique a BMI in the range of 19–25 (inclusive) is generally considered healthy. Below 19 is considered underweight, above 25 overweight.
+        </p>
+        <p>Inside a Python script called <tt class="docutils literal">bmi-assessment.py</tt>, do the following:</p>
+        <ol class="loweralpha">
+          <li>
+            <p class="first">
+              Write a Python <strong>function</strong> called <tt class="docutils literal">bmi</tt> that expects to receive a weight in kg and height in cm and returns the corresponding BMI. Test the function to ensure it works correctly.
+            </p>
+          </li>
+          <li>
+            <p class="first">
+              Write a Python <strong>function</strong> called <tt class="docutils literal">assessment</tt> that expects to receive a BMI and returns one of the strings “healthy”, “overweight” or “underweight” depending on the BMI value received. Test the function to ensure it works correctly.
+            </p>
+          </li>
+          <li>
+            <p class="first">
+              Below the functions, write Python code that requests the user to provide a weight in kg and a height in cm, calls the <tt class="docutils literal">bmi</tt> function to compute the BMI, calls the <tt class="docutils literal">assessment</tt> function to determine a weight range, and then displays all four pieces of this information appropriately, something like this:
+            </p>
+            <pre class="literal-block">
+Someone 164 cm tall and weighing 60 kg
+has a BMI of 22.3 which is considered healthy.
+</pre>
+          </li>
+        </ol>
+      </div>
+      <div class="section" id="leap-years">
+        <h2>
+          3.&nbsp;&nbsp;&nbsp;Leap Years
+        </h2>
+        <p>
+          A year is a leap year if it is divisible by 4, unless it is a century year that is not divisible by 400 (e.g., 1800 and 1900 were <em>not</em> leap years, but 1600 and 2000 were).
+        </p>
+        <p>Inside a Python script called <tt class="docutils literal">leap.py</tt>, do the following:</p>
+        <ol class="arabic simple" start="5">
+          <li>Write a Python <strong>function</strong> <tt class="docutils literal">isleap</tt> that accepts a year and returns <tt class="docutils literal">true</tt> for leap years and <tt class="docutils literal">false</tt> for non leap years. Test the function to ensure it works correctly.
+          </li>
+          <li>Below the function, write Python code that requests a year from the user and uses the <tt class="docutils literal">isleap</tt> function to decide whether to print, e.g. “<tt class="docutils literal">1964 is a leap year</tt>” or “<tt class="docutils literal">1900 is not a leap year</tt>”.
+          </li>
+        </ol>
+      </div>
 
     <h3>Submission</h3>
 
-    <p>Place your file matlab file into a folder <em>lastname_lab3</em>, compress it, and submit the compressed file in Moodle by Monday October 3rd at 11:59pm.</p>
+    <p>Prepare a zipped file (.zip) of your three python files (only the 3 python files - not the entire project!), and name it <em>lab3_lastname.zip</em>. Submit the zipped file in Moodle by Monday October 16th at 11:59pm.</p>
 
   </br></br>
   </div>
@@ -145,7 +160,7 @@
 <!-- Copyright Section -->
 <section class="copyright py-4 text-center text-white">
   <div class="container">
-    <small>Copyright &copy; Mariam El Mezouar 2022</small>
+    <small>Copyright &copy; Mariam El Mezouar 2023</small>
   </div>
 </section>
 

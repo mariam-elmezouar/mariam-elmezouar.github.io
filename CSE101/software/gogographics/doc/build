@@ -1,0 +1,6 @@
+#! /bin/bash
+echo "Rendering PDF..."
+rst2pdf  gogographics.rst
+
+echo "Rendering HTML..."
+rst2html4.py --stylesheet gogo.css gogographics.rst gogographics.html

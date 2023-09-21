@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.20: https://docutils.sourceforge.io/" />
+<title>GoGoGraphics package reference</title>
+<style type="text/css">
+
+body {
+    font-family: sans-serif;
+    max-width: 45em;
+    margin-left: auto;
+    margin-right:auto;
+}
+
+pre, tt {
+    font-family: Monaco, "Andale Mono", "Lucida Console", fixed;
+    font-size: 95%;
+}
+
+pre.literal-block {
+    margin-left: 0;
+    margin-right: 0;
+    border: 1px solid black;
+    background-color: rgb(240,240,255);
+    padding: 0.25ex 2em 0.5ex 2em;
+}
+
+div.footer {
+    display: none;
+}
+
+/* table of contents */
+p.topic-title { 
+    border-top: 1px solid #444; 
+    font-size: 24px;
+    padding-top: 10px;
+}
+div.contents {
+    padding-bottom: 10px; 
+    border-bottom: 1px solid #444;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+div.contents ul {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+div.contents ul ul {
+    margin-left: 22px;
+    margin-top: 0px;
+}
+div.contents ul ul ul {
+    margin-left: 35px;
+}
+div.contents a {
+    text-decoration: none;
+}
+div.contents li {
+    margin-top: 3px;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+</style>
+</head>
+<body>
+<div class="document" id="gogographics-package-reference">
+<h1 class="title">GoGoGraphics package reference</h1>
+
+<div class="contents topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="auto-toc simple">
+<li><a class="reference internal" href="#overview" id="toc-entry-1">1&nbsp;&nbsp;&nbsp;Overview</a></li>
+<li><a class="reference internal" href="#key-concepts" id="toc-entry-2">2&nbsp;&nbsp;&nbsp;Key concepts</a><ul class="auto-toc">
+<li><a class="reference internal" href="#the-drawing-and-drawing-coordinates-points" id="toc-entry-3">2.1&nbsp;&nbsp;&nbsp;The drawing and drawing coordinates (points)</a></li>
+<li><a class="reference internal" href="#shapes" id="toc-entry-4">2.2&nbsp;&nbsp;&nbsp;Shapes</a><ul class="auto-toc">
+<li><a class="reference internal" href="#creating-shapes" id="toc-entry-5">2.2.1&nbsp;&nbsp;&nbsp;Creating shapes</a></li>
+<li><a class="reference internal" href="#querying-and-modifying-shape-properties" id="toc-entry-6">2.2.2&nbsp;&nbsp;&nbsp;Querying and modifying shape properties</a></li>
+<li><a class="reference internal" href="#method-chaining" id="toc-entry-7">2.2.3&nbsp;&nbsp;&nbsp;Method chaining</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#colours" id="toc-entry-8">2.3&nbsp;&nbsp;&nbsp;Colours</a></li>
+<li><a class="reference internal" href="#user-interaction-get-point" id="toc-entry-9">2.4&nbsp;&nbsp;&nbsp;User interaction (get_point)</a></li>
+<li><a class="reference internal" href="#animation" id="toc-entry-10">2.5&nbsp;&nbsp;&nbsp;Animation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#shapes-reference" id="toc-entry-11">3&nbsp;&nbsp;&nbsp;Shapes reference</a><ul class="auto-toc">
+<li><a class="reference internal" href="#all-shapes" id="toc-entry-12">3.1&nbsp;&nbsp;&nbsp;All shapes</a><ul class="auto-toc">
+<li><a class="reference internal" href="#visible" id="toc-entry-13">3.1.1&nbsp;&nbsp;&nbsp;visible</a></li>
+<li><a class="reference internal" href="#centre" id="toc-entry-14">3.1.2&nbsp;&nbsp;&nbsp;centre</a></li>
+<li><a class="reference internal" href="#move" id="toc-entry-15">3.1.3&nbsp;&nbsp;&nbsp;move</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ellipses-and-rectangles" id="toc-entry-16">3.2&nbsp;&nbsp;&nbsp;Ellipses and rectangles</a><ul class="auto-toc">
+<li><a class="reference internal" href="#drawing-new-ellipse" id="toc-entry-17">3.2.1&nbsp;&nbsp;&nbsp;drawing.new_ellipse</a></li>
+<li><a class="reference internal" href="#drawing-new-rectangle" id="toc-entry-18">3.2.2&nbsp;&nbsp;&nbsp;drawing.new_rectangle</a></li>
+<li><a class="reference internal" href="#height" id="toc-entry-19">3.2.3&nbsp;&nbsp;&nbsp;height</a></li>
+<li><a class="reference internal" href="#width" id="toc-entry-20">3.2.4&nbsp;&nbsp;&nbsp;width</a></li>
+<li><a class="reference internal" href="#stroke-width" id="toc-entry-21">3.2.5&nbsp;&nbsp;&nbsp;stroke_width</a></li>
+<li><a class="reference internal" href="#fill" id="toc-entry-22">3.2.6&nbsp;&nbsp;&nbsp;fill</a></li>
+<li><a class="reference internal" href="#stroke" id="toc-entry-23">3.2.7&nbsp;&nbsp;&nbsp;stroke</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lines" id="toc-entry-24">3.3&nbsp;&nbsp;&nbsp;Lines</a><ul class="auto-toc">
+<li><a class="reference internal" href="#drawing-new-line" id="toc-entry-25">3.3.1&nbsp;&nbsp;&nbsp;drawing.new_line</a></li>
+<li><a class="reference internal" href="#start" id="toc-entry-26">3.3.2&nbsp;&nbsp;&nbsp;start</a></li>
+<li><a class="reference internal" href="#end" id="toc-entry-27">3.3.3&nbsp;&nbsp;&nbsp;end</a></li>
+<li><a class="reference internal" href="#length" id="toc-entry-28">3.3.4&nbsp;&nbsp;&nbsp;length</a></li>
+<li><a class="reference internal" href="#stroke-width-1" id="toc-entry-29">3.3.5&nbsp;&nbsp;&nbsp;stroke_width</a></li>
+<li><a class="reference internal" href="#stroke-1" id="toc-entry-30">3.3.6&nbsp;&nbsp;&nbsp;stroke</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#text" id="toc-entry-31">3.4&nbsp;&nbsp;&nbsp;Text</a><ul class="auto-toc">
+<li><a class="reference internal" href="#drawing-new-text" id="toc-entry-32">3.4.1&nbsp;&nbsp;&nbsp;drawing.new_text</a></li>
+<li><a class="reference internal" href="#string" id="toc-entry-33">3.4.2&nbsp;&nbsp;&nbsp;string</a></li>
+<li><a class="reference internal" href="#height-1" id="toc-entry-34">3.4.3&nbsp;&nbsp;&nbsp;height</a></li>
+<li><a class="reference internal" href="#fill-1" id="toc-entry-35">3.4.4&nbsp;&nbsp;&nbsp;fill</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#copyright-information" id="toc-entry-36">4&nbsp;&nbsp;&nbsp;Copyright information</a></li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h1>1&nbsp;&nbsp;&nbsp;Overview</h1>
+<p>GoGoGraphics is a simple, object-oriented graphics library for Python.</p>
+<p>In GoGoGraphics, all drawing and interaction takes place on an area called “the drawing.” You can add lines, rectangles, ellipses and text “shapes” to the drawing. You can change these shapes’ sizes, angles and colours, you can move them around, and you can make them appear and disappear. You can wait for the user to click on the drawing and find out where the click happened. You can also create simple animations.</p>
+<p>Here's a minimal example:</p>
+<pre class="literal-block">
+import gogographics
+
+
+def minimal(drawing):
+    drawing.new_ellipse()
+
+
+gogographics.go(minimal)
+
+</pre>
+<p>We first import the <tt class="docutils literal">gogographics</tt> library. Then we define a function (here, called <tt class="docutils literal">minimal</tt>) that takes one parameter. By convention, the parameter is named <tt class="docutils literal">drawing</tt>. The body of the function is our program. This program creates a single ellipse on the drawing, with the default properties for a new ellipse. Finally, we call the <tt class="docutils literal">gogoggraphics.go</tt> method, passing it the function we defined. (Note that we don't actually <em>call</em> the function by adding parentheses after its name, we just pass the function itself as a parameter to <tt class="docutils literal">go</tt>.)</p>
+<p>Here’s a longer and more interesting example. It places a red elllipse with a narrow blue border, 100 units wide and 75 units high, at the drawing’s bottom left corner. It asks the user to click somewhere, then moves the ellipse, in an animation lasting about one second, until the ellipse is centred where the user clicked. This process repeats indefinitely.</p>
+<pre class="literal-block">
+import gogographics
+
+STEPS = 60
+PAUSE_LENGTH = 500 / STEPS
+START_X, START_Y = 70, 45
+
+
+def click_to_move(drawing):
+    ellipse = drawing.new_ellipse()
+    ellipse.width(100).height(75).centre((START_X, START_Y))
+    ellipse.fill((230, 100, 140)).stroke_width(3).stroke((100, 130, 255))
+
+    while True:
+        start_x, start_y = ellipse.centre()
+        txt = drawing.new_text().string('Click to move').height(50)
+
+        end_x, end_y = drawing.get_point()
+        txt.visible(False)
+        dx = (end_x - start_x) / STEPS
+        dy = (end_y - start_y) / STEPS
+
+        for _ in range(STEPS):
+            ellipse.move(dx, dy)
+            drawing.pause(PAUSE_LENGTH)
+
+
+gogographics.go(click_to_move)
+
+</pre>
+</div>
+<div class="section" id="key-concepts">
+<h1>2&nbsp;&nbsp;&nbsp;Key concepts</h1>
+<p>This section describes the key concepts of the GoGoGraphics package. Subsequent sections provide references for each of the shape types.</p>
+<div class="section" id="the-drawing-and-drawing-coordinates-points">
+<h2>2.1&nbsp;&nbsp;&nbsp;The drawing and drawing coordinates (points)</h2>
+<p>The drawing is a square area, 800 by 800 pixels in extent. There is only one drawing at a time in a GoGoGraphics program. The lower left corner of the drawing is the point <tt class="docutils literal">(0, 0)</tt> and the upper right is <tt class="docutils literal">(800, 800)</tt>. The first coordinate in a point is its horizontal distance from the origin, the second coordinate its vertical distance. Points are just Python tuples containing two numbers.</p>
+<p>All locations, displacements, widths and heights are specified in drawing units. Drawing units are real-valued and can have any precision. So, for example, a width of <tt class="docutils literal">32.5</tt> is fine, as is the point <tt class="docutils literal">(129.0721, 936.58)</tt>.</p>
+</div>
+<div class="section" id="shapes">
+<h2>2.2&nbsp;&nbsp;&nbsp;Shapes</h2>
+<p>GoGoGraphics provides four shape types: <tt class="docutils literal">line</tt>, <tt class="docutils literal">rectangle</tt>, <tt class="docutils literal">ellipse</tt>, and <tt class="docutils literal">text</tt>. You can create as many of each of these shape types as you like. All shapes have a centre and can be either visible or hidden. Each shape also has other properties, depending what it is. Lines have start points, end points, lengths, stroke widths, and stroke colours; text shapes have fill colours, heights, and strings (the text itself); and ellipses and rectangles have widths, heights, fill colours, stroke widths, and stroke colours.</p>
+<p>Shapes are created by calling shape creation functions and may have their properties queried and modified by invoking methods on them. The <a class="reference internal" href="#shapes-reference">Shapes reference</a> section provides a complete list and description of the shape creation and property-querying and -modifying methods available for each shape type. In this section we explain how these methods can be used in your programs.</p>
+<p>If a shape extends past the edge of the drawing it will be “clipped” so the part that is “off drawing” is not shown.</p>
+<div class="section" id="creating-shapes">
+<h3>2.2.1&nbsp;&nbsp;&nbsp;Creating shapes</h3>
+<p>To create a shape you call the corresponding method on the drawing. For example, you create a new ellipse like this:</p>
+<pre class="literal-block">
+drawing.new_ellipse()
+</pre>
+<p>Each shape is created with a default set of properties. A new ellipse will be visible, 50 pixels wide and high, light grey with a darker grey border 1 pixel wide, centred on the point (400, 400).</p>
+<p>Of course, if you want to do anything with a shape later you need to assign it to a variable, like this:</p>
+<pre class="literal-block">
+e = drawing.new_ellipse()
+</pre>
+<p>or store it in a list, like this:</p>
+<pre class="literal-block">
+ellipse_list = [ ]
+# lots of other ellipses added here...
+ellipse_list.append(drawing.new_ellipse())
+</pre>
+</div>
+<div class="section" id="querying-and-modifying-shape-properties">
+<h3>2.2.2&nbsp;&nbsp;&nbsp;Querying and modifying shape properties</h3>
+<p>A shape’s properties can be queried by invoking methods on the shape. For instance, in this code fragment we create a new ellipse, name it <tt class="docutils literal">e</tt>, then ask for <tt class="docutils literal">e</tt>’s width:</p>
+<pre class="literal-block">
+e = drawing.new_ellipse()
+w = e.width()
+</pre>
+<p>See the second line? The code <tt class="docutils literal">e.width()</tt> means “invoke (execute) the <tt class="docutils literal">width</tt> method of the shape referred to by <tt class="docutils literal">e</tt>.” Invoking the <tt class="docutils literal">width</tt> method like this, without providing any parameters, will return the current value of <tt class="docutils literal">e</tt>’s <tt class="docutils literal">width</tt> property. After running this code the value of the variable <tt class="docutils literal">w</tt> will be 50, which is the default width for a new ellipse.</p>
+<p>A shape’s properties can be set by invoking the appropriate method and providing a parameter of the correct type. Continuing the example above, we can change <tt class="docutils literal">e</tt>’s width to 375.5 like this:</p>
+<pre class="literal-block">
+e.width(375.5)
+</pre>
+<p>Each method that modifies a shape’s properties returns a reference to the shape itself. So if we do this:</p>
+<pre class="literal-block">
+f = e.height(55)
+</pre>
+<p>then the height of <tt class="docutils literal">e</tt> will be set to 55 and <tt class="docutils literal">f</tt> will refer to <em>the same ellipse</em> as <tt class="docutils literal">e</tt>.</p>
+</div>
+<div class="section" id="method-chaining">
+<h3>2.2.3&nbsp;&nbsp;&nbsp;Method chaining</h3>
+<p>Returning a reference to the shape itself is a useful feature because it lets us do a trick called “method chaining.” This is where we invoke several methods in a row, like this:</p>
+<pre class="literal-block">
+e.height(99).width(132).stroke_width(5).centre((300, 700))
+</pre>
+<p>In the line above we first set <tt class="docutils literal">e</tt>’s height to 99. The <tt class="docutils literal">height</tt> method returns the ellipse it was called on, so we can then immediately invoke that ellipse’s <tt class="docutils literal">width</tt> method, followed by its <tt class="docutils literal">stroke_width</tt> method, and finally its <tt class="docutils literal">centre</tt> method. The line above is exactly equivalent to this:</p>
+<pre class="literal-block">
+e.height(99)
+e.width(132)
+e.stroke_width(5)
+e.centre([300 700])
+</pre>
+<p>... but quite a bit more compact! A warning though: if there’s an error on a method-chained line it may be difficult to tell which method call is causing it. If this happens, a good debugging technique is to split the chain into separate calls.</p>
+</div>
+</div>
+<div class="section" id="colours">
+<h2>2.3&nbsp;&nbsp;&nbsp;Colours</h2>
+<p>Colours in GoGoGraphics are given as tuples containing three numbers between 0 and 255. The first number in the list indicates the amount of red in the colour, the second the amount of green, and the third the amount of blue. 0 means “none of this” and 255 means “the maximum amount,” so (0, 0, 0) (no colour at all) is black and (255, 255, 255) (full intensity of all the colour components) is white. Any colour that can be displayed on screen can be specified this way.</p>
+<p>Here are a few more examples:</p>
+<ul class="simple">
+<li>bright red: <tt class="docutils literal">(255, 0, 0)</tt></li>
+<li>darker red: <tt class="docutils literal">(127, 0, 0)</tt></li>
+<li>bright green: <tt class="docutils literal">(0, 255, 0)</tt></li>
+<li>bright blue:  <tt class="docutils literal">(0, 0, 255)</tt></li>
+<li>bright yellow: <tt class="docutils literal">(255, 255, 0)</tt></li>
+<li>bright magenta: <tt class="docutils literal">(255, 0, 255)</tt></li>
+<li>bright cyan: <tt class="docutils literal">(0, 255, 255)</tt></li>
+<li>tangerine orange: <tt class="docutils literal">(255, 127, 0)</tt></li>
+<li>mocha brown: <tt class="docutils literal">(127, 63, 0)</tt></li>
+<li>eggplant purple: <tt class="docutils literal">(63, 0, 127)</tt></li>
+<li>medium grey: <tt class="docutils literal">(127, 127, 127)</tt></li>
+</ul>
+<p>You can access the red, green, and blue colour components by indexing into the tuple using the usual Python indexing syntax. So, if you have a colour <tt class="docutils literal">c</tt> and want to get its components, you can do this:</p>
+<pre class="literal-block">
+r = c[0]
+g = c[1]
+b = c[2]
+</pre>
+<p>You can also use Python’s “destructuring assignment” mechanism to access the components like this:</p>
+<pre class="literal-block">
+r, g, b = c
+</pre>
+</div>
+<div class="section" id="user-interaction-get-point">
+<h2>2.4&nbsp;&nbsp;&nbsp;User interaction (get_point)</h2>
+<p>GoGoGraphics offers one mechanism for accepting user input: the <tt class="docutils literal">drawing.get_point</tt> method. When called, it waits for the user to click on the drawing then returns the point on which the user clicked. For example if we execute the line:</p>
+<pre class="literal-block">
+p = drawing.get_point()
+</pre>
+<p>and the user clicks towards in the lower right of the drawing, <tt class="docutils literal">p</tt> will be equal to something like (752, 156) afterwards.</p>
+<p>We often need separate access to the <tt class="docutils literal">x</tt> and <tt class="docutils literal">y</tt> coordinates of a point. If we have a point <tt class="docutils literal">p</tt> as above, the <tt class="docutils literal">x</tt> coordinate is <tt class="docutils literal">p[0]</tt> and the <tt class="docutils literal">y</tt> coordinate is <tt class="docutils literal">p[1]</tt>. You can also use Python’s “destructuring assignment” mechanism to directly get the coordinates, like this:</p>
+<pre class="literal-block">
+x, y = drawing.get_point()
+</pre>
+</div>
+<div class="section" id="animation">
+<h2>2.5&nbsp;&nbsp;&nbsp;Animation</h2>
+<p>GoGoGraphics provides a simple animation capability. By calling <tt class="docutils literal">drawing.pause</tt> with a time in milliseconds as a parameter, you can temporarily halt program execution. This statement:</p>
+<pre class="literal-block">
+drawing.pause(16)
+</pre>
+<p>will cause a 16ms pause, which is about right for 60 frame per second animation.</p>
+<p>For example, to create a text object, set its colour to black, and then cause it to fade to white over a period of about two seconds, we can do this:</p>
+<pre class="literal-block">
+level = 0
+t = drawing.new_text()
+t.string('Help, I''m fading!').fill((level, level, level))
+for _ in range(51):
+    drawing.pause(40)
+    level = level + 5
+    t.fill((level, level, level))
+</pre>
+<p>The initial text appears almost immediately. By default, a new text shape is filled with (204, 204, 204) so we start by setting its fill to (0, 0, 0) (black). In the for loop we fade the text to (255, 255, 255) (white) by adding 5 to each component of its colour 51 times.</p>
+<p>Calling <tt class="docutils literal">drawing.pause(40)</tt> before each colour change causes GoGoGraphics to wait about 0.04 seconds (one twenty-fifth of a second). This means that the fifty-five step for loop will take a bit more than two seconds (0.04 x 51) to execute.</p>
+</div>
+</div>
+<div class="section" id="shapes-reference">
+<h1>3&nbsp;&nbsp;&nbsp;Shapes reference</h1>
+<div class="section" id="all-shapes">
+<h2>3.1&nbsp;&nbsp;&nbsp;All shapes</h2>
+<p>Each shape can be visible or hidden and has a centre point. These properties can be changed by calling the appropriate method. For convenience, a <tt class="docutils literal">move</tt> method is provided, which acts on the centre point.</p>
+<div class="section" id="visible">
+<h3>3.1.1&nbsp;&nbsp;&nbsp;visible</h3>
+<p>Invoked with no arguments, returns the shape’s current visibility, either <tt class="docutils literal">True</tt> or <tt class="docutils literal">False</tt>:</p>
+<pre class="literal-block">
+v = shape.visible()
+</pre>
+<p>Invoked with a boolean as argument, sets that as the shape’s visibility and returns the shape:</p>
+<pre class="literal-block">
+shape.visible(False)
+</pre>
+</div>
+<div class="section" id="centre">
+<h3>3.1.2&nbsp;&nbsp;&nbsp;centre</h3>
+<p>Invoked with no arguments, returns the current centre point of the shape:</p>
+<pre class="literal-block">
+p = shape.centre()
+</pre>
+<p>Invoked with a point as argument, sets that as the shape’s centre point and returns the shape:</p>
+<pre class="literal-block">
+shape.centre((400, 700))
+</pre>
+</div>
+<div class="section" id="move">
+<h3>3.1.3&nbsp;&nbsp;&nbsp;move</h3>
+<p>Invoked with two numbers representing horizontal and vertical displacement, adds those numbers to the shape’s centre point and returns the shape:</p>
+<pre class="literal-block">
+shape.move(10, 20)
+</pre>
+<p>Of course, the same effect can be achieved using the centre method:</p>
+<pre class="literal-block">
+shape.centre(shape.centre()[0] + 10, shape.centre()[1] + 20)
+</pre>
+</div>
+</div>
+<div class="section" id="ellipses-and-rectangles">
+<h2>3.2&nbsp;&nbsp;&nbsp;Ellipses and rectangles</h2>
+<p>Ellipses and rectangles offer exactly the same methods as one another. The only difference is that ellipses are curved and rectangles have corners. Go figure. An ellipse or rectangle has a height, a width, a fill colour, a stroke width (the stroke is the border around the shape) and a stroke colour.</p>
+<p>See also the methods <tt class="docutils literal">visible</tt>, <tt class="docutils literal">centre</tt>, and <tt class="docutils literal">move</tt>.</p>
+<div class="section" id="drawing-new-ellipse">
+<h3>3.2.1&nbsp;&nbsp;&nbsp;drawing.new_ellipse</h3>
+<p>Creates a new ellipse centred at (400, 400), 50 wide, 50 high, with a stroke width of 1, a colour of (204, 204, 204) (light grey) and a stroke colour of (76, 76, 76) (darker grey):</p>
+<pre class="literal-block">
+e = new_ellipse()
+</pre>
+</div>
+<div class="section" id="drawing-new-rectangle">
+<h3>3.2.2&nbsp;&nbsp;&nbsp;drawing.new_rectangle</h3>
+<p>Creates a new rectangle centred at (400, 400), 50 wide, 50 high, with a stroke width of 1, a colour of (204, 204, 204) and a stroke colour of (76, 76, 76):</p>
+<pre class="literal-block">
+r = new_rectangle()
+</pre>
+</div>
+<div class="section" id="height">
+<h3>3.2.3&nbsp;&nbsp;&nbsp;height</h3>
+<p>Invoked with no arguments, returns the current height of the ellipse or rectangle:</p>
+<pre class="literal-block">
+h = e.height()
+</pre>
+<p>Invoked with a number, sets the ellipse or rectangle’s height to that number and returns the shape:</p>
+<pre class="literal-block">
+e.height(250)
+</pre>
+</div>
+<div class="section" id="width">
+<h3>3.2.4&nbsp;&nbsp;&nbsp;width</h3>
+<p>Invoked with no arguments, returns the current width of the ellipse or rectangle:</p>
+<pre class="literal-block">
+w = r.width()
+</pre>
+<p>Invoked with a number, sets the ellipse or rectangle’s width to that number and returns the shape:</p>
+<pre class="literal-block">
+r.width(250)
+</pre>
+</div>
+<div class="section" id="stroke-width">
+<h3>3.2.5&nbsp;&nbsp;&nbsp;stroke_width</h3>
+<p>Invoked with no arguments, returns the current stroke width of the ellipse or rectangle:</p>
+<pre class="literal-block">
+sw = e.stroke_width()
+</pre>
+<p>Invoked with a number, sets the ellipse or rectangle’s stroke width to that number and returns the shape. The stroke is <em>centred on</em> the edge of the shape, so making the stroke wider will eat into the middle of the shape by half the stroke width, and make the shape larger by the other half.:</p>
+<pre class="literal-block">
+e.stroke_width(20)
+</pre>
+</div>
+<div class="section" id="fill">
+<h3>3.2.6&nbsp;&nbsp;&nbsp;fill</h3>
+<p>Invoked with no arguments, returns the current fill colour of the shape, which will be a three-element tuple with values between (0, 0, 0) and (255, 255, 255). See <a class="reference internal" href="#colours">Colours</a> for more details:</p>
+<pre class="literal-block">
+c = shape.fill()
+</pre>
+<p>Invoked with a colour, sets the shape’s fill colour to that value and returns the shape:</p>
+<pre class="literal-block">
+shape.fill((27, 129, 88))
+</pre>
+</div>
+<div class="section" id="stroke">
+<h3>3.2.7&nbsp;&nbsp;&nbsp;stroke</h3>
+<p>Invoked with no arguments, returns the current stroke colour of the shape, which will be a three-element tuple with values between (0, 0, 0) and (255, 255, 255). See <a class="reference internal" href="#colours">Colours</a> for more details:</p>
+<pre class="literal-block">
+c = shape.stroke()
+</pre>
+<p>Invoked with a colour, sets the shape’s stroke colour to that value and returns the shape:</p>
+<pre class="literal-block">
+shape.stroke((204, 102, 255))
+</pre>
+</div>
+</div>
+<div class="section" id="lines">
+<h2>3.3&nbsp;&nbsp;&nbsp;Lines</h2>
+<p>A line has a start point, end point, length and stroke width, and stroke colour. See also the methods <tt class="docutils literal">visible</tt>, <tt class="docutils literal">centre</tt>, and <tt class="docutils literal">move</tt> in <a class="reference internal" href="#all-shapes">All shapes</a>.</p>
+<p>Moving a line’s centre changes its start and end points but not its length. Changing a line’s length changes its start and end points but not its centre.</p>
+<div class="section" id="drawing-new-line">
+<h3>3.3.1&nbsp;&nbsp;&nbsp;drawing.new_line</h3>
+<p>Creates a line from (375, 375) to (425, 425), and therefore about 70.7 long and centred at (400, 400), with a stroke width of 2 and a stroke colour of (76, 76, 76):</p>
+<pre class="literal-block">
+ln = drawing.new_line()
+</pre>
+</div>
+<div class="section" id="start">
+<h3>3.3.2&nbsp;&nbsp;&nbsp;start</h3>
+<p>Invoked with no arguments, returns the current start point of the line:</p>
+<pre class="literal-block">
+s = ln.start()
+</pre>
+<p>Invoked with a point, changes the line’s start point to that point. Changing a line’s start point may affect its length and centre:</p>
+<pre class="literal-block">
+ln.start((25, 25))
+</pre>
+</div>
+<div class="section" id="end">
+<h3>3.3.3&nbsp;&nbsp;&nbsp;end</h3>
+<p>Invoked with no arguments, returns the current end point of the line:</p>
+<pre class="literal-block">
+e = ln.end()
+</pre>
+<p>Invoked with a point, changes the line’s end point to that point and returns the line. Changing a line’s end point may affect its length and centre:</p>
+<pre class="literal-block">
+ln.end((775, 775))
+</pre>
+</div>
+<div class="section" id="length">
+<h3>3.3.4&nbsp;&nbsp;&nbsp;length</h3>
+<p>Invoked with no arguments, returns the current length of the line:</p>
+<pre class="literal-block">
+lg = ln.length()
+</pre>
+<p>Invoked with a number, changes the line’s length to match that number and returns the line. The line is extended or contracted around its centre. Changing a line’s length may affect its start point and end point:</p>
+<pre class="literal-block">
+ln.length(275)
+</pre>
+</div>
+<div class="section" id="stroke-width-1">
+<h3>3.3.5&nbsp;&nbsp;&nbsp;stroke_width</h3>
+<p>Invoked with no arguments, returns the current stroke width of the line:</p>
+<pre class="literal-block">
+w = ln.stroke_width()
+</pre>
+<p>Invoked with a number, sets the line’s width to that number and returns the line:</p>
+<pre class="literal-block">
+ln.stroke_width(15)
+</pre>
+</div>
+<div class="section" id="stroke-1">
+<h3>3.3.6&nbsp;&nbsp;&nbsp;stroke</h3>
+<p>Invoked with no arguments, returns the current stroke colour of the line, which will be a three-element tuple with values between (0, 0, 0) and (255, 255, 255). See <a class="reference internal" href="#colours">Colours</a> for more details:</p>
+<pre class="literal-block">
+c = ln.stroke()
+</pre>
+<p>Invoked with a colour, sets the line’s stroke colour to that value and returns the line:</p>
+<pre class="literal-block">
+ln.stroke((204, 102, 255))
+</pre>
+</div>
+</div>
+<div class="section" id="text">
+<h2>3.4&nbsp;&nbsp;&nbsp;Text</h2>
+<p>Text shapes have a string (the text itself), a height, and a fill. See also the methods <tt class="docutils literal">visible</tt>, <tt class="docutils literal">centre</tt>, and <tt class="docutils literal">move</tt> in <a class="reference internal" href="#all-shapes">All shapes</a>.</p>
+<p><em>A text shape does not have a width property!</em> Calling <tt class="docutils literal">width</tt> on a text shape will result in an error.</p>
+<div class="section" id="drawing-new-text">
+<h3>3.4.1&nbsp;&nbsp;&nbsp;drawing.new_text</h3>
+<p>Creates a new text shape with the string “default text”, set in your computer's default system font (likely Helvetica or Arial), centred at (400, 400), coloured (76, 76, 76), with a height of 24:</p>
+<pre class="literal-block">
+t = drawing.new_text()
+</pre>
+</div>
+<div class="section" id="string">
+<h3>3.4.2&nbsp;&nbsp;&nbsp;string</h3>
+<p>Invoked with no arguments, returns the current string value of the text shape:</p>
+<pre class="literal-block">
+s = t.string()
+</pre>
+<p>Invoked with a string, sets the text’s string value to that string and returns the text shape:</p>
+<pre class="literal-block">
+t.string('Now I''m something new!')
+</pre>
+</div>
+<div class="section" id="height-1">
+<h3>3.4.3&nbsp;&nbsp;&nbsp;height</h3>
+<p>Invoked with no arguments, returns the current height of the text shape:</p>
+<pre class="literal-block">
+h = t.height()
+</pre>
+<p>Invoked with a number, sets the text shape’s height to that number and returns the text shape:</p>
+<pre class="literal-block">
+t.height(75)
+</pre>
+</div>
+<div class="section" id="fill-1">
+<h3>3.4.4&nbsp;&nbsp;&nbsp;fill</h3>
+<p>Invoked with no arguments, returns the current fill colour of the text, which will be a three-element tuple with values between (0, 0, 0) and (255, 255, 255). See <a class="reference internal" href="#colours">Colours</a> for more details:</p>
+<pre class="literal-block">
+c = t.fill()
+</pre>
+<p>Invoked with a colour, sets the text’s fill colour to that value and returns the shape:</p>
+<pre class="literal-block">
+t.fill((27, 129, 88))
+</pre>
+</div>
+</div>
+</div>
+<div class="section" id="copyright-information">
+<h1>4&nbsp;&nbsp;&nbsp;Copyright information</h1>
+<p>The GoGoGraphics library, including this document, is copyright His Majesty in Right of Canada, ©2023. Unlimited use permitted within the Government of Canada; all other use subject to the <a class="reference external" href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License version 3</a>.</p>
+<p>Version 1.0: Greg Phillips, 16 May 2023</p>
+</div>
+</div>
+<div class="footer">
+<hr class="footer" />
+###Page###/###Total###
+</div>
+</body>
+</html>

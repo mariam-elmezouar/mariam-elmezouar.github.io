@@ -1,2 +1,0 @@
-This is some content from aFile.
-1 2 3
