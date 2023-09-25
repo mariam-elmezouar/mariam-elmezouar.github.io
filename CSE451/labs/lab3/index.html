@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Lab 3</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Custom fonts for this theme -->
+  <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="../../../css/freelancer.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="../../index.html">CSE451</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+        type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#laboratories">Laboratories</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#schedule">Schedule</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <h2 class="mt-4">Lab 3 </h2>
+    <h5 class="subtitle">CSE451 Fall 2023</h5>
+    
+    <h2 id="introduction">Introduction</h2>
+    <p>In this lab, the objective is to learn essential data preparation techniques while working with the Global Terrorism Dataset (GTD). You will learn how to clean, preprocess, and transform raw data into a format suitable for analysis. </p>
+
+   
+
+
+
+    <h3>Introduction to Data Preparation</h3>
+
+    <p>Data preparation is the process of cleaning, transforming, and organizing raw data into a structured and usable format for analysis.</p>
+
+    <p>Data preparation is the foundation of effective data analysis and modeling. It ensures that the data is accurate, consistent, and ready for further exploration and analysis. It helps with:</p>
+
+    <ul>
+      <li>Quality Assurance: Data preparation helps identify and rectify errors, inconsistencies, and missing values in the dataset, ensuring data quality.</li>
+      <li>Improved Analysis: Clean and well-structured data makes analysis and modeling more accurate and reliable.</li>
+      <li>Time Efficiency: Properly prepared data saves time during the analysis phase, as you don't have to constantly deal with data issues.</li>
+      <li>Better Decision-Making: High-quality data leads to better insights, which can drive informed decision-making.</li>
+    </ul>
+    
+    <p>Data preparation is <strong>not a one-time step</strong> but an iterative process that may require revisiting as analysis progresses.</p>
+
+
+    <h3>Handling Missing Data</h3>
+
+    <p>Use Pandas functions to assess missing values in each column. You can use the <code>isna()</code> function to identify missing values and then calculate the percentage of missing values for each column.</p>
+
+    <pre>
+      <code>
+import pandas as pd
+
+# Load the GTD dataset 
+# This assumes that you have merged the two datasets from Lab 2 into one file called globalterrorismdb.csv
+df = pd.read_csv('globalterrorismdb.csv')
+
+# Calculate the percentage of missing values for each column
+missing_percentage = (df.isna().sum() / len(df)) * 100
+
+print(missing_percentage)
+            </code>
+    </pre>
+    
+
+    <p>Some columns in this dataset are predominentaly empty. While there are a number of techniques to deal with missing values, we need to apply techniques that are suited to the meaning of the columns in this specific dataset.</p>
+
+    <p>Some common techniques to deal with missing values are:</p>
+
+    <ul>
+      <li>Remove rows with problematic values: This method is suitable for datasets with a small amount of missing data, as removing too many rows can greatly reduce the size of the dataset and affect the results of the analysis.</li>
+      <li>Impute missing values: This method involves replacing missing values with estimated or predicted values. There are various imputation methods, including mean imputation, and median imputation. </li>
+      <li>Interpolation: This method involves estimating missing values based on the values of other observations in the dataset. For example, linear interpolation can be used to estimate missing values based on a linear relationship between two known values.</li>
+      <li>Use a model to predict missing values: This method involves using machine learning or statistical models to predict missing values based on the values of other variables in the dataset. This method can be more accurate than imputation methods, but requires more computational resources and a deeper understanding of the data and the relationships between variables.</li>
+    </ul>
+
+    <p>Let's discuss a few examples. the <code>approxdate</code> column has a high percentage of missing values. Regarding this column, the documentation states that "whenever the exact date of the incident is not known or remains unclear, this field is used to record the approximate date of the incident". Therefore, it is not suprising that this column is predominentaly empty. How to deal with it in this case? One possibility is to retrieve whatever information is provided in this column, and store it under one of the three columns that record the date, then drop the <code>approxdate</code> column. Another possibility is to drop the rows where the exact date is unknown. A third possibility is to leave as is for now.</p>
+
+    <p>A very small number of rows are missing the value in the column <code>city</code>. A possible way to deal with this is fill such instances with the word 'unknown'. </p>
+
+    <p><b>Your task:</b> address missing data in the GTD using one or more of the above strategies. You should document you approach and explain why you chose a particular method.</p>
+    
+    
+    <h3>Handling Outliers</h3>
+
+    <p>Outliers are data points that significantly deviate from the majority of the data, and they can distort statistical analyses and machine learning models. Here are some common techniques to deal with outliers:</p>
+
+    <ul>
+      <li><strong>Identifying Outliers:</strong>
+        <ul>
+          <li>Before dealing with outliers, it's crucial to identify them. Common methods for identifying outliers include visualization (e.g., box plots, scatter plots), statistical tests, and domain knowledge.</li>
+        </ul>
+      </li>
+      <li><strong>Data Trimming:</strong>
+        <ul>
+          <li>One straightforward approach is to trim or remove outliers from the dataset. This can be done by setting a threshold beyond which data points are considered outliers and then removing or marking those points. However, this should be done with caution, as it may result in loss of information.</li>
+        </ul>
+      </li>
+      <li><strong>Winsorization:</strong>
+        <ul>
+          <li>Winsorization involves capping extreme values by replacing them with a less extreme but still relatively high or low value. For example, you can replace values above a certain percentile (e.g., 99th percentile) with the value at that percentile.</li>
+        </ul>
+      </li>
+      <li><strong>Data Transformation:</strong>
+        <ul>
+          <li>Transforming data can make it less sensitive to outliers. Common transformations include logarithmic, square root, or Box-Cox transformations. These can help normalize the data and reduce the impact of extreme values.</li>
+        </ul>
+      </li>
+      <li><strong>Imputation:</strong>
+        <ul>
+          <li>For datasets with missing values, imputation methods can be used to replace missing values with estimates based on the available data. Imputation can also be applied to replace outliers with more reasonable estimates based on the surrounding data.</li>
+        </ul>
+      </li>
+      <li><strong>Binning or Categorization:</strong>
+        <ul>
+          <li>Sometimes, it's beneficial to categorize continuous data into bins or categories. This can help mitigate the influence of outliers by grouping them with other similar values within the same bin.</li>
+        </ul>
+      </li>
+      <li><strong>Robust Statistical Models:</strong>
+        <ul>
+          <li>Some statistical models are less sensitive to outliers than others. For example, robust regression techniques are designed to handle data with outliers.</li>
+        </ul>
+      </li>
+      <li><strong>Data Segmentation:</strong>
+        <ul>
+          <li>Sometimes it's beneficial to analyze the data separately for different segments or groups, each of which may have its own characteristics. This can help reduce the impact of outliers within specific segments.</li>
+        </ul>
+      </li>
+      <li><strong>Domain Knowledge:</strong>
+        <ul>
+          <li>Incorporate domain knowledge to determine whether outliers are genuine data points that should be retained or erroneous data points that should be corrected or removed.</li>
+        </ul>
+      </li>
+      <li><strong>Reporting and Documentation:</strong>
+        <ul>
+          <li>When you decide to handle outliers in a particular way, it's important to document your approach, explain the rationale behind your decisions, and report how outliers were treated in your analysis.</li>
+        </ul>
+      </li>
+    </ul>
+    
+    <p><strong>Your task:</strong> For each numerical variable, investigate the presence of potential outliers using boxplots and by applying the 1.5 IQR rule. Then, explain how you want to deal with them, while taking into consideration the strategies listed above.</p>
+
+    <h3>Data Cleaning</h3>
+
+    <p>Data cleaning is the process of identifying and correcting errors or inconsistencies in data to improve its quality and reliability. Other issues that may need to be addressed in the data are the presence of duplicates, inconsistent data types, and incorrect values. </p>
+ 
+    <p>Iterate over each column, think about the expected type of value and investigate if the expectation is met in the data.</p>
+
+    <p>Below are examples that you can investigate in your process of data cleaning. This is not a complete list. You should think about other issues that may need to be addressed in the data.</p>
+    
+    <ul>
+      <li>Are there duplicate records for the same terrorist incidents? For instance, if multiple sources report the same event, it could result in duplicate entries in the dataset.</li>
+      <li>The GTD may have columns where data types are inconsistent. For instance, the "iyear" (year of the incident) column may contain both numeric and string values. Data cleaning would involve ensuring that all values in this column are of the same data type, typically numeric.</li>
+      <li>Human errors or inconsistencies in data entry might lead to incorrect values. For instance, there could be entries with negative values for the number of killed or wounded individuals in a terrorist incident. Cleaning would involve identifying and correcting such errors.</li>
+    </ul>
+
+    <p><strong>Your task:</strong> Document your process of iterating over the columns and the aspects your investigate about each. Report how much discrepancies you have observed in the data and how you have fixed them</p>
+
+    <h3>Data Transformation</h3>
+
+    <p>Beyond cleaning, some data transformation may need to take place to prepare the data for further analysis</p>
+
+    <p>You may want to come back to this list after you have decided the type of models you will be building for your data and the type of research questions you will be exploring.
+      This will largely decide what kind of transformation need to take place.
+    </p>
+
+    <ul>
+      <li><strong>Normalization:</strong> Scaling numerical features to a standard range (e.g., [0, 1]) to mitigate differences in scales.</li>
+      <li><strong>Standardization:</strong> Transforming numerical features to have a mean of 0 and a standard deviation of 1.</li>
+      <li><strong>Log Transformation:</strong> Applying a logarithmic function to reduce the impact of extreme values and achieve a more normal distribution.</li>
+      <li><strong>One-Hot Encoding:</strong> Converting categorical variables into binary (0/1) format, creating new binary columns for each category.</li>
+      <li><strong>Label Encoding:</strong> Assigning unique numeric labels to categorical values.</li>
+      <li><strong>Binning or Discretization:</strong> Grouping numerical values into bins or categories to simplify analysis.</li>
+      <li><strong>Feature Scaling:</strong> Ensuring that all numerical features have the same scale to prevent some features from dominating others.</li>
+      <li><strong>Feature Engineering:</strong> Creating new features from existing ones to capture meaningful patterns or relationships. Combining "height" and "weight" to create a new feature "Body Mass Index (BMI)" is an example of feature engineering.</li>
+      <li><strong>Text Preprocessing:</strong> Cleaning and transforming text data by removing punctuation, stopwords, and stemming or lemmatizing words.</li>
+      <li><strong>Date Extraction:</strong> Extracting relevant information (e.g., year, month, day) from date columns for time-based analysis.</li>
+      <li><strong>Handling Skewed Data:</strong> Applying transformations like square root or Box-Cox to make data distributions more symmetric.</li>
+      <li><strong>Scaling with Outliers:</strong> Using robust scaling methods that are less affected by outliers, such as the Median Absolute Deviation (MAD).</li>
+      <li><strong>Feature Selection:</strong> Choosing a subset of the most relevant features to reduce dimensionality and improve model performance.</li>
+      <li><strong>Feature Aggregation:</strong> Combining multiple related features into a single feature to reduce complexity and redundancy.</li>
+      <li><strong>Principal Component Analysis (PCA):</strong> Reducing dimensionality by transforming data into orthogonal principal components.</li>
+    </ul>
+    
+
+    <p><strong>Your task:</strong> Have you decided to apply any transformations at this point? if yes, which and why?</p>
+
+
+    <p>At the end of this process, make sure you save your cleaned dataset as a new csv file that you can load and work on for future tasks.</p>    
+
+
+    <h3>Research questions</h3>
+
+    <p>What kind of research questions are you most interested exploring about this dataset? This decision will impact the models, transformation, and evaluation methods you will be using.</p>
+
+    <p>Here are some examples of research questions you can explore:</p>
+    <ul>
+      <li><strong>Temporal Trends in Terrorism:</strong>
+        <ul>
+          <li>How have the frequency and severity of terrorist incidents evolved over time based on the GTD data?</li>
+          <li>Are there seasonal or cyclical patterns in terrorist activities?</li>
+        </ul>
+      </li>
+      <li><strong>Geospatial Analysis of Terrorism:</strong>
+        <ul>
+          <li>What regions or countries have experienced the highest concentration of terrorist incidents according to the GTD data?</li>
+          <li>Can geographic factors such as proximity to borders or urban areas predict the likelihood of terrorism?</li>
+        </ul>
+      </li>
+      <li><strong>Characteristics of Perpetrators:</strong>
+        <ul>
+          <li>What are the demographic and organizational characteristics of terrorist perpetrators, as recorded in the GTD data?</li>
+          <li>Are there trends in the use of suicide bombings, lone-wolf attacks, or other tactics by specific groups?</li>
+        </ul>
+      </li>
+      <li><strong>Target Analysis:</strong>
+        <ul>
+          <li>Who or what types of targets are most frequently attacked by terrorists according to the GTD data?</li>
+          <li>Are there changes in targeting patterns over time?</li>
+        </ul>
+      </li>
+      <li><strong>Weapon Usage in Terrorism:</strong>
+        <ul>
+          <li>What types of weapons or methods are commonly used in terrorist attacks, and how has this changed over time?</li>
+          <li>Are there regional variations in weapon preferences among terrorist groups?</li>
+        </ul>
+      </li>
+      <li><strong>Terrorist Group Dynamics:</strong>
+        <ul>
+          <li>How have the sizes and structures of terrorist groups, as recorded in the GTD data, evolved over time?</li>
+          <li>Are there correlations between group characteristics and attack strategies?</li>
+        </ul>
+      </li>
+      <li><strong>Predictive Modeling:</strong>
+        <ul>
+          <li>Can historical GTD data be leveraged to build predictive models for future terrorist incidents, considering factors like location, group activity, and time of year?</li>
+          <li>What are the key predictors of high-risk areas?</li>
+        </ul>
+      </li>
+      <li><strong>Terrorism and Ideology Analysis:</strong>
+        <ul>
+          <li>Based on textual analysis of claimed responsibility statements in the GTD, what ideological themes are prevalent among different terrorist groups?</li>
+          <li>Are there correlations between ideological content and attack characteristics?</li>
+        </ul>
+      </li>
+      <li><strong>Network Analysis:</strong>
+        <ul>
+          <li>How can network analysis techniques be applied to the GTD data to understand the relationships among different terrorist groups, affiliates, and supporters?</li>
+          <li>What insights can be gained from studying the social networks of terrorists and their supporters based on the data?</li>
+        </ul>
+      </li>
+    </ul>
+    
+
+
+    
+  </div>
+
+
+<!-- Copyright Section -->
+<section class="copyright py-4 text-center text-white">
+  <div class="container">
+    <small>Copyright &copy; Mariam El Mezouar 2023</small>
+  </div>
+</section>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-to-top d-lg-none position-fixed ">
+  <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+    <i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="../js/jqBootstrapValidation.js"></script>
+<script src="../js/contact_me.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/freelancer.min.js"></script>
+
+</body>
+
+</html>
