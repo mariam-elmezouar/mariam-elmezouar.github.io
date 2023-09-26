@@ -1,6 +1,0 @@
-#Protect Directory
-AuthName "Dialog prompt"
-AuthType Basic
-AuthUserFile 
-/mariam-elmezouar.github.io/CSE101/.htpasswd
-Require valid-user
