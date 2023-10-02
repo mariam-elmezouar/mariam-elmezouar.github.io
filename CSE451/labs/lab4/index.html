@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Lab 4</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Custom fonts for this theme -->
+  <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="../../../css/freelancer.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="../../index.html">CSE451</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+        type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#laboratories">Laboratories</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#schedule">Schedule</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <h2 class="mt-4">Lab 4</h2>
+    <h5 class="subtitle">CSE451 Fall 2023</h5>
+    
+    <h2 id="introduction">Introduction</h2>
+    <p>In this lab, the objective is to consolidate what you have done so far, and to build a plan for the modeling stage of the process. </p>
+
+   
+    <h3 id="introduction">Objectives</h2>
+
+      <ul>
+        <li>Write up your steps and results in exploring/cleaning/preparing the dataset.</li>
+        <li>Perform a simple modelling task on the data.</li>
+        <li>Come up with a plan to tackle the selected research questions.</li>
+      </ul>
+
+      <h3 id="introduction">Report</h2>
+
+      <p>It's time to document the work you've completed so far. This will form the initial part of the report you'll be turning in come December. You can generate this document using a Jupyter notebook. With some cleanup, it can be transformed to resemble a formal report (see examples <a href="https://www.kaggle.com/code/saga21/visual-journey-through-world-development-1985-2015/notebook">here</a> and <a href="https://www.kaggle.com/code/harriken/police-dogs-and-grey-hair-will-save-you-from-jail/report">here</a>). Alternatively, you can use your regular text editor for this purpose and submit a PDF file. The report should contain the following sections:</p>
+
+    <ol>
+        <li>
+            <h6>Introduction:</h6>
+            <p>Provide a brief introduction to the report. Explain the purpose of the report and what the reader can expect to find in it.</p>
+        </li>
+
+        <li>
+            <h6>Dataset Description:</h6>
+            <p>
+                Begin by describing the dataset you were given. Include the following information:
+                <ul>
+                    <li>Dataset name and source.</li>
+                    <li>The number of records (rows) and features (columns) in the dataset.</li>
+                    <li>A brief overview of what the dataset represents or its context.</li>
+                </ul>
+            </p>
+        </li>
+
+        <li>
+            <h6>Data Cleaning:</h6>
+            <p>
+                Detail the data cleaning steps you performed in previous labs. Include the following:
+                <ul>
+                    <li>Identification and handling of missing values.</li>
+                    <li>Handling of duplicates (if any).</li>
+                    <li>Correcting data type inconsistencies.</li>
+                    <li>Addressing outliers (if applicable).</li>
+                    <li>Any other data cleaning activities specific to your dataset.</li>
+                </ul>
+            </p>
+        </li>
+
+        <li>
+            <h6>Data Exploration:</h6>
+            <p>
+                Discuss your data exploration efforts. Include the following:
+                <ul>
+                    <li>Summary statistics of key variables (mean, median, standard deviation, etc.).</li>
+                    <li>Good quality and easily readable visualizations (e.g., histograms, scatter plots, box plots) used to explore data distributions and relationships.</li>
+                    <li>Any patterns, trends, or anomalies you observed during exploration.</li>
+                </ul>
+            </p>
+        </li>
+
+        <li>
+            <h6>Data Preparation:</h6>
+            <p>
+                Describe how you prepared the data for analysis. Include the following:
+                <ul>
+                    <li>Feature engineering: Any new features created or transformations applied.</li>
+                    <li>Encoding categorical variables (if necessary).</li>
+                    <li>Scaling or standardizing numerical features (if applicable).</li>
+                    <li>Handling imbalanced datasets (if relevant).</li>
+                </ul>
+            </p>
+        </li>
+
+        <li>
+            <h6>Challenges and Solutions:</h6>
+            <p>Reflect on any challenges or issues you encountered during data exploration, cleaning, or preparation. Explain how you addressed these challenges.</p>
+        </li>
+
+        <li>
+            <h6>Insights and Discoveries:</h6>
+            <p>Highlight any interesting insights or discoveries you made during the process. What did you learn about the dataset, and how might these insights inform your future analysis?</p>
+        </li>
+
+        <li>
+            <h6>Data Quality Assessment:</h6>
+            <p>Provide an assessment of the overall data quality after the cleaning and preparation steps. Mention any remaining data quality concerns.</p>
+        </li>
+
+        <li>
+            <h6>Conclusion:</h6>
+            <p>Summarize the key takeaways from your data exploration, cleaning, and preparation efforts. Emphasize the importance of these steps in the data science process.</p>
+        </li>
+
+        <li>
+            <h6>Future Steps:</h6>
+            <p>Mention what you plan to do next, which includes data modeling and evaluation. How will the work you've done so far inform your modeling choices and research questions?</p>
+        </li>
+
+        <li>
+            <h6>References (if applicable):</h6>
+            <p>If you referred to any external sources, data documentation, or literature during your work, include them in a references section.</p>
+        </li>
+
+        <li>
+            <h6>Appendices:</h6>
+            <p>Include any additional tables, charts, or code snippets that support your findings and processes.</p>
+        </li>
+
+    </ol>
+
+   
+    <h3>Preliminary modeling task: Predicting Attack Types using Logistic Regression and Random Forest</h1>
+
+    <ol>
+        <li>
+            <h6>Objective:</h6>
+            <p>In this task, you will build and compare two different models, Logistic Regression and Random Forest, for the multi-class classification problem of predicting attack types based on the provided Global Terrorism Database.</p>
+        </li>
+
+        <li>
+            <h6>Steps:</h6>
+
+            <ol type="a">
+                <li>
+                    <h6>Data Preprocessing:</h6>
+                    <p>
+                        Load and preprocess the Global Terrorism Database, focusing on relevant columns, including the "attacktype1_txt" column (target) and other relevant features.
+                    </p>
+                </li>
+
+                <li>
+                    <h6>Data Exploration:</h6>
+                    <p>
+                        Explore the dataset to understand the distribution of attack types and visualize relationships between features and the target variable.
+                    </p>
+                </li>
+
+                <li>
+                    <h6>Model 1: Logistic Regression</h6>
+                    <p>
+                        Implement a Logistic Regression model to predict attack types.
+                        <br> Split the dataset into training and testing sets.
+                        <br> Train the Logistic Regression model on the training data.
+                        <br> Evaluate the model's performance using appropriate classification metrics (e.g., accuracy, F1-score, precision, recall) on the testing dataset.
+                        <br> Interpret the results and assess the model's strengths and weaknesses.
+                    </p>
+                </li>
+
+                <li>
+                    <h6>Model 2: Random Forest</h6>
+                    <p>
+                        Conduct independent research to understand the Random Forest algorithm and its application to multi-class classification.
+                        <br> Implement a Random Forest model for predicting attack types.
+                        <br> Split the dataset into training and testing sets.
+                        <br> Train the Random Forest model on the training data.
+                        <br> Experiment with different hyperparameters (e.g., number of trees, tree depth) and feature selection strategies to optimize model performance.
+                        <br> Evaluate the Random Forest model's performance using appropriate classification metrics on the testing dataset.
+                        <br> Document your experimentation process and the chosen hyperparameters.
+                    </p>
+                </li>
+
+                <li>
+                    <h6>Model Comparison:</h6>
+                    <p>
+                        Compare the performance of Logistic Regression and Random Forest models in terms of accuracy, F1-score, precision, recall, and any other relevant metrics.
+                        <br> Provide insights into which model performed better and discuss possible reasons for the observed differences.
+                    </p>
+                </li>
+
+                <li>
+                    <h6>Conclusion and Reflection:</h6>
+                    <p>
+                        Summarize your findings and insights from using both models.
+                        <br> Reflect on the strengths and weaknesses of Logistic Regression and Random Forest for this specific multi-class classification task.
+                        <br> Discuss any challenges encountered during the model implementation and evaluation.
+                    </p>
+                </li>
+
+            </ol>
+        </li>
+    </ol>
+
+
+    <h2>Plan your next steps:</h2>
+
+    <ol>
+        <li>
+            <h6>Understand the Research Question:</h6>
+            <p>Begin by thoroughly understanding the research question or problem statement related to the dataset. Clarify the goals and objectives of the research.</p>
+        </li>
+
+
+        <li>
+            <h6>Hypothesize and Formulate Objectives:</h6>
+            <p>Develop hypotheses or research objectives that you aim to test or achieve through your analysis. What do you expect to find or discover?</p>
+        </li>
+
+        <li>
+            <h6>Feature Selection and Engineering:</h6>
+            <p>Identify relevant features (columns) in the dataset that are crucial for answering your research question. Consider creating new features if necessary.</p>
+        </li>
+
+
+        <li>
+            <h6>Formulate a Research Plan:</h6>
+            <p>Outline a step-by-step plan for addressing the research question. Specify the data analysis techniques, models, and statistical methods you intend to use.</p>
+        </li>   
+
+        <li>
+          <h6>Discuss your plan with your instructor:</h6>
+          <p>and start working!</p>
+      </li> 
+       
+    </ol>
+
+    
+  </div>
+
+
+<!-- Copyright Section -->
+<section class="copyright py-4 text-center text-white">
+  <div class="container">
+    <small>Copyright &copy; Mariam El Mezouar 2023</small>
+  </div>
+</section>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-to-top d-lg-none position-fixed ">
+  <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+    <i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="../js/jqBootstrapValidation.js"></script>
+<script src="../js/contact_me.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/freelancer.min.js"></script>
+
+</body>
+
+</html>
