@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Data Challenge 2</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Custom fonts for this theme -->
+  <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="../../../css/freelancer.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="../../index.html">CSE451</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+        type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#laboratories">Laboratories</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#schedule">Schedule</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <h2 class="mt-4">Data Challenge 2 </h2>
+    <h5 class="subtitle">CSE451 Fall 2023</h5>
+    
+    
+
+
+    <h2 id="liens">Task: Predict Mobile Price Ranges</h2>
+    <p><b>Problem</b>: You are launching a mobile company and need to competitively price your phones against giants like Apple and Samsung. Using sales data from various companies, the aim is to link mobile features, such as RAM, to price ranges using a machine learning model. This will help you set your mobile prices more strategically in the market.</p>
+
+    <p><strong>Objective:</strong> provide a notebook report that 1) explore and visualize the dataset (document any insights gained from the exploration), and 2) build a prediction model to predict the price range of mobile phones based on the features provided.</p>
+    <ul>
+      <li>Launch Jupyter Notebook and create a new textbook, and name it <em>DC2_lastname</em>.</li>
+      <li>Download the <a href="mobile-prices.csv">provided dataset</a>. The dataset contains a list of mobiles phones, with associated features and price range. The columns of the dataset are described below:</li>
+
+
+      <ul>
+          <li><strong>id</strong> - ID</li>
+          <li><strong>battery_power</strong> - Total energy a battery can store in one time measured in mAh</li>
+          <li><strong>blue</strong> - Has bluetooth or not</li>
+          <li><strong>clock_speed</strong> - Speed at which microprocessor executes instructions</li>
+          <li><strong>dual_sim</strong> - Has dual sim support or not</li>
+          <li><strong>fc</strong> - Front Camera mega pixels</li>
+          <li><strong>four_g</strong> - Has 4G or not</li>
+          <li><strong>int_memory</strong> - Internal Memory in Gigabytes</li>
+          <li><strong>m_dep</strong> - Mobile Depth in cm</li>
+          <li><strong>mobile_wt</strong> - Weight of mobile phone</li>
+          <li><strong>n_cores</strong> - Number of cores of processor</li>
+          <li><strong>pc</strong> - Primary Camera mega pixels</li>
+          <li><strong>px_height</strong> - Pixel Resolution Height</li>
+          <li><strong>px_width</strong> - Pixel Resolution Width</li>
+          <li><strong>ram</strong> - Random Access Memory in Megabytes</li>
+          <li><strong>sc_h</strong> - Screen Height of mobile in cm</li>
+          <li><strong>sc_w</strong> - Screen Width of mobile in cm</li>
+          <li><strong>talk_time</strong> - Longest time that a single battery charge will last when you are talking</li>
+          <li><strong>three_g</strong> - Has 3G or not</li>
+          <li><strong>touch_screen</strong> - Has touch screen or not</li>
+          <li><strong>wifi</strong> - Has wifi or not</li>
+      </ul>
+      
+      <h6>Target Variable:</h6>
+      <ul>
+          <li><strong>price_range</strong> - This is the target variable with value of:
+              <ul>
+                  <li>0 - low cost</li>
+                  <li>1 - medium cost</li>
+                  <li>2 - high cost</li>
+                  <li>3 - very high cost</li>
+              </ul>
+          </li>
+      </ul>
+      
+     
+      <h3>Your tasks:</h3>
+      
+      <li>Check for duplicates/missing values/inconsistant data types. If you comes across any of these issues, fix it and explain what your fix is.</li>
+            <li>Answer the following questions based on the dataset:
+              
+<h4>Univariate Analysis (answer 2 out of 4):</h4>
+<ul>
+    <li><strong>Battery Power</strong>:
+        <ul>
+            <li>What is the distribution of battery power across all mobiles?</li>
+            <li>Identify the mobiles with the top 5% of battery power.</li>
+        </ul>
+    </li>
+    
+    <li><strong>RAM</strong>:
+        <ul>
+            <li>How is the RAM distributed? Is it skewed towards lower or higher values?</li>
+            <li>What is the average RAM size across the dataset?</li>
+        </ul>
+    </li>
+    
+    <li><strong>Dual SIM</strong>:
+        <ul>
+            <li>What proportion of mobiles supports dual SIM?</li>
+            <li>Is there a particular price range where dual SIM is more common?</li>
+        </ul>
+    </li>
+
+    <li><strong>4G Support</strong>:
+        <ul>
+            <li>What percentage of mobiles have 4G support?</li>
+            <li>Which price range has the least number of 4G supported mobiles?</li>
+        </ul>
+    </li>
+</ul>
+
+<h4>Bivariate Analysis (answer 2 out of 4):</h4>
+<ul>
+    <li><strong>RAM vs. Battery Power</strong>:
+        <ul>
+            <li>Is there any observable relationship between RAM size and battery power?</li>
+            <li>Which phones (top 5) have both high RAM and high battery power?</li>
+        </ul>
+    </li>
+    
+    <li><strong>4G Support vs. Dual SIM</strong>:
+        <ul>
+            <li>Is there a pattern where phones with 4G support more commonly have dual SIM features or vice versa?</li>
+        </ul>
+    </li>
+
+    <li><strong>Battery Power vs. Price Range</strong>:
+        <ul>
+            <li>How does the battery power distribution vary across different price ranges?</li>
+            <li>Is there a noticeable difference in average battery power between the lowest and highest price range?</li>
+        </ul>
+    </li>
+
+    <li><strong>RAM vs. Price Range</strong>:
+        <ul>
+            <li>How does RAM distribution vary across price ranges?</li>
+            <li>Is there a clear distinction in RAM size when moving from a lower to a higher price range?</li>
+        </ul>
+    </li>
+</ul>
+
+<h4>Prediction of Price Range:</h4>
+
+<p>
+  Implement a Logistic Regression model or Random Forest model to predict price ranges.
+  <br> Split the dataset into training and testing sets.
+  <br> Train the model on the training data.
+  <br> Evaluate the model's performance using appropriate classification metrics (e.g., accuracy, F1-score, precision, recall) on the testing dataset.
+  <br> Interpret the results and assess the model's strengths and weaknesses.
+</p>
+
+   
+   
+
+            <li>Once happy with your analysis, clean up the notebook and add explanation/comments/insights as appropriate. Then, submit your notebook on Moodle.</li>
+        </ul>
+    
+    
+  </div>
+
+
+<!-- Copyright Section -->
+<section class="copyright py-4 text-center text-white">
+  <div class="container">
+    <small>Copyright &copy; Mariam El Mezouar 2023</small>
+  </div>
+</section>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-to-top d-lg-none position-fixed ">
+  <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+    <i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="../js/jqBootstrapValidation.js"></script>
+<script src="../js/contact_me.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/freelancer.min.js"></script>
+
+</body>
+
+</html>
