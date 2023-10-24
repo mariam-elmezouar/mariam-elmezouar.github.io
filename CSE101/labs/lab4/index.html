@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    figure {
+      
+      padding: 4px;
+      margin: auto;
+    }
+
+    figcaption {
+      color: black;
+      font-style: italic;
+      padding: 2px;
+      text-align: center;
+    }
+
+    
+    /* Add some basic styling for visual elements */
+    .sorting-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .sorting-array {
+        display: flex;
+        margin-bottom: 10px;
+    }
+    .array-item {
+        width: 30px;
+        height: 30px;
+        background-color: #3498db;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 5px;
+    }
+    .bubble-sort-steps {
+        font-weight: bold;
+        margin-top: 20px;
+    }
+   
+    </style>
+  <title>CSE101 Lab 4</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Custom fonts for this theme -->
+  <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="../../../css/freelancer.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="../../index.html">CSE 101</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+        type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#laboratories">Laboratories</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#schedule">Schedule</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <h2 class="mt-4">Lab 4: Sorting</h2>
+    <h5 class="subtitle">CSE101 Fall 2023</h5>
+    
+    <h3 id="introduction">Introduction</h3>
+    <p>The objective of this lab is to study and compare the performance of different sorting algorithms, test and debug code, and practice good coding habits while analyzing the efficiency of bubble sort, selection sort, and insertion sort algorithms through experimentation and visualization.</p>
+
+    <h3 id="liens">Requirements</h3>
+    
+    <p>Carefully read and follow the instructions.</p>
+
+    <p>Your code needs to follow good coding habits, including proper commenting.</p>
+
+    <p>At the top of your file, clearly indicate your name and student number.</p>
+
+    </ul>
+
+    
+
+
+    
+    <h3>1. Lists and Passing by Reference</h3>
+
+    <p>In Python, when you pass a list as an argument/input to a function, you are passing a <em>reference</em> to the original list. What does this mean? It means that any changes made to the list within the function will affect the original list outside of the function.</p>
+
+    <h4>Example:</h4>
+    <pre>
+    <code>
+def modify_list(my_list):
+    my_list.append(100)
+    my_list[0] = 42
+
+my_list = [1, 2, 3]
+modify_list(my_list)
+
+print(my_list)  # Output will be [42, 2, 3, 100]
+    </code>
+    </pre>
+    <p>In the example above, the <code>modify_list</code> function modifies the original list <code>my_list</code> by appending an element and changing the value of an existing element. When you print <code>my_list</code> after calling the function, you can see that the changes made within the function have affected the original list.</p>
+
+    <h4>Practice Exercise:</h4>
+    <p>Now, let's practice. Write a Python function called <code>add_element</code> that takes a list and an element as arguments. The function should add the given element to the end of the list.</p>
+    <p>Your task is to implement the <code>add_element</code> function and call it with different lists and elements to observe how the function modifies the lists. Try calling the function with lists of different lengths and various elements.</p>
+
+   
+    <p>You do not need to submit any file for this section.</p>
+
+    <h3>2. The sorting algorithms</h3>
+
+    <p>Start by creating a new PyCharm project. In the new project, copy and paste the two provided files: <a href="#">test.py</a> and <a href="#">sorting_algorithms.py</a>. Your implementation of the sorting algorithms goes in the second file. The first file is used for testing purposes. Make sure your code is compatible with the the code in the main function. I will be using the same file to test and mark your labs.</p>
+
+    <p>Note that you cannot use any built-in Python sorting functions, or functions from external Python packages. The sorting itself should only depend on loops. You can only use the len() and range() functions when implementing the three algorithms.</p>
+
+    <h4>Bubble Sort</h4>
+
+    <p>In Bubble sort, we sort the list by making successive passes. We do as many passes as there are elements of the list.</p>
+
+    <p>In each pass, we start by comparing the first element to the second. If the first is greater than the second, we swap them; if not, we do nothing. We then compare the second and third elements. Again, if the second element is greater than the third, we swap. We continue until we have tested the second-last element against the last element, swapping at each step.</p>
+      
+   
+    
+ 
+
+    <div class="sorting-container">
+        <p>Visualizing Bubble Sort</p>
+        <div class="sorting-array" id="bubble-sort-array">
+            <div class="array-item">5</div>
+            <div class="array-item">3</div>
+            <div class="array-item">8</div>
+            <div class="array-item">1</div>
+            <div class="array-item">4</div>
+        </div>
+        <div class="bubble-sort-steps" id="bubble-sort-steps">
+            <!-- Bubble Sort steps will be displayed here -->
+        </div>
+        <button id="start-button" onclick="startBubbleSort()">Start Bubble Sort</button>
+        <button id="reset-button" onclick="resetBubbleSort()" disabled>Reset Animation</button>
+    </div>
+
+    <script>
+        let animationSteps = [];
+        let currentStep = 0;
+        let isSorting = false;
+        let isSorted = false;
+        let originalArray = [5, 3, 8, 1, 4];
+        let currentArray = [...originalArray]; // Create a copy to reset to original state
+
+        async function startBubbleSort() {
+            if (isSorting) {
+                return; // Ignore if sorting is in progress
+            }
+
+            if (!isSorted) {
+                bubbleSort(currentArray);
+                isSorted = true;
+                return;
+            }
+        }
+
+        async function bubbleSort(arr) {
+            const arrayContainer = document.getElementById('bubble-sort-array');
+            const n = arr.length;
+
+            animationSteps = [];
+
+            for (let i = 0; i < n - 1; i++) {
+                for (let j = 0; j < n - i - 1; j++) {
+                    animationSteps.push({ index1: j, index2: j + 1, swap: false });
+
+                    if (arr[j] > arr[j + 1]) {
+                        const temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                        animationSteps.push({ index1: j, index2: j + 1, swap: true });
+                    }
+                }
+            }
+
+            currentStep = 0;
+            isSorting = true;
+            updateButtonsState();
+
+            while (currentStep < animationSteps.length) {
+                const step = animationSteps[currentStep];
+                await animateStep(step);
+                currentStep++;
+            }
+
+            isSorting = false;
+            updateButtonsState();
+        }
+
+        async function animateStep(step) {
+            const arrayContainer = document.getElementById('bubble-sort-array');
+            const arrayItems = arrayContainer.children;
+            const item1 = arrayItems[step.index1];
+            const item2 = arrayItems[step.index2];
+
+            if (step.swap) {
+                // Swap elements with animation
+                const tempLeft = item1.style.left;
+                item1.style.left = item2.style.left;
+                item2.style.left = tempLeft;
+                await new Promise((resolve) => setTimeout(resolve, 500));
+                arrayContainer.insertBefore(item2, item1);
+            }
+
+            // Highlight compared elements
+            item1.style.backgroundColor = '#e74c3c';
+            item2.style.backgroundColor = '#e74c3c';
+            await new Promise((resolve) => setTimeout(resolve, 500));
+
+            // Reset colors
+            item1.style.backgroundColor = '#3498db';
+            item2.style.backgroundColor = '#3498db';
+        }
+
+        function resetBubbleSort() {
+            if (isSorting) return;
+            const arrayContainer = document.getElementById('bubble-sort-array');
+            arrayContainer.innerHTML = ''; // Clear the content of the array container
+            currentArray = [...originalArray]; // Restore the current array
+            currentStep = 0;
+            isSorted = false;
+            createArrayElements(); // Recreate array elements
+        }
+
+        function createArrayElements() {
+            const arrayContainer = document.getElementById('bubble-sort-array');
+            currentArray.forEach((value) => {
+                const item = document.createElement('div');
+                item.className = 'array-item';
+                item.textContent = value;
+                arrayContainer.appendChild(item);
+            });
+        }
+
+        function updateButtonsState() {
+            const startButton = document.getElementById('start-button');
+            const resetButton = document.getElementById('reset-button');
+
+            if (isSorting) {
+                startButton.disabled = true;
+                resetButton.disabled = true;
+            } else if (isSorted) {
+                startButton.disabled = false;
+                resetButton.disabled = false;
+            } else {
+                startButton.disabled = false;
+                resetButton.disabled = true;
+            }
+        }
+    </script>
+
+       
+
+    
+   
+    <p>Complete the function <code>bubble_sort</code> in the file <code>sorting_algorithms.py</code>. The function takes a given 1-dimensional list and sorts the elements of the list in ascending order. Use the bubble sort algorithm. Test your code using the test file using different lists.</p>
+
+
+    <h4>Selection Sort</h4>
+
+    <p>Selection sort involves traversing the list to find the smallest number and then swapping it with the element in the first position. Then, we find the second smallest number starting at the second position, and we swap it with the element at the second position. We continue in this manner until the entire list is sorted.</p>
+
+    <p>You can view an animation of selection sort <a href="https://liveexample.pearsoncmg.com/liang/animation/web/SelectionSort.html" target="_blank">here</a>.</p>
+
+    <p>In the function selection_sort, write the implementation of selection sort.</p>
+      
+    <p>Use the file test.py to test your code as you go. You may modify test.py to test with different lists.</p>
+      
+ 
+
+    <h4>Insertion Sort</h4>
+
+    <p>
+      Imagine you have a deck of playing cards, and you want to arrange them in ascending order.
+      Here's how insertion sort works:
+    </p>
+
+  <ol>
+      <li>Start with an empty hand and a deck of cards on the table.</li>
+      <li>Pick the top card from the deck (first card in the unsorted portion).</li>
+      <li>Compare it to the cards in your hand (sorted portion) from left to right.</li>
+      <li>Insert the card into the correct position in your hand, shifting cards to the right as needed.</li>
+      <li>Repeat steps 2-4 for all cards in the deck.</li>
+      <li>At the end, your hand contains all cards in ascending order, and the deck is empty.</li>
+  </ol>
+
+  <p>You can view an animation of insertion sort <a href="https://yongdanielliang.github.io/animation/web/InsertionSortNew.html" target="_blank">here</a>.</p>
+
+
+  <p>In the function insertion_sort, write the implementation of insertion sort.</p>
+      
+  <p>Use the file test.py to test your code as you go. You may modify test.py to test with different lists.</p>
+
+  <h4>Time comparison of the three algorithms</h4>
+   
+  <p>Your code for this part will go inside the function <code>sort_compare</code> in the file <code>sorting_algorithms.py</code>.</p>
+
+  <p>The intended goal of the <code>sort_compare</code> function is to perform a comparison of three sorting algorithms: bubble sort, selection sort, and insertion sort. It aims to analyze and visualize the time it takes for each of these sorting algorithms to sort lists of different sizes.</p>
+
+  <ul>
+    <li>The function should compare the execution times of the three different sorting algorithms for various sizes of lists.</li>
+    <li>The sizes should vary between 1000 to 20000 elements, with a step of 1000.</li>
+    <li>For each size (e.g. 19000), the function should apply the three sorting algorithms separately to sort a randomly generated list of integers. Note: for a fair evaluation ensure that you are sorting the same list for each of the sorts at the same step. Use the function <code>randint()</code> from the <code>random</code> package to generate the random list of integers of a given size.</li>
+    <li>The function should measure the execution time of each sorting algorithm for each size, using the function <code>time()</code> from the <code>time</code> package. Example of use:</li>
+    <pre>
+      <code>
+        t = time.time() # get current time
+         # do something, e.g. run the sort
+         elapsed = time.time() - t
+        </code>
+    </pre>
+
+    <p><code>elapsed</code> measures the time in seconds it took for line 2 in the code fragement above to execute.</p>
+
+    <li>The execution times for each sorting algorithm should be recorded for each size of the lists. The function should collect this information to be used for analysis and visualization.</li>
+
+    <li>After collecting execution time data for all sorting algorithms and sizes varying from 1000 to 20000, the function should generate a visual comparison similar to the figure below.</li>
+    <p>To create the line graph, import the package  <code>matplotlib.pyplot as plt</code> and use the function <code>plt.plot()</code></p>
+
+    <p>If you encounter an error indicating that the matplotlib package is not installed when attempting to import it, proceed to install the package (as demonstrated at the beginning of the lab).</p>
+
+    <p>An example using the <code>plt.plot()</code> is shown below. Do your own research to figure out how to further customize the graph to match the provided image (e.g. adding labels).</p>
+
+    <p>The function should also save the generated visualization as an image file ('sort_comparison.png').</p>
+
+
+    <pre>
+      <code>
+    x = [7, 14, 21, 28, 35, 42, 49]
+    y = [5, 12, 19, 21, 31, 27, 35]
+    z = [3, 5, 11, 20, 15, 29, 31]
+    
+    # Plot a simple line chart
+    plt.plot(x, y)
+    
+    # Plot another line on the same chart/graph
+    plt.plot(x, z)
+    
+    plt.show()
+      </code>
+    </pre>
+  </ul>
+
+  
+
+  <img src="sort_comparison.png" alt="sorting plot">
+
+
+
+
+    <h3>Submission</h3>
+
+    <p>In a zipped file, only include the file <code>sorting_algorithms.py</code> and the generated image <code>sort_comparison.png</code>. DO NOT rename any of the files. Submit the zipped file in Moodle by Monday October 30th at 11:59pm.</p>
+
+  </br></br>
+  </div>
+
+
+<!-- Copyright Section -->
+<section class="copyright py-4 text-center text-white">
+  <div class="container">
+    <small>Copyright &copy; Mariam El Mezouar 2023</small>
+  </div>
+</section>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-to-top d-lg-none position-fixed ">
+  <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+    <i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="../js/jqBootstrapValidation.js"></script>
+<script src="../js/contact_me.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/freelancer.min.js"></script>
+
+</body>
+
+</html>
