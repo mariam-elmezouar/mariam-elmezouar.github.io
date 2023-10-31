@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <title>CSE101 Lab 5</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Custom fonts for this theme -->
+  <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="../../../css/freelancer.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="../../index.html">CSE 101</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+        type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#laboratories">Laboratories</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#schedule">Schedule</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <h2 class="mt-4">Lab 5: Strings +  the Simon Game</h2>
+    <h5 class="subtitle">CSE101 Fall 2023</h5>
+    
+    <h3 id="introduction">Introduction</h3>
+    <p>During this lab, you will gain a deeper understanding of string manipulation in Python, and you will implement the game Simon using the gogographics package.
+
+    </p>
+
+    <h3 id="liens">Requirements</h3>
+    
+    <p>Carefully read and follow the instructions. Points will be deducted for working solutions that do not follow the requirements.</p>
+
+    <p>Your code needs to follow good coding habits, including proper commenting.</p>
+
+    <p>At the top of your file, clearly indicate your name and student number.</p>
+
+    </ul>
+
+    <h3>Getting Setup</h3>
+
+
+
+    <h3>Part 1: hullabaloo</h3>
+    <p>Write a Python function <code>hullabaloo</code> that takes a character string as input and returns a shuffled version of the received string while ensuring no letters are missing. You are allowed to use only the <code>random.randint</code> function to shuffle characters.</p>
+    
+    <h5>Instructions:</h5>
+    <ol>
+        <li>Check if the input string is empty or has only one letter. If it is, return the input string as is.</li>
+        <li>Convert the input string into a list of characters.
+          <pre>
+            # Example of how to convert the input string into a list of characters
+            input_string = "example"
+            char_list = list(input_string)
+            print(char_list)  # Output: ['e', 'x', 'a', 'm', 'p', 'l', 'e']
+            </pre>
+
+        </li>
+        <li>Shuffle the characters in the list using <code>random.randint</code> to create a complete shuffle. Do not simply swap two random characters; instead, ensure that all characters are randomly repositioned in the list.</li>
+        <li>Continue shuffling until a different word is obtained compared to the input word.</li>
+        <li>Return the shuffled word.</li>
+    </ol>
+    
+    <h5>Example Usage:</h5>
+    <pre>
+input_word1 = 'plane'
+shuffled_word1 = hullabaloo(input_word1)
+print(shuffled_word1)
+
+input_word2 = 'bonbon'
+shuffled_word2 = hullabaloo(input_word2)
+print(shuffled_word2)
+    </pre>
+
+    <p>Make sure to test the <code>hullabaloo</code> function with various words to ensure it works correctly and produces shuffled versions of the input words using only <code>random.randint</code>.</p>
+
+
+
+    <h3>Part 2: Palindrome</h3>
+    <p>A palindrome is a word, phrase, or sequence of characters that reads the same way forwards and backwards. For example, 'racecar', 'level', and 'deified' are palindromes.</p>
+    
+    <h5>Instructions:</h5>
+    <ol>
+        <li>Write a Python function named <code>is_palindrome</code> that takes a string as input.</li>
+        <li>Convert the input string to lowercase to make the palindrome check case-insensitive, using the <code>lower()</code> method.</li>
+        <li>Create a new string containing only the alphabetic characters from the input string, by iterating through the characters using a loop and checking if each character is alphabetic using the <code>isalpha()</code> method.</li>
+        <li>Check if the cleaned string reads the same forwards and backwards using loops. Iterate through the characters of the cleaned string to compare characters from the beginning and end.</li>
+        <li>If the cleaned string is a palindrome, return <code>True</code>; otherwise, return <code>False</code>.</li>
+   
+    </ol>
+    
+    <h5>Example Usage:</h5>
+    <pre>
+input_str1 = 'racecar'
+result1 = is_palindrome(input_str1)
+print(result1)  # Output: True
+
+input_str2 = 'Hello, World!'
+result2 = is_palindrome(input_str2)
+print(result2)  # Output: False
+    </pre>
+
+    <p>Make sure to test the <code>is_palindrome</code> function with various strings to check if they are palindromes or not.</p>
+
+
+    <h3>Part 3: Simon</h3>
+    <p>In the Simon game, you will create a program that plays Simon with the user. Simon is a memory game where there are four colored squares. The computer highlights the squares in a random order, starting with a series of length 1. The user's task is to click the squares in the same pattern that the computer showed them. The length of the series increases by 1 each time. The game ends when the user incorrectly repeats the pattern.</p>
+
+    <h5>Instructions:</h5>
+    <ol>
+        <li>Display four colored squares in a 2 by 2 pattern.</li>
+        <li>Show the user a random sequence by highlighting the squares in order.</li>
+        <li>Allow the user to click the squares to input the sequence that was shown to them.</li>
+        <li>Inform the user of the length of the longest successful sequence.</li>
+    </ol>
+
+    <h5>Watch a Video</h5>
+    <p>For a video demonstration of the game being played, you can watch it <a href="http://player.vimeo.com/video/30873667?title=0&amp;byline=0&amp;portrait=0" target="_blank">here</a>.</p>
+
+    <h3>Submission</h3>
+
+    <p></p>
+
+  </br></br>
+  </div>
+
+
+<!-- Copyright Section -->
+<section class="copyright py-4 text-center text-white">
+  <div class="container">
+    <small>Copyright &copy; Mariam El Mezouar 2023</small>
+  </div>
+</section>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-to-top d-lg-none position-fixed ">
+  <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+    <i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="../js/jqBootstrapValidation.js"></script>
+<script src="../js/contact_me.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/freelancer.min.js"></script>
+
+</body>
+
+</html>
