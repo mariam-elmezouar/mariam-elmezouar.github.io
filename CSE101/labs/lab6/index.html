@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <title>CSE101 Lab 6</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Custom fonts for this theme -->
+  <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="../../../css/freelancer.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="../../index.html">CSE 101</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+        type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#laboratories">Laboratories</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#schedule">Schedule</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <h2 class="mt-4">Lab 6: Numbering Systems</h2>
+    <h5 class="subtitle">CSE101 Fall 2023</h5>
+    
+    <h3 id="introduction">Introduction</h3>
+    <p> During this lab, you will implement some of the base conversions discussed in class. </p>
+    </p>
+
+    <h3 id="liens">Requirements</h3>
+    
+    <p>Carefully read and follow the instructions. Points will be deducted for working solutions that do not follow the requirements.</p>
+
+    <p>Your code needs to follow good coding habits, including proper commenting.</p>
+
+    <p>At the top of your file, clearly indicate your name and student number.</p>
+
+    </ul>
+
+    <h3>Getting Setup</h3>
+    <p>Please follow these setup instructions.</p>
+
+    <p>In PyCharm, create a new project, download, and add the following files to it:</p>
+
+    <h5>Files to Download:</h5>
+    <ol>
+
+        <li><a href="my_converter.py">my_converter.py</a>: This file contains the implementation of the <code>Dec2BinComp</code> and <code>BinComp2Dec</code> functions. You will need to complete the implementation of these functions in this file.</li>
+
+        <li><a href="test_my_converter.py">test_my_converter.py</a>: This file contains test cases for the <code>Dec2BinComp</code> and <code>BinComp2Dec</code> functions. You can use these test cases to verify the correctness of your implementations.</li>
+    </ol>
+
+
+    <p>Once you have downloaded these files, you can start working on your lab. Feel free to add more test cases to <code>test_my_converter.py</code> to ensure your functions work correctly.</p>
+
+    <h3 id="liens">Part 1: Decimal to two's complement Binary</h3>
+
+    <p>Create a Python function <code>dec2bin_comp</code> that converts an integer to its 8-bit two's complement binary string.</p>
+
+    <h3>Constraints:</h3>
+    <ul>
+        <li>Do not use bitwise operators (&, |, ^, ~, <<, >>).</li>
+        <li>Do not use Python's built-in <code>bin()</code> function or any function that directly converts numbers to binary strings.</li>
+        <li>Do not use string functions like <code>zfill</code>, <code>format</code>, or libraries that handle binary numbers.</li>
+        <li>You must handle the conversion using arithmetic operations (addition, subtraction, multiplication, division) and control structures (loops, if statements).</li>
+    </ul>
+
+    <h4>Instructions:</h4>
+    <ol>
+        <li>Define a function <code>dec2bin_comp</code> takes an integer <code>value</code> as its argument. - done</li>
+        <li>Ensure <code>value</code> is within -128 to 127. If not, return an error message. - done</li>
+        <li>Create a list of eight '0' characters for the binary digits. - done</li>
+        <li>If <code>value</code> is non-negative, use steps seen in class for conversion.</li>
+        <li>If <code>value</code> is negative, use steps seen in class for conversion.</li>
+        <li>Join the binary digits list into a string and return it. - done</li>
+        <li>Test the function with a range of inputs, including edge cases.</li>
+    </ol>
+
+    <p>Test the program by calling your function with various valid and invalid numbers. Try a few positive and negative numbers (including limit values -129 (error), -128, -1 (all 1s), 0, +127, and +128 (error)) to make sure it's correct.</p>
+      
+    <h3 id="liens">Part 2: Two's complement Binary to Decimal</h3>
+
+    <h4>Constraints:</h4>
+    <ul>
+        <li>Do not use Python's built-in int() function with a base argument to directly convert binary strings to integers.</li>
+        <li>Do not use any library functions or Python features that perform binary to decimal conversion automatically.</li>
+        <li>You must manually implement the two's complement conversion process using arithmetic and logic (loops, if statements, etc.).</li>
+    </ul>
+
+    <h4>Instructions:</h4>
+    <ol>
+        <li>Define the function <code>bin_comp2dec</code> that takes a string <code>bin_str</code> as its argument.</li>
+        <li>Verify that <code>bin_str</code> is exactly 8 characters long and contains only '0' or '1'. If not, return an error message.</li>
+        <li>Check if the binary number is negative by looking at the first bit. If it is '1', the number is negative; otherwise, it's non-negative.</li>
+        <li>For non-negative numbers, convert to decimal by iterating over the string and applying the binary to decimal conversion logic.</li>
+        <li>For negative numbers, find the two's complement by converting to one's complement and adding 1, then convert to decimal and negate the result.</li>
+        <li>Return the decimal value.</li>
+        <li>Test the function with a range of binary inputs, ensuring both positive and negative values work as expected.</li>
+    </ol>
+    
+    <h3>Submission</h3>
+
+    <p>Submit only <code>my_converter.py</code>. No zipping required. Submit the  file in Moodle by Monday November 13th at 11:59pm.</p>
+
+  </br></br>
+  </div>
+
+
+<!-- Copyright Section -->
+<section class="copyright py-4 text-center text-white">
+  <div class="container">
+    <small>Copyright &copy; Mariam El Mezouar 2023</small>
+  </div>
+</section>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-to-top d-lg-none position-fixed ">
+  <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+    <i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="../js/jqBootstrapValidation.js"></script>
+<script src="../js/contact_me.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/freelancer.min.js"></script>
+
+</body>
+
+</html>
