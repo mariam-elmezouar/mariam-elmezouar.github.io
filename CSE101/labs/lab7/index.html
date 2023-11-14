@@ -72,20 +72,53 @@
     <h5>Files to Download:</h5>
     <ol>
 
-        <li><a href="my_converter.py">my_converter.py</a>: This file contains the implementation of the <code>Dec2BinComp</code> and <code>BinComp2Dec</code> functions. You will need to complete the implementation of these functions in this file.</li>
+        <li><a href="randomword.py">randomword.py</a>: Contains a function `random_word()` that returns a randomly chosen common UK English word.
+          The word list is based on the most common thousand words with a few omissions.
+          All of the words are lower-case only, and none contain any punctuation
+          (e.g., there are no words with apostrophes, like "don't", which otherwise
+          would have made the list. The longest word in the list is 'circumstances'
+          which is 13 letters long. DO NOT MODIFY THIS FILE.</li>
+          <li><a href="gogographics.py">gogographics.py</a>: A slightly modified gogographics library file for the hangman game. USE THIS VERSION OF THE FILE in this lab, instead of the old one.
 
-        <li><a href="test_my_converter.py">test_my_converter.py</a>: This file contains test cases for the <code>Dec2BinComp</code> and <code>BinComp2Dec</code> functions. You can use these test cases to verify the correctness of your implementations.</li>
+        <li><a href="hangman.py">hangman.py</a>: a starter file where some of the tedious setup has already been done for you. Your implementation of the game will go in this file. </li>
+
+        <li><a href="treasure-hunt.py">treasure-hunt.py</a>: a starter file for the treasure hunt problem. Your implementation of the problem will go in this file. </li>
     </ol>
 
 
-    <p>Once you have downloaded these files, you can start working on your lab. Feel free to add more test cases to <code>test_my_converter.py</code> to ensure your functions work correctly.</p>
+    <p>Once you have downloaded these files, you can start working on your lab.</p>
 
-    <h3 id="liens">Part 1: Decimal to two's complement Binary</h3>
+    <h3>Part 1: The Hangman Game</h3>
 
+    <h4>Absolute Musts</h4>
+    Write an on-screen hangman game. A video illustrating the desired product can be found <a href="http://player.vimeo.com/video/31546793?title=0&amp" target="_blank">here</a>.
+
+    <ol>
+      <li>All the setup elements in the starter file <code>hangman.py</code> must be used.</li>
+      <li>When the player clicks an available (non-greyed-out) letter, the letter is greyed out and one of two things happens:
+          <ul>
+              <li>If the letter is found in the word, all the corresponding blanks in the guess area are filled with that letter.</li>
+              <li>If the letter is not found in the word, the next body part of the hangman appears on the hanging tree.</li>
+          </ul>
+      </li>
+      <li>If the player clicks a greyed-out letter, the click is ignored.</li>
+      <li>If the player clicks anywhere that isn't on a letter, the click is ignored.</li>
+      <li>If the player guesses all the letters in the word, the game is over; display a message that the player won.</li>
+      <li>If the player makes too many wrong guesses and all the available body parts are displayed on the hanging tree, the game is over; display a message that the player lost.</li>
+  </ol>
+
+  <h4>Room for Creativity</h4>
+  <hr>
+  <p>Change the colors, fonts, sizes, positions, etc. Change the rendering of the hangman. Animate the appearance of the body parts. Have the hangman fall apart or explode off the tree after he has completely appeared. Give the player an opportunity to request a free letter.</p>
+  <p>Anything else you can think of is fair game, as long as you respect the absolute musts above, and the spirit of the game.</p>
+
+    <h3>Part 2: Treasure Hunt</h3>
+
+    <p>Instructions can be found <a href="../../lecture-notes/treasure-hunt.html">here</a>.</p>
     
     <h3>Submission</h3>
 
-    <p>Submit only <code>my_converter.py</code>. No zipping required. Submit the  file in Moodle by Monday November 13th at 11:59pm.</p>
+    <p>Create a zipped folder with the files <code>hangman.py</code> and <code>treasure-hunt.py</code>. Submit the ziiped file in Moodle by Monday November 20th at 11:59pm.</p>
 
   </br></br>
   </div>
