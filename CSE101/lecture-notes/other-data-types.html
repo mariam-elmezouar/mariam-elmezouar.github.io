@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome file</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="python-tuples-and-sets">Python Tuples and Sets</h1>
+<h2 id="tuples">Tuples</h2>
+<ul>
+<li><strong>Definition</strong>: A tuple is an immutable (unchangeable) sequence in Python.</li>
+<li><strong>Creation</strong>: Use parentheses <code>()</code> .</li>
+<li><strong>Immutable</strong>: Once created, items cannot be added, removed, or changed.</li>
+<li><strong>Ordered</strong>: Items have a defined order, and that order will not change.</li>
+<li><strong>Indexing</strong>: Support indexing and slicing like lists.</li>
+</ul>
+<h3 id="example-of-tuple">Example of Tuple</h3>
+<pre class=" language-python"><code class="prism  language-python"><span class="token comment"># Creating a tuple</span>
+my_tuple <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>my_tuple<span class="token punctuation">)</span>  <span class="token comment"># Output: (1, 2, 3)</span>
+
+<span class="token comment"># Accessing elements</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>my_tuple<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># Output: 2</span>
+
+<span class="token comment"># Slicing</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>my_tuple<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># Output: (1, 2)</span>
+
+<span class="token comment"># Tuples are immutable</span>
+<span class="token comment"># my_tuple[1] = 5  # This will raise an error</span>
+</code></pre>
+<h2 id="sets">Sets</h2>
+<ul>
+<li><strong>Definition</strong>: A set is an unordered collection of unique items in Python.</li>
+<li><strong>Creation</strong>: Use curly braces <code>{}</code> .</li>
+<li><strong>Unordered</strong>: Items do not have a defined order, and their order can change.</li>
+<li><strong>Mutable</strong>: You can add or remove items from a set.</li>
+<li><strong>No Duplicates</strong>: Automatically removes duplicate items.</li>
+</ul>
+<h3 id="example-of-set">Example of Set</h3>
+<pre class=" language-python"><code class="prism  language-python"><span class="token comment"># Creating a set</span>
+my_set <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>my_set<span class="token punctuation">)</span>  <span class="token comment"># Output: {1, 2, 3}</span>
+
+<span class="token comment"># Adding elements</span>
+my_set<span class="token punctuation">.</span>add<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>my_set<span class="token punctuation">)</span>  <span class="token comment"># Output: {1, 2, 3, 4}</span>
+
+<span class="token comment"># Removing elements</span>
+my_set<span class="token punctuation">.</span>remove<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>my_set<span class="token punctuation">)</span>  <span class="token comment"># Output: {1, 3, 4}</span>
+
+<span class="token comment"># Sets automatically ignore duplicates</span>
+my_set <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>my_set<span class="token punctuation">)</span>  <span class="token comment"># Output: {1, 2, 3}</span>
+</code></pre>
+<h2 id="differences-between-lists-tuples-and-sets">Differences Between Lists, Tuples, and Sets</h2>
+<ul>
+<li>
+<p><strong>Lists</strong>:</p>
+<ul>
+<li>Mutable (can add, remove, or change items).</li>
+<li>Ordered (items have a defined order).</li>
+<li>Indexed (can be accessed by an index).</li>
+<li>Can have duplicate values.</li>
+</ul>
+</li>
+<li>
+<p><strong>Tuples</strong>:</p>
+<ul>
+<li>Immutable (cannot change items once created).</li>
+<li>Ordered and indexed.</li>
+<li>Can have duplicate values.</li>
+</ul>
+</li>
+<li>
+<p><strong>Sets</strong>:</p>
+<ul>
+<li>Mutable (can add or remove items).</li>
+<li>Unordered (items do not have a fixed position).</li>
+<li>Cannot be indexed or sliced.</li>
+<li>Cannot have duplicate values. Automatically removes duplicates.</li>
+</ul>
+</li>
+</ul>
+</div>
+</body>
+
+</html>

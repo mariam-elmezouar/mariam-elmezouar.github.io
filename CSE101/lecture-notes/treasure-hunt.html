@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome file</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><p><strong>Problem Description: Treasure Hunt</strong></p>
+<p>In a Python function called <code>treasure(treasure_map)</code>, you are tasked with finding the path a pirate must follow to find treasure on a square treasure map represented by a 2D list. The map contains integers from 11 to 99, and each element of the map represents the next position the pirate must visit.</p>
+<p>Here are the steps to follow to find the treasure:</p>
+<ol>
+<li>
+<p>The pirate always starts at position (1,1) on the map.</p>
+</li>
+<li>
+<p>Each position that the pirate visits contains an indication about which position the pirate is to visit next. For example, if the position (1,1) contains the number 57, then the next position that the pirate must move to is (5,7).</p>
+</li>
+<li>
+<p>The treasure is found when the position on the map and the number it contains are the same. For example, if position (3,2) contains the number 32, then the treasure has been found.</p>
+</li>
+</ol>
+<p>Your task is to implement the <code>treasure</code> function that takes a 2D list (<code>treasure_map</code>) as input and returns a list of positions that the pirate must visit in order to find the treasure.</p>
+<p>Example:</p>
+<pre class=" language-python"><code class="prism  language-python">treasure_map <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">55</span><span class="token punctuation">,</span> <span class="token number">55</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">,</span> <span class="token number">53</span><span class="token punctuation">,</span> <span class="token number">41</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token punctuation">[</span><span class="token number">51</span><span class="token punctuation">,</span> <span class="token number">35</span><span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">,</span> <span class="token number">45</span><span class="token punctuation">,</span> <span class="token number">41</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token punctuation">[</span><span class="token number">55</span><span class="token punctuation">,</span> <span class="token number">44</span><span class="token punctuation">,</span> <span class="token number">42</span><span class="token punctuation">,</span> <span class="token number">41</span><span class="token punctuation">,</span> <span class="token number">41</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token punctuation">[</span><span class="token number">23</span><span class="token punctuation">,</span> <span class="token number">21</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">,</span> <span class="token number">42</span><span class="token punctuation">,</span> <span class="token number">51</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token punctuation">[</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">44</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">,</span> <span class="token number">34</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+
+path <span class="token operator">=</span> treasure<span class="token punctuation">(</span>treasure_map<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span>  <span class="token comment"># Output: [55, 15, 41, 23]</span>
+</code></pre>
+<p>Your Python function should follow the rules outlined above to find the treasure’s path, and should build on the skeleton code provided below. You cannot used any Python built-in functions or from external libraries, other than <code>append()</code>, <code>int()</code> and <code>str()</code>. Basic arithmetic operations can and should be used.</p>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">def</span> <span class="token function">get_next_position</span><span class="token punctuation">(</span>position<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># Your code here</span>
+    <span class="token comment"># Input to this function is a tuple representing position (x,y)</span>
+    <span class="token comment"># Output/returned value is a tuple representing the next position</span>
+
+
+
+
+
+
+
+<span class="token keyword">def</span> <span class="token function">treasure</span><span class="token punctuation">(</span>treasure_map<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    <span class="token comment"># variable path where we will append the path to the treasure</span>
+    path <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token comment"># start position</span>
+    current_position <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># A nested loop that goes over all element of the n by n matrix</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>treasure_map<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>treasure_map<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token comment"># Your code here</span>
+
+
+    <span class="token keyword">return</span> path
+
+<span class="token comment"># Example usage</span>
+treasure_map <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">55</span><span class="token punctuation">,</span> <span class="token number">55</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">,</span> <span class="token number">53</span><span class="token punctuation">,</span> <span class="token number">41</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token punctuation">[</span><span class="token number">51</span><span class="token punctuation">,</span> <span class="token number">35</span><span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">,</span> <span class="token number">45</span><span class="token punctuation">,</span> <span class="token number">41</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token punctuation">[</span><span class="token number">55</span><span class="token punctuation">,</span> <span class="token number">44</span><span class="token punctuation">,</span> <span class="token number">42</span><span class="token punctuation">,</span> <span class="token number">41</span><span class="token punctuation">,</span> <span class="token number">41</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token punctuation">[</span><span class="token number">23</span><span class="token punctuation">,</span> <span class="token number">21</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">,</span> <span class="token number">42</span><span class="token punctuation">,</span> <span class="token number">51</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token punctuation">[</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">44</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">,</span> <span class="token number">34</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+
+path <span class="token operator">=</span> treasure<span class="token punctuation">(</span>treasure_map<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span>  <span class="token comment"># Output: [55, 15, 41, 23]</span>
+
+
+</code></pre>
+</div>
+</body>
+
+</html>
