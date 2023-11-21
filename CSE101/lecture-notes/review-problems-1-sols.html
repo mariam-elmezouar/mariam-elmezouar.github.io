@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solutions to Review Problems</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html">
+    <h2 id="solution-1">Solution to Problem 1</h2>
+    <p>The corrected function <code>classify</code>:</p>
+    <pre class=" language-python"><code class="prism  language-python">
+        def classify(x, y):
+            if (x >= 0) and (y >= 0):  # Test for A
+                if (x >= .25 and x <= .50) and (y >= 0.25 and y <= 0.50):
+                    print('A1')
+                elif (x >= .75 and x <= 1) and (y >= 0.25 and y <= 0.50): 
+                    print('A1')
+                else:
+                    print('A')
+            elif (x < 0) and (y >= 0):  # Test for B
+                print('B')
+            elif (x < 0) and (y < 0):  # Test for C
+                print('C')
+            else:  # Test for D
+                print('D')    
+    </code></pre>
+
+    <h2 id="solution-2">Solution to Problem 2</h2>
+    <p>The <code>triplerandi</code> function:</p>
+    <pre class=" language-python"><code class="prism  language-python">
+def triplerandi(low, high):
+    # To create an empty set use set()
+    # If you just use empty {}, python will think the variable is a dictionary (another data type we have not covered)
+    result = set()
+    while len(result) < 3:
+        result.add(random.randint(low, high))
+    return list(result)
+    
+
+    </code></pre>
+
+    <h2 id="solution-3">Solution to Problem 3</h2>
+    <p>The <code>sum_large_per_column</code> function:</p>
+    <pre class=" language-python"><code class="prism  language-python">
+def sum_large_per_column(a_matrix):
+    num_columns = len(a_matrix[0])
+    new_list = []
+    for i in range(num_columns):  # outer loop for columns
+        col_sum = 0
+        for row in a_matrix:  # inner loop over rows
+            value = row[i]
+            if value >= 100 or value <= -100:
+                col_sum += value
+        new_list.append(col_sum)
+    return new_list
+
+matrix = [
+[101, -9, 718],
+[-3, 12, 0],
+[23, -500, 1],
+[109, 55, -20],
+[-22, 33, -140]
+]
+print(sum_large_per_column(matrix))
+    </code></pre>
+
+    <h2 id="solution-4">Solution to Problem 4</h2>
+    <p>The <code>poly_intersect</code> function using the provided <code>check_intersection</code> function:</p>
+    <pre class=" language-python"><code class="prism  language-python">
+def poly_intersect(poly, lseg):
+    # Loop through each vertex in the polygon
+    for i in range(len(poly)):
+        # Get the current vertex, pt1, and the next vertex, pt2.
+        # The modulo operator (%) is used to ensure that when we reach the last vertex,
+        # we loop back to the first vertex, thus closing the polygon.
+        pt1, pt2 = poly[i], poly[(i+1) % len(poly)]
+        
+        # Check if the line segment formed by the current vertex (pt1) and the next vertex (pt2)
+        # intersects with the given line segment (lseg).
+        # The check_intersection function is called with the x and y coordinates of both ends
+        # of the polygon's edge and the line segment.
+        if check_intersection(pt1[0], pt1[1], pt2[0], pt2[1], lseg[0], lseg[1], lseg[2], lseg[3]):
+            # If an intersection is found, return True immediately.
+            return True
+    # If no intersections are found after checking all edges, return False.
+    return False    
+    </code></pre>
+  </div>
+</body>
+
+</html>

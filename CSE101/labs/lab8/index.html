@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <title>CSE101 Lab 8</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Custom fonts for this theme -->
+  <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="../../../css/freelancer.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="../../index.html">CSE 101</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+        type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#laboratories">Laboratories</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+              href="../../index.html#schedule">Schedule</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <h2 class="mt-4">Lab 8: File Cipher</h2>
+    <h5 class="subtitle">CSE101 Fall 2023</h5>
+    
+    <h3 id="introduction">Introduction</h3>
+    <p> During this lab, you will implement an encryption/decryption program for text files. </p>
+    </p>
+
+    <h3 id="liens">Requirements</h3>
+    
+    <p>Carefully read and follow the instructions. Points will be deducted for working solutions that do not follow the requirements.</p>
+
+    <p>Your code needs to follow good coding habits, including proper commenting.</p>
+
+    <p>At the top of your file, clearly indicate your name and student number.</p>
+
+    </ul>
+
+    <h3>Getting Setup</h3>
+    <p>Please follow these setup instructions.</p>
+
+    <p>In PyCharm, create a new project, download, and add the following files to it:</p>
+
+    <h5>Files to Download:</h5>
+    <ol>
+
+        <li><a href="caesar_cipher.py">caesar_cipher.py</a>: The starter file for Part 1. Add your code where indicated.</li>
+          
+        <li><a href="file_cipher.py">file_cipher.py</a>: The starter file for Part 2.  Add your code where indicated.</li>
+
+        <li><a href="input.txt">input.txt</a>: The input text file needed for Part 2.</li>
+    </ol>
+
+
+    <p>Once you have downloaded these files, you can start working on your lab.</p>
+
+    
+    <h3 id="part-1-building-the-encrypt-and-decrypt-functions">Part 1: Building the Encrypt and Decrypt Functions</h3>
+    <p>This exercise builds upon the simplified Caesar cipher discussed in class. You will enhance your understanding by developing a more comprehensive version of the cipher.</p>
+    <h4 id="task-description">Task Description</h4>
+    <p>Write a script to decode a message and display it to the screen. Your task is to write two Python functions:</p>
+    <ol>
+      <li><strong>Encrypt Function</strong>: This function takes a string as input and shifts each character in the string by a fixed number of steps in the ASCII table.</li>
+      <li><strong>Decrypt Function</strong>: This function reverses the process, taking the encrypted string and the same number of steps to return the original message.</li>
+    </ol>
+    <h4 id="requirements">Requirements</h4>
+    <ul>
+      <li>The shifting should wrap around the ASCII table. For example, if you shift ‘z’ by 1, it should become ‘a’.</li>
+      <li>Only shift alphabetic characters (a-z and A-Z). Non-alphabetic characters (like spaces, punctuation) should remain unchanged.</li>
+      <li>The number of steps to shift should be a parameter to your functions.</li>
+    </ul>
+    <h4 id="example">Example</h4>
+    <p>If the input string is “Hello, World!” and the shift is 3, the encrypted string should be “Khoor, Zruog!”.</p>
+    <h4 id="hints">Hints</h4>
+    <ul>
+      <li>Use the <code>ord()</code> function to convert a character to its ASCII code and <code>chr()</code> to convert an ASCII code back to a character.</li>
+      <li>Check whether a character is uppercase or lowercase, as they have different ranges in the ASCII table.</li>
+      <li>Be careful with characters near the end of the alphabetic range in the ASCII table; you need to wrap around to the beginning of the alphabet.</li>
+    </ul>
+    <h3 id="part-2-file-encryption-and-decryption">Part 2: File Encryption and Decryption</h3>
+    <h4 id="objectives">Objectives</h4>
+    <ul>
+      <li>Use the <code>encrypt</code> and <code>decrypt</code> functions from part 1 to encrypt and decrypt the contents of a file.</li>
+    </ul>
+    <h4 id="steps">Steps</h4>
+    <ol>
+      <li>Read the contents of a file named <code>input.txt</code> (provided).</li>
+      <li>Decrypt the contents using the <code>decrypt</code> function using a shift = 5.</li>
+      <li>Write the decrypted contents to a file named <code>decrypted.txt</code>.</li>
+      <li>Read the contents of <code>decrypted.txt</code>.</li>
+      <li>Encrypt back the contents using the <code>encrypt</code> function and a shift = 3 this time.</li>
+      <li>Write the encrypted contents back to a file named <code>encrypted.txt</code>.</li>
+    </ol>
+ 
+
+
+
+    
+    <h3>Submission</h3>
+
+    <p>Create a zipped folder with the files <code>caesar_cipher.py</code> and <code>file_cipher.py</code>. Submit the zipped file in Moodle by Monday December 4th at 11:59pm.</p>
+
+  </br></br>
+  </div>
+
+
+<!-- Copyright Section -->
+<section class="copyright py-4 text-center text-white">
+  <div class="container">
+    <small>Copyright &copy; Mariam El Mezouar 2023</small>
+  </div>
+</section>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-to-top d-lg-none position-fixed ">
+  <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+    <i class="fa fa-chevron-up"></i>
+  </a>
+</div>
+
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="../js/jqBootstrapValidation.js"></script>
+<script src="../js/contact_me.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/freelancer.min.js"></script>
+
+</body>
+
+</html>

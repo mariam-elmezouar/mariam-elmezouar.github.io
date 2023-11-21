@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCII Solutions</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { width: 80%; margin: 0 auto; }
+        h1, h2 { color: #333; }
+        pre { background-color: #f4f4f4; padding: 15px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Solutions to ASCII Practice Questions</h1>
+
+        <section>
+            <h2>Solution to Question 1</h2>
+            <p>String decoded from ASCII (decimal):</p>
+            <pre>Hello, my name is Waldo!</pre>
+        </section>
+
+        <section>
+            <h2>Solution to Question 2</h2>
+            <p>ASCII (decimal) codes for the string:</p>
+            <pre>89 111 117 32 119 111 110 32 49 48 48 36 33</pre>
+        </section>
+
+        <section>
+            <h2>Solution to Question 3</h2>
+            <p>String decoded from ASCII (hex):</p>
+            <pre>Congratulations! You got this right!</pre>
+        </section>
+
+        <section>
+            <h2>Solution to Caesar Cipher</h2>
+           
+            <pre>
+def decrypt(text, shift):
+    # Initialize an empty string for the result
+    decrypted_text = ""
+            
+    # Iterate over each character in the encrypted text
+    for char in text:
+        # Add the shift value to each character's ASCII value to decrypt
+        decrypted_text += chr((ord(char) + shift))
+
+    return decrypted_text
+            
+# Decrypt the provided message 'UkqCkpEp' with a shift =  4
+encrypted_message = 'UkqCkpEp'
+decrypted_message = decrypt(encrypted_message, 4)
+# Print the decrypted message
+print("Decrypted Message:", decrypted_message)
+            </pre>
+        </section>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCII Tutorial</title>
+    <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+<body class="stackedit">
+    <div class="stackedit__html">
+        <h1>Using the ASCII Code Table</h1>
+        <section>
+            <h2>Introduction to <code>chr()</code> and <code>ord()</code> Functions</h2>
+            <p>Python provides two built-in functions, <code>chr()</code> and <code>ord()</code>, which are closely related to the ASCII table. These functions are used to convert between ASCII codes and their corresponding characters.</p>
+        </section>
+        <section>
+            <h2>ASCII Table Overview</h2>
+            <p>The ASCII table is a character-encoding scheme that maps unique numbers (ASCII codes) to characters. It was originally designed to represent text in computers and other devices that use text. The ASCII table includes a total of 128 characters, ranging from 0 to 127.</p>
+        </section>
+        <section>
+            <h2>The <code>chr()</code> Function</h2>
+            <p>The <code>chr()</code> function in Python takes an integer (representing an ASCII code) and returns the corresponding character.</p>
+            <h3>Example:</h3>
+            <pre><code class="language-python"># Convert ASCII code to character
+print(chr(65)) # Output: 'A'
+print(chr(97)) # Output: 'a'
+            </code></pre>
+            <p>In these examples, <code>chr(65)</code> returns the character 'A' since 65 is the ASCII code for 'A'. Similarly, <code>chr(97)</code> returns 'a'.</p>
+        </section>
+        <section>
+            <h2>The <code>ord()</code> Function</h2>
+            <p>The <code>ord()</code> function takes a character and returns its ASCII code.</p>
+            <h3>Example:</h3>
+            <pre><code class="language-python"># Convert character to ASCII code
+print(ord('A')) # Output: 65
+print(ord('a')) # Output: 97
+            </code></pre>
+            <p>Here, <code>ord('A')</code> returns 65 and <code>ord('a')</code> returns 97, which are the ASCII codes for 'A' and 'a', respectively.</p>
+        </section>
+        <section>
+            <h2>Relationship Between chr() and ord()</h2>
+            <p>The <code>chr()</code> and <code>ord()</code> functions are inverses of each other. Using <code>ord()</code> on a character and then <code>chr()</code> on the resulting ASCII code will return the original character, and vice versa.</p>
+            <h3>Example:</h3>
+            <pre><code class="language-python">char = 'Z'
+ascii_code = ord(char)
+print(chr(ascii_code)) # Output: 'Z'
+            </code></pre>
+        </section>
+        <section>
+            <h2>Practice Problems</h2>
+
+            <img src="ASCII.png" alt="ascii table">
+
+            <h3>Question 1</h3>
+            <p>Using table above, convert the following string (encoded in decimal) to text:</p>
+            <p><code>72 101 108 108 111 44 32 109 121 32 110 97 109 101 32 105 115 32 87 97 108 100 111 33</code></p>
+            <h3>Question 2</h3>
+            <p>Using table above, convert the following string to decimal ASCII code:</p>
+            <p><code>You won 100$!</code></p>
+            <h3>Question 3</h3>
+            <p>Convert the following string (encoded in hex) to text (use the more comprehensive ASCII table on the course website):</p>
+            <p><code>43 6f 6e 67 72 61 74 75 6c 61 74 69 6f 6e 73 21 20 59 6f 75 20 67 6f 74 20 74 68 69 73 20 72 69 67 68 74 21</code></p>
+        </section>
+        <section>
+            <h2>Caesar Cipher</h2>
+
+            <p>In cryptography, a Caesar cipher (or shift), is one of the simplest and most widely known encryption techniques. For example, a shift of 4 of all ASCII characters, would mean that an 'A' becomes a 'E', a 'B' becomes a 'F', etc (similarly '(' becomes ',').
+
+            <p>Using the ASCII code table provided above, consider the following encoded message 'UkqCkpEp'.</p>
+              
+            <p>Write a Python script to decode this message and display it to the screen.  What is the message?</p>
+        </section>
+    </div>
+</body>
+</html>
