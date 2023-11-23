@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>practice Qs sols</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h2 id="exam-practice-problems-solutions">Exam Practice Problems: Solutions</h2>
+<h3 id="solution-to-question-1">Solution to Question 1:</h3>
+<pre class=" language-python"><code class="prism  language-python"><span class="token comment"># Initialize time to zero</span>
+time <span class="token operator">=</span> <span class="token number">0.0</span>
+
+<span class="token comment"># Add 0.1 to time, 100,000 times</span>
+<span class="token keyword">for</span> k <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">100000</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    time <span class="token operator">+=</span> <span class="token number">0.1</span>
+
+<span class="token comment"># Check if time equals 10,000</span>
+<span class="token keyword">if</span> time <span class="token operator">==</span> <span class="token number">10000.0</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'time to launch missile'</span><span class="token punctuation">)</span>
+</code></pre>
+<p><strong>Explanation</strong>: The above code may not print “time to launch missile” because floating point numbers are not stored precisely in memory, leading to accumulated rounding errors. Specifically, 0.1 cannot be represented with full precision in binary. When adding it many times, the error accumulates.</p>
+<h3 id="solution-to-question-2">Solution to Question 2:</h3>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">def</span> <span class="token function">find_big_diag</span><span class="token punctuation">(</span>M<span class="token punctuation">)</span><span class="token punctuation">:</span> 
+	<span class="token comment"># Initialize the largest value and its position </span>
+	largest_value <span class="token operator">=</span> M<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> 
+	position <span class="token operator">=</span> <span class="token number">0</span> 
+	<span class="token comment"># Iterate over the main diagonal </span>
+	<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>M<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span> 
+		<span class="token comment"># Check if the current diagonal element is greater than the largest_value found so far </span>
+		<span class="token keyword">if</span> M<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&gt;</span> largest_value<span class="token punctuation">:</span> 
+			largest_value <span class="token operator">=</span> M<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> 
+			position <span class="token operator">=</span> i 
+	<span class="token keyword">return</span> position<span class="token punctuation">,</span> largest_value
+</code></pre>
+<h3 id="solution-to-question-3">Solution to Question 3:</h3>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">def</span> <span class="token function">best12avg</span><span class="token punctuation">(</span>grades<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># Initialize the sum of grades to zero</span>
+    sum_of_grades <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token comment"># Initialize the minimum grade to the first grade in the list</span>
+    min_grade <span class="token operator">=</span> grades<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+    
+    <span class="token comment"># Calculate the sum of all grades and find the minimum grade</span>
+    <span class="token keyword">for</span> grade <span class="token keyword">in</span> grades<span class="token punctuation">:</span>
+        sum_of_grades <span class="token operator">+=</span> grade
+        <span class="token keyword">if</span> grade <span class="token operator">&lt;</span> min_grade<span class="token punctuation">:</span>
+            min_grade <span class="token operator">=</span> grade
+    
+    <span class="token comment"># Subtract the minimum grade from the total sum and calculate the average</span>
+    average <span class="token operator">=</span> <span class="token punctuation">(</span>sum_of_grades <span class="token operator">-</span> min_grade<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">12</span>
+    <span class="token keyword">return</span> average
+</code></pre>
+<p><strong>Explanation</strong>: We iterate over the list once, summing all the grades and keeping track of the lowest grade. Then we subtract the lowest grade from the total sum and divide by 12 to find the average of the best 12 grades.</p>
+<h3 id="solution-to-problem-4-matrix-transpose">Solution to Problem 4: Matrix Transpose</h3>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">def</span> <span class="token function">transpose_matrix</span><span class="token punctuation">(</span>matrix<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    rows <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>matrix<span class="token punctuation">)</span>
+    cols <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>matrix<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    
+    <span class="token comment">#Initialize the new matrix with transposed dimensions </span>
+    transposed <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> 
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>cols<span class="token punctuation">)</span><span class="token punctuation">:</span> 
+	    <span class="token comment"># Initialize a new row with zeros </span>
+	    new_row <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+	    <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>rows<span class="token punctuation">)</span><span class="token punctuation">:</span> 
+		    new_row<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> 
+	    transposed<span class="token punctuation">.</span>append<span class="token punctuation">(</span>new_row<span class="token punctuation">)</span>
+	    
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>rows<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>cols<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            transposed<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> matrix<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span>
+    
+    <span class="token keyword">return</span> transposed
+
+<span class="token comment"># Example usage</span>
+example_matrix <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span>
+<span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>transpose_matrix<span class="token punctuation">(</span>example_matrix<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<p><strong>Output</strong>:</p>
+<pre class=" language-plaintext"><code class="prism  language-plaintext">[[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+</code></pre>
+<h3 id="solution-to-problem-5-island-perimeter">Solution to Problem 5: Island Perimeter</h3>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">def</span> <span class="token function">island_perimeter</span><span class="token punctuation">(</span>grid<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    rows <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>grid<span class="token punctuation">)</span><span class="token punctuation"></span> 
+    cols <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>grid<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    perimeter <span class="token operator">=</span> <span class="token number">0</span>
+
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>rows<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>cols<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> grid<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> i <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">or</span> grid<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+	                perimeter <span class="token operator">+=</span> <span class="token number">1</span>
+                <span class="token keyword">if</span> i <span class="token operator">==</span> rows<span class="token number">-1</span> <span class="token operator">or</span> grid<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span> 
+	                perimeter <span class="token operator">+=</span> <span class="token number">1</span>
+                <span class="token keyword">if</span> j <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">or</span> grid<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token number">-1</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span> 
+	                perimeter <span class="token operator">+=</span> <span class="token number">1</span>
+                <span class="token keyword">if</span> j <span class="token operator">==</span> cols<span class="token number">-1</span> <span class="token operator">or</span> grid<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+	                perimeter <span class="token operator">+=</span> <span class="token number">1</span>
+
+    <span class="token keyword">return</span> perimeter
+
+<span class="token comment"># Example usage</span>
+example_grid <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span>
+<span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>island_perimeter<span class="token punctuation">(</span>example_grid<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<p><strong>Output</strong>:</p>
+<pre class=" language-plaintext"><code class="prism  language-plaintext">16
+</code></pre>
+<h3 id="solution-to-problem-6-zero-matrix">Solution to Problem 6: Zero Matrix</h3>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">def</span> <span class="token function">zero_matrix</span><span class="token punctuation">(</span>matrix<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    rows<span class="token punctuation">,</span> cols <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>matrix<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>matrix<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    zero_rows <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    zero_cols <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>rows<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>cols<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> matrix<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+                zero_rows<span class="token punctuation">.</span>add<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+                zero_cols<span class="token punctuation">.</span>add<span class="token punctuation">(</span>j<span class="token punctuation">)</span>
+
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> zero_rows<span class="token punctuation">:</span>
+        <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>cols<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            matrix<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span>
+
+    <span class="token keyword">for</span> j <span class="token keyword">in</span> zero_cols<span class="token punctuation">:</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>rows<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            matrix<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span>
+
+    <span class="token keyword">return</span> matrix
+
+<span class="token comment"># Example usage</span>
+example_matrix <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span>
+<span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>zero_matrix<span class="token punctuation">(</span>example_matrix<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<p><strong>Output</strong>:</p>
+<pre class=" language-plaintext"><code class="prism  language-plaintext">[[1, 0, 3], [0, 0, 0], [7, 0, 9]]
+</code></pre>
+</div>
+</body>
+
+</html>

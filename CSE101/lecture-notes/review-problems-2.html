@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>practice Qs</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h2 id="more-exam-practice-problems">More Exam Practice Problems</h2>
+<h3 id="question-1">Question 1:</h3>
+<p>In Python, write a loop that simulates a timer by repeatedly adding a tenth of a second to an initial time of 0. The loop should run 100,000 times. After the loop, write an if statement to check if the time equals 10,000 and print “time to launch missile”. Explain why the message may never be printed even though it appears that it should be.</p>
+<h3 id="question-2">Question 2:</h3>
+<p>Write a Python function that finds the largest value in the main diagonal of a square matrix. The function should return the position (index) of the largest value and the value itself. Here is the function signature to get you started:</p>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">def</span> <span class="token function">find_big_diag</span><span class="token punctuation">(</span>M<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    Input: M is a 2D list representing a square matrix.
+    Output: pos is the position of the largest value in the main diagonal of M
+    and val is the value found at pos  
+    """</span>
+    
+</code></pre>
+<h3 id="question-3">Question 3:</h3>
+<p>John is applying for university and his 13 grades are contained in a list A of 13 elements. You need to write a function that calculates the average of its 12 best scores. Hint: Think carefully about the question! Try to find a quick and easy way to solve this problem before you start coding. Only control structures and basic built-in functions seen in classes can be used (if, for, while, len(), etc.).</p>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">def</span> <span class="token function">best12avg</span><span class="token punctuation">(</span>grades<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    Input: grades is a list of 13 numerical grades.
+    Output: The average of the best 12 grades.
+    """</span>
+</code></pre>
+<h3 id="problem-4-matrix-transpose">Problem 4: Matrix Transpose</h3>
+<p>Write a Python function that takes a 2D list (matrix) as input and returns a new 2D list which is the transpose of the input matrix. The transpose of a matrix is obtained by swapping the rows and columns.</p>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">def</span> <span class="token function">transpose_matrix</span><span class="token punctuation">(</span>matrix<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    Input: matrix (2D list)
+    Output: transposed matrix (2D list)
+    """</span>
+</code></pre>
+<p><strong>Example</strong>:</p>
+<ul>
+<li>Input:<pre class=" language-python"><code class="prism  language-python"><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+</code></pre>
+</li>
+<li>Output:<pre class=" language-python"><code class="prism  language-python"><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+</code></pre>
+</li>
+</ul>
+<h3 id="problem-5-island-perimeter">Problem 5: Island Perimeter</h3>
+<p>Given a 2D list representing a grid of 1s (land) and 0s (water), write a function that calculates the perimeter of the island. An island is formed by connecting adjacent lands horizontally or vertically. The perimeter is the number of edges that are adjacent to water or on the boundary of the grid.</p>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">def</span> <span class="token function">island_perimeter</span><span class="token punctuation">(</span>grid<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    Input: grid (2D list of 1s and 0s)
+    Output: perimeter of the island (int)
+    """</span>
+</code></pre>
+<p><strong>Example</strong>:</p>
+<ul>
+<li>Input:<pre class=" language-python"><code class="prism  language-python"><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+</code></pre>
+</li>
+<li>Output:<pre class=" language-python"><code class="prism  language-python"><span class="token number">16</span>
+</code></pre>
+</li>
+</ul>
+<h3 id="problem-6-zero-matrix">Problem 6: Zero Matrix</h3>
+<p>Write a Python function that modifies a given MxN matrix (2D list). If an element in the matrix is 0, set its entire row and column to 0.</p>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">def</span> <span class="token function">zero_matrix</span><span class="token punctuation">(</span>matrix<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    Input: matrix (2D list)
+    Output: matrix modified in-place (2D list)
+    """</span>
+</code></pre>
+<p><strong>Example</strong>:</p>
+<ul>
+<li>Input:<pre class=" language-python"><code class="prism  language-python"><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+</code></pre>
+</li>
+<li>Output:<pre class=" language-python"><code class="prism  language-python"><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+</code></pre>
+</li>
+</ul>
+</div>
+</body>
+
+</html>
