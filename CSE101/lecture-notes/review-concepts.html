@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Concepts</title>
+    <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+<body class="stackedit">
+    <div class="stackedit__html">
+        <h1>Review of Concepts</h1>
+        <ul>
+            <li><a href="#levels-of-programming-languages">Levels of Programming Languages</a>
+                <ul>
+                    <li><a href="#high-level-languages">High-Level Languages</a></li>
+                    <li><a href="#low-level-languages">Low-Level Languages</a></li>
+                </ul>
+            </li>
+            <li><a href="#code-translators-compilers-and-interpreters">Code Translators: Compilers and Interpreters</a>
+                <ul>
+                    <li><a href="#compilers">Compilers</a></li>
+                    <li><a href="#interpreters">Interpreters</a></li>
+                </ul>
+            </li>
+            <li><a href="#von-neumann-architecture">Von Neumann Architecture</a></li>
+            <li><a href="#twos-complement">Two’s Complement</a></li>
+            <li><a href="#creation-of-lists-in-python">Creation of Lists in Python</a></li>
+        </ul>
+
+        <h2 id="levels-of-programming-languages">Levels of Programming Languages</h2>
+<p>Programming languages are often categorized into two main levels: high-level languages and low-level languages.</p>
+<h3 id="high-level-languages">High-Level Languages</h3>
+<p>High-level languages are programming languages that are closer to human languages and further from machine languages. They are designed to be easy to read and write, making them more accessible to programmers. Examples include Python, Java, C#, and JavaScript.</p>
+<h4 id="advantages">Advantages</h4>
+<ul>
+<li><strong>Ease of Use</strong>: More straightforward syntax, resembling natural language.</li>
+<li><strong>Portability</strong>: Code can usually run on multiple types of systems without modification.</li>
+<li><strong>Rapid Development</strong>: Offers faster development time due to its simplicity and available libraries.</li>
+</ul>
+<h3 id="low-level-languages">Low-Level Languages</h3>
+<h4 id="what-are-low-level-languages">What are Low-Level Languages?</h4>
+<p>Low-level languages include <strong>assembly language</strong> and <strong>machine code</strong>. They provide more control over hardware and are specific to a particular type of processor or target hardware architecture.</p>
+<h4 id="advantages-1">Advantages</h4>
+<ul>
+<li><strong>Performance</strong>: More efficient execution, as they are closer to the hardware.</li>
+<li><strong>Control</strong>: Greater control over system resources and memory.</li>
+</ul>
+<h4 id="limitations">Limitations</h4>
+<p>-<strong>Machine specific</strong>: Low level languages like assembly language is not portable because the data is stored in computer registers, and the computer has to know the different sets of registers.</p>
+<h2 id="code-translators-compilers-and-interpreters">Code Translators: Compilers and Interpreters</h2>
+<ul>
+<li>Source code refers to code written in a particular programming language.</li>
+<li>Translators have the responsibility of converting your source code to the machine language. This is also known as binary. Remember ones and zeros. We may refer to the binaries as Object Code , the Program or a common word today: App.</li>
+</ul>
+<h4 id="compilers">Compilers</h4>
+<ul>
+<li>A compiler is a type of translator that converts high-level programming language code into machine code.</li>
+<li>Example languages that use compilers: C, C++, Java (to bytecode).</li>
+</ul>
+<p><strong>How Does a Compiler Work?</strong></p>
+<ol>
+<li><strong>Lexical Analysis</strong>: The compiler breaks down the code into small parts, like words and symbols. Think of it like reading a sentence and identifying nouns, verbs, and punctuation.</li>
+<li><strong>Syntax Analysis</strong>: Now, the compiler checks if these small parts follow the right grammar rules of the programming language, similar to making sure a sentence is grammatically correct.</li>
+<li><strong>Semantic Analysis</strong>: This step is like understanding the meaning of the sentence. The compiler makes sure that the code makes logical sense.</li>
+<li><strong>Intermediate Code Generation</strong>: The compiler then rewrites your code into a ‘middle-ground’ language. This is a step between your original code and the final machine code.</li>
+<li><strong>Optimization</strong>: Here, the compiler makes this ‘middle-ground’ code better and more efficient, similar to editing a draft to make a final, polished version.</li>
+<li><strong>Code Generation</strong>: The compiler translates the optimized ‘middle-ground’ code into machine code, which is the language that computers understand directly.</li>
+</ol>
+<p><strong>Features of Compilers:</strong></p>
+<ul>
+<li>Converts the entire program in one go.</li>
+<li>Execution is fast as the translation is done beforehand.</li>
+<li>Error detection happens before execution.</li>
+<li>The output is an executable file that can be run independently.</li>
+</ul>
+<h4 id="interpreters">Interpreters</h4>
+<ul>
+<li>An interpreter is a type of translator that converts high-level programming language code into machine code on the fly, during program execution.</li>
+<li>Example languages that use interpreters: Python, Ruby, JavaScript.</li>
+</ul>
+<p><strong>How Does an Interpreter Work?</strong></p>
+<ol>
+<li><strong>Reads the Code</strong>: Takes the source code one line or statement at a time.</li>
+<li><strong>Lexical and Semantic Analysis</strong>: Similar to a compiler, it breaks the code into tokens and checks the syntax.</li>
+<li><strong>Execution</strong>: Immediately executes the translated instructions after the semantic analysis.</li>
+</ol>
+<p><strong>Features of Interpreters:</strong></p>
+<ul>
+<li>Translates and executes the program line by line.</li>
+<li>Slower execution compared to compiled programs, as translation happens at runtime.</li>
+<li>Errors are detected during runtime.</li>
+</ul>
+<h4 id="summary">Summary</h4>
+<ul>
+<li><strong>Compiler</strong>: Translates the entire program at once into machine code, creating an executable file. Suitable for programs where performance is critical.</li>
+<li><strong>Interpreter</strong>: Translates and executes code line by line. Useful for development environments where immediate feedback is needed.</li>
+</ul>
+<p>Each type of translator has its own use cases and advantages, and the choice between a compiler and an interpreter often depends on the requirements of the specific programming task at hand.</p>
+<h2 id="von-neumann-architecture">Von Neumann Architecture</h2>
+<p>The Von Neumann architecture describes a design model for a digital computer using a processing unit and a single separate storage structure to hold both instructions and data. It is a foundational model for modern computer design.</p>
+<h3 id="key-components">Key Components</h3>
+<ol>
+<li>
+<p><strong>Central Processing Unit (CPU)</strong>: Acts as the brain of the computer. It performs calculations and logical operations. The CPU is further divided into two main parts:</p>
+<ul>
+<li><strong>Arithmetic Logic Unit (ALU)</strong>: Performs arithmetic and logical operations.</li>
+<li><strong>Control Unit (CU)</strong>: Directs operations within the processor, coordinating how data moves through the CPU.</li>
+</ul>
+</li>
+<li>
+<p><strong>Memory</strong>: Stores both data and the instructions that the CPU uses. Memory in the Von Neumann architecture is typically volatile, meaning it requires power to maintain its state.</p>
+</li>
+<li>
+<p><strong>Input/Output (I/O) Mechanisms</strong>: These are devices that allow the computer to interact with the external world, such as keyboards, mice, displays, and printers.</p>
+</li>
+<li>
+<p><strong>Registers</strong>: Small, fast storage locations within the CPU. They temporarily hold data that the CPU is currently processing. Some common types of registers include:</p>
+<ul>
+<li><strong>Accumulator</strong>: Stores intermediate arithmetic and logic results.</li>
+<li><strong>Program Counter (PC)</strong>: Holds the memory address of the next instruction to be executed.</li>
+<li><strong>Instruction Register (IR)</strong>: Holds the instruction currently being executed.</li>
+<li><strong>Memory Address Register (MAR)</strong>: Holds the address of the memory location to be accessed.</li>
+<li><strong>Memory Data Register (MDR)</strong>: Holds the data to be written to or read from the memory.</li>
+</ul>
+</li>
+<li>
+<p><strong>Bus</strong>: A communication system that transfers data between components inside a computer. It connects the CPU, memory, and I/O devices.</p>
+</li>
+</ol>
+<h2 id="twos-complement">Two’s Complement</h2>
+<p>Two’s complement is a binary number system that allows for the representation of <em>both positive and negative integers</em>. In this system, the leftmost bit is typically used as the sign bit: ‘0’ indicates a positive number and ‘1’ indicates a negative number. The value of a negative number in two’s complement is obtained by inverting all the bits of its positive counterpart and then adding 1 to the result.</p>
+<h3 id="how-to-calculate-twos-complement">How to Calculate Two’s Complement</h3>
+<ol>
+<li><strong>Positive Numbers</strong>: Represented as their binary equivalent.</li>
+<li><strong>Negative Numbers</strong>: To find the two’s complement of a negative number:
+<ul>
+<li>Convert the absolute value of the number to binary.</li>
+<li>Invert the digits (change 0s to 1s and 1s to 0s).</li>
+<li>Add 1 to the inverted number.</li>
+</ul>
+</li>
+</ol>
+<h3 id="why-twos-complement-is-used">Why Two’s Complement is Used</h3>
+<ol>
+<li>
+<p><strong>Simplifies Arithmetic Operations</strong>: Two’s complement allows the use of the same binary addition operation for both addition and subtraction, which simplifies the design of arithmetic circuits in computers.</p>
+</li>
+<li>
+<p><strong>Efficient Storage Utilization</strong>: It provides an efficient way to represent and manipulate signed numbers in binary, maximizing the use of available bits.</p>
+</li>
+<li>
+<p><strong>Compatibility with Binary Systems</strong>: It aligns well with the binary nature of digital systems, making it a natural choice for computer arithmetic.</p>
+</li>
+</ol>
+<h2 id="creation-of-lists-in-python">Creation of Lists in Python</h2>
+<p>In Python, there are several ways to create lists. Find a review of some of the methods below:</p>
+<ol>
+<li>
+<p><strong>Using Square Brackets <code>[]</code></strong>:</p>
+<ul>
+<li>This is the most common way to create a list in Python.</li>
+<li>Example: <code>my_list = [1, 2, 3, 4]</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Using the <code>*</code> Operator (Repeating Lists)</strong>:</p>
+<ul>
+<li>Create a list with repeating elements.</li>
+<li>Example: <code>repeated_list = [0] * 5</code> (Results in <code>[0, 0, 0, 0, 0]</code>).</li>
+</ul>
+</li>
+<li>
+<p><strong>Appending to an Empty List</strong>:</p>
+<ul>
+<li>Start with an empty list and add elements using <code>append()</code>.</li>
+<li>Example:<pre class=" language-python"><code class="prism  language-python">my_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">105</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    my_list<span class="token punctuation">.</span>append<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Using <code>str.split()</code> Method (For Strings)</strong>:</p>
+<ul>
+<li>Split a string into a list based on a delimiter.</li>
+<li>Example: <code>words = "Hello,World".split(",")</code> (Splits the string into a list with two elements: <code>['Hello', 'World']</code>).</li>
+</ul>
+</li>
+<li>
+<p><strong>2D Lists (List of Lists)</strong>:</p>
+<ul>
+<li>Creating lists within a list.</li>
+<li>Example: <code>nested_list = [[1, 2], [3, 4], [5, 6]]</code></li>
+</ul>
+</li>
+</ol>
+    </div>
+</body>
+</html>
