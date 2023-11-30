@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>review-problems-3-sols</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h2 id="solution-to-problem-1-mirror-swap-string">Solution to Problem 1: Mirror Swap String</h2>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">def</span> <span class="token function">mirror_swap_string</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> s<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+</code></pre>
+<p>or</p>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">def</span> <span class="token function">mirror_swap_string</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+	reversed_s <span class="token operator">=</span> <span class="token string">""</span>
+    <span class="token keyword">for</span> c <span class="token keyword">in</span> s<span class="token punctuation">:</span>
+	    reversed_s <span class="token operator">=</span> c <span class="token operator">+</span> reversed_s
+	<span class="token keyword">return</span> reversed_s
+</code></pre>
+<h2 id="solution-to-problem-2-string-symmetry-challenge">Solution to Problem 2: String Symmetry Challenge</h2>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">def</span> <span class="token function">string_symmetry_challenge</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    reversed_str <span class="token operator">=</span> s<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+    concatenated_str <span class="token operator">=</span> s <span class="token operator">+</span> reversed_str
+    mid <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>concatenated_str<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
+    second_half <span class="token operator">=</span> concatenated_str<span class="token punctuation">[</span>mid<span class="token punctuation">:</span><span class="token punctuation">]</span>
+    repeated_half <span class="token operator">=</span> second_half <span class="token operator">*</span> <span class="token number">2</span>
+    result <span class="token operator">=</span> repeated_half <span class="token operator">+</span> s<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token operator">//</span><span class="token number">2</span><span class="token punctuation">]</span>
+    <span class="token keyword">return</span> result
+</code></pre>
+<h2 id="solution-to-problem-3-tracing-sorting-algorithms">Solution to Problem 3: Tracing Sorting Algorithms</h2>
+<p><strong>Bubble Sort Trace</strong>:</p>
+<ul>
+<li>Start: <code>[6, 3, 8, 5, 2]</code></li>
+<li>Pass 1: Compare 6 and 3, swap: <code>[3, 6, 8, 5, 2]</code></li>
+<li>Pass 2: Compare 6 and 8, no swap: <code>[3, 6, 8, 5, 2]</code></li>
+<li>Pass 3: Compare 8 and 5, swap: <code>[3, 6, 5, 8, 2]</code></li>
+<li>Pass 4: Compare 8 and 2, swap: <code>[3, 6, 5, 2, 8]</code></li>
+<li>Result after Pass 1: <code>[3, 6, 5, 2, 8]</code></li>
+<li>Continue similar passes until fully sorted: <code>[2, 3, 5, 6, 8]</code></li>
+</ul>
+<p><strong>Selection Sort Trace</strong>:</p>
+<ul>
+<li>Start: <code>[6, 3, 8, 5, 2]</code></li>
+<li>Pass 1: Select minimum (2), swap with first element: <code>[2, 3, 8, 5, 6]</code></li>
+<li>Pass 2: Select next minimum (3), already in place: <code>[2, 3, 8, 5, 6]</code></li>
+<li>Pass 3: Select next minimum (5), swap with third element: <code>[2, 3, 5, 8, 6]</code></li>
+<li>Pass 4: Select next minimum (6), swap with fourth element: <code>[2, 3, 5, 6, 8]</code></li>
+<li>Fully sorted: <code>[2, 3, 5, 6, 8]</code></li>
+</ul>
+<p><strong>Insertion Sort Trace</strong>:</p>
+<ul>
+<li>Start: <code>[6, 3, 8, 5, 2]</code></li>
+<li>Pass 1: Insert 3 before 6: <code>[3, 6, 8, 5, 2]</code></li>
+<li>Pass 2: 8 is already in the correct position: <code>[3, 6, 8, 5, 2]</code></li>
+<li>Pass 3: Insert 5 before 8: <code>[3, 6, 5, 8, 2]</code></li>
+<li>Pass 4: Insert 2 at the beginning: <code>[2, 3, 6, 5, 8]</code></li>
+<li>Continue inserting each element in its correct position: <code>[2, 3, 5, 6, 8]</code></li>
+</ul>
+<h2 id="solution-to-problem-4-number-decomposition">Solution to Problem 4: Number Decomposition</h2>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">def</span> <span class="token function">number_decomposition</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    sum_of_digits <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">while</span> n <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        sum_of_digits <span class="token operator">+=</span> n <span class="token operator">%</span> <span class="token number">10</span>
+        n <span class="token operator">//=</span> <span class="token number">10</span>
+    <span class="token keyword">return</span> sum_of_digits
+</code></pre>
+<h2 id="solution-to-problem-5-countdown-string-creator">Solution to Problem 5: Countdown String Creator</h2>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">def</span> <span class="token function">countdown_string_creator</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    countdown_string <span class="token operator">=</span> <span class="token string">""</span>
+    <span class="token keyword">while</span> number <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        countdown_string <span class="token operator">+=</span> <span class="token builtin">str</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span>
+        number <span class="token operator">-=</span> <span class="token number">1</span>
+    <span class="token keyword">return</span> countdown_string
+</code></pre>
+</div>
+</body>
+
+</html>
