@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mariam El Mezouar">
+
+  <title>CSE341</title>
+
+  <!-- Custom fonts for this theme -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="../css/freelancer.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Teaching page</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+        type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../index.html">Home</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link active py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#">CSE341</a>
+          </li>  
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <!-- Portfolio Section -->
+
+  <div class="container">
+
+
+    <h3 class="mt-4 mb-4">Introduction to Database Systems</h3>
+    <ul class="nav nav-tabs" id="myTab">
+      <li class="nav-item">
+        <a class="nav-link active" id="generale-tab" href="#general" data-toggle="tab">Syllabus</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="horaire-tab" href="#schedule" data-toggle="tab">Weekly Course Contents</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="laboratoires-tab" href="#laboratories" data-toggle="tab">Labs</a>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane active" id="general">
+        <div class="container-fluid">
+          <h3 class="mt-4"> Table of Contents</h3>
+          <nav class="nav flex-column">
+            <a class="nav-link" href="#overview">General Information</a>          
+            <a class="nav-link" href="#instructor">Instructor</a>
+            <a class="nav-link" href="#course-schedule">Schedule</a>
+            <a class="nav-link" href="#books">Textbooks</a>
+            <!--<a class="nav-link" href="#midtern">Midterm</a>
+            <a class="nav-link" href="#final">Final Exam</a>-->
+            <a class="nav-link" href="#academic-integrity">Academic Integrity</a>
+            <!--<a class="nav-link" href="#d-autres-attentes">D’autres attentes</a>-->
+          </nav>
+
+          <h3 class="mt-4" id="overview">General Information</h3>
+
+          <p>This course offers an overview of database systems, including the essentials of database design, modeling, and architecture with practical applications. The course begins with foundational concepts including entity-relationship models, the relational model, and SQL.</p>
+
+          <p>At the end of this course, the student should acquire the skills necessary to design, implement, and manage database systems effectively, and should be exposed for advancements in the field such as NoSQL and Big Data technologies.</p>
+
+          Topics to be covered are:
+          <ul>
+            <li><strong>Weeks 1-2:</strong> Introduction to database fundamentals, data modeling, and architecture.</li>
+            <li><strong>Weeks 3-4:</strong> The relational model and design methodologies.</li>
+            <li><strong>Weeks 5-6:</strong> Advanced SQL usage, data manipulation, and normalization techniques.</li>
+            <li><strong>Weeks 7-11:</strong> Advanced topics including index structures, query optimization, transaction processing, NoSQL databases, Big Data, and Python integration.</li>
+            <li><strong>Week 12:</strong> Information retrieval, web search, data mining concepts.</li>
+          </ul>
+          
+          <h3 lass="mt-4" id="instructor">Instructor</h3>
+
+          <p>The instructor of CSE341 in the Winter 2024 is Dr. Mariam El Mezouar.</p>
+
+          <ul>
+            <li>Office: Girouard 340</li>
+            <li>Email: mariam.el-mezouar@rmc.ca</li>
+          </ul>
+
+          
+
+          <h3 class="mt-4" id="course-schedule">Schedule</h3>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Room</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Monday</td>
+                <td>1200-1250</td>
+                <td>Sawyer 4214</td>
+                <td>Lecture</td>
+              </tr>
+              
+                <td>Tuesday</td>
+                <td>1240-1430</td>
+                <td>Sawyer 5206</td>
+                <td>Lecture</td>
+              </tr>
+
+              <tr>
+                <td>Friday</td>
+                <td>0800-0950</td>
+                <td>Sawyer 5206</td>
+                <td>Laboratory</td>
+              </tr>
+              <tr>
+            </tbody>
+          </table>
+
+          <h3 class="mt-4" id="marking">Marking Scheme</h3>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Assessment Type</th>
+                <th>Weight</th>
+                <th>Quantity/Details</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Laboratories and Assignments</td>
+                <td>35%</td>
+                <td>~10</td>
+                
+              </tr>
+              
+                <td>Midterm Exam</td>
+                <td>25%</td>
+                <td>1</td>
+                
+              </tr>
+
+              <tr>
+                <td>Final Exam</td>
+                <td>40%</td>
+                <td>1</td>
+                
+              </tr>
+
+            
+            </tbody>
+           
+          </table>
+
+          
+
+          <h3 class="mt-4" id="books">Textbooks</h3>
+
+          <ul>
+            <li>Database Systems : The complete book by Hector Garcia-Molina Jeffrey D. Ullman and Jennifer Widom.</li>
+            <li>Fundamental of Database Systems by Elmasri and Navathe.</li>
+            <li>Database Systems A practical approach 6th ed. by Thomas Connelly and Carolyn Begg.</li>
+          </ul>
+          
+          
+
+
+          <h3 class="mt-4" id="academic-integrity">Academic Integrity</h3>
+
+          <p>Academic misconduct, including plagiarism, cheating, and other violations of academic ethics, is a serious academic infraction for which penalties may range from a recorded caution to expulsion from the College. RMC Academic Regulations Section 23 defines plagiarism as: "Using the work of others and attempting to present it as original thought, prose or work. This includes failure to appropriately acknowledge a source, misrepresentation of cited work, and misuse of quotation marks or attribution." It also includes that "the failure to acknowledge that work has been submitted for credit elsewhere." All students should consult the published statements on Academic Misconduct contained in the Royal Military College Undergraduate Academic Regulations.</p>
+  
+
+        </div>
+      </div>
+
+
+      <div class="tab-pane" id="schedule">
+        <div class="container-fluid mt-4">
+          <p>The links to download the lectures notes, as well as any other resources, will be posted before lecture time. </br>
+          <!--<em style="color:Tomato;">The submission of all assessments will be on Moodle.</em></p>-->
+          The schedule below is tentative, and may be slightly adjusted, as needed.</p>
+          
+          <table class="table">
+            <thead>
+               <tr>
+                  <th>Week</th>
+                  <th>Date</th>
+                  <th>Lectures</th>
+                  <th>Book: Connelly 6th Ed</th>
+                  <th>Book: El Masri 7th Ed</th>
+                  <th>External Resources/Deliverables</th>
+               </tr>
+            </thead>
+            <tbody>
+               <!-- Week 1 -->
+               <tr>
+                  <td rowspan="3">1</td>
+                  <td>Monday, Jan. 8</td>
+                  <td>Introduction to the course </br> <a href="lecture-notes/CSE341-01.pdf">Introduction to databases</a></td>
+                  <td>Ch1</td>
+                  <td>Ch1</td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Tuesday, Jan. 9</td>
+                  <td>Database Environment </br> Database Architectures and the Web </td>
+                  <td>Ch2</br>Ch3</td>
+                  <td>Ch2</td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Friday, Jan. 12</td>
+                  <td><em>Lab 1: Introduction to Access</em></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <!-- Week 2 -->
+               <tr>
+                  <td rowspan="3">2</td>
+                  <td>Monday, Jan. 15</td>
+                  <td>Entity-Relationship Modeling (ER)</td>
+                  <td>Ch12</td>
+                  <td>Ch3</td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Tuesday, Jan. 16</td>
+                  <td>Enhanced Entity-Relationship Modeling (EER) </br> Relational Model (1)</td>
+                  <td>Ch13 </br></br> Ch4</td>
+                  <td>Ch4</td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Friday, Jan. 19</td>
+                  <td><em>Lab 2: ER and EER Models</em></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <!-- Week 3 -->
+               <tr>
+                  <td rowspan="3">3</td>
+                  <td>Monday, Jan. 22</td>
+                  <td>Relational Model (2)</td>
+                  <td>Ch4</td>
+                  <td>Ch5</td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Tuesday, Jan. 23</td>
+                  <td>Conceptual Database Design</td>
+                  <td>Ch16</td>
+                  <td>Ch9</td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Friday, Jan. 26</td>
+                  <td><em>Lab 3: Relational Models</em></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <!-- Week 4 -->
+               <tr>
+                  <td rowspan="3">4</td>
+                  <td>Monday, Jan. 29</td>
+                  <td>Relational Algebra and Relational Calculus (1)</td>
+                  <td>Ch5</td>
+                  <td>Ch8</td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Tuesday, Jan. 30</td>
+                  <td>Relational Algebra and Relational Calculus (2)</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Friday, Feb. 2</td>
+                  <td><em>Lab 4: Transformation EER model to Relational Model</em></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <!-- Week 5 -->
+               <tr>
+                  <td rowspan="3">5</td>
+                  <td>Monday, Feb. 5</td>
+                  <td>SQL Data Manipulation</td>
+                  <td>Ch6</td>
+                  <td>Ch6</td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Tuesday, Feb. 6</td>
+                  <td>SQL Data Definition </br> More SQL</td>
+                  <td>Ch7 </br> Ch8</td>
+                  <td>Ch7</td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Friday, Feb. 9</td>
+                  <td><em>Lab 5: Relational Algebra</em></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <!-- Week 6 -->
+               <tr>
+                  <td rowspan="3">6</td>
+                  <td>Monday, Feb. 12</td>
+                  <td>Midterm Review</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Tuesday, Feb. 13</td>
+                  <td>Normalization </br> Advanced Normalization</td>
+                  <td>Ch14 </br> Ch15</td>
+                  <td>Ch14 </br> Ch15</td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Friday, Feb. 16</td>
+                  <td style="color:rgb(79, 155, 81);">Midterm Exam</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <!-- Reading Week -->
+               <tr>
+                  <td rowspan="3"></td>
+                  <td>Monday, Feb. 19</td>
+                  <td style="color:Tomato;">Reading Week</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Tuesday, Feb. 20</td>
+                  <td style="color:Tomato;">Reading Week</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Friday, Feb. 23</td>
+                  <td style="color:Tomato;">Reading Week</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <!-- Week 7 -->
+               <tr>
+                  <td rowspan="3">7</td>
+                  <td>Monday, Feb. 26</td>
+                  <td style="color:Tomato;">No class -  Dr. El Mezouar away for a conference</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Tuesday, Feb. 27</td>
+                  <td>Physical Database Design</td>
+                  <td></td>
+                  <td>Ch16 </br> Ch17</td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Friday, Mar. 1</td>
+                  <td><em>Lab 6: SQL wity MySQL</em></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <!-- Week 8 -->
+               <tr>
+                  <td rowspan="3">8</td>
+                  <td>Monday, Mar. 4</td>
+                  <td>Query Processing and Optimization</td>
+                  <td></td>
+                  <td>Ch18 </br> Ch19</td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Tuesday, Mar. 5</td>
+                  <td>Transaction Management</td>
+                  <td>Ch22</td>
+                  <td>Ch20 </br> Ch21</td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Friday, Mar. 8</td>
+                  <td><em>Lab 7: SQL wity MySQL</em></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <!-- Week 9 -->
+               <tr>
+                  <td rowspan="3">9</td>
+                  <td>Monday, Mar. 11</td>
+                  <td>TBA</td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Tuesday, Mar. 12</td>
+                  <td>TBA</td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Friday, Mar. 15</td>
+                  <td><em>Lab 8: Normalization and EER Models</em></td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <!-- Week 10 -->
+               <tr>
+                  <td rowspan="3">10</td>
+                  <td>Monday, Mar. 18</td>
+                  <td>TBA</td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Tuesday, Mar. 19</td>
+                  <td>TBA</td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Friday, Mar. 22</td>
+                  <td><em>Lab 9: Python and Databases</em></td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <!-- Week 11 -->
+               <tr>
+                  <td rowspan="3">11</td>
+                  <td>Monday, Mar. 25</td>
+                  <td>TBA</td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Tuesday, Mar. 26</td>
+                  <td>TBA</td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Friday, Mar. 29</td>
+                  <td style="color:Tomato;">No lab - Good Friday</td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <!-- Week 12 -->
+              <tr>
+                <td rowspan="3">12</td>
+                <td>Monday, Apr. 1</td>
+                <td style="color:Tomato;">No class -  Easter Monday</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Tuesday, Apr. 2</td>
+                <td>TBA</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Friday, Apr. 5</td>
+                <td><em>Lab 10: Python and Databases</em></td>
+                <td></td>
+                <td></td>
+              </tr>
+               <!-- Week 13 -->
+               <tr>
+                  <td rowspan="3">13</td>
+                  <td>Monday, Apr. 9</td>
+                  <td>TBA</td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Tuesday, Apr. 10</td>
+                  <td>TBA</td>
+                  <td></td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>Friday, Apr. 13</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+               </tr>
+            </tbody>
+         </table>
+
+        </div>
+
+      </div>
+
+      <div class="tab-pane" id="laboratories">
+        <div class="container-fluid mt-4">
+   
+
+        <section id="weekly-labs">
+            
+        <p>All labs are to be performed individually, unless otherwise indicated. Lab reports are due by 11:59pm on the day before the next lab is set to happen (i.e. Thursdays by 11:59pm). Exact due dates will be indicated below and on the submission links on Moodle.</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Release date</th>
+              <th>Link to instructions</th>
+              <th>Deliverable/Outcome</th>
+              <th>Submission Date</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Jan 12th, 2024</td>
+              <td>Lab 1: Access</td>
+              <td></td>
+              <td></td>            
+              
+            </tr>
+            
+
+          </tbody>
+          </table>
+
+        </section>
+
+
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- Copyright Section -->
+  <section class="copyright py-4 text-center text-white">
+    <div class="container">
+      <small>Copyright &copy; Mariam El Mezouar 2023</small>
+    </div>
+  </section>
+
+  <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+  <div class="scroll-to-top d-lg-none position-fixed ">
+    <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Contact Form JavaScript -->
+  <script src="../js/jqBootstrapValidation.js"></script>
+  <script src="../js/contact_me.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="../js/freelancer.min.js"></script>
+
+</body>
+
+</html>
