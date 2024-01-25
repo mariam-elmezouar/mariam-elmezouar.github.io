@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>341-lab3</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="laboratory-2">Laboratory 3: Transformation EER model to Relational Model</h1>
+<h2 id="introduction">Introduction</h2>
+<p>In this lab, you will revisit concepts related to ER modelling as well as the relational model. More importantly, you will practice the mapping rules to transition from an ER to a relational model.
+</p>
+
+<p>This lab is <b>individual</b>. You have two weeks to work on this lab.</p>
+
+
+
+<h2 id="exercises">Task 1</h2>
+
+
+<p>Consider the following patient view of an ER diagram. Note that the diagram uses Crow's foot notation to express multiplicities in the relationships. A legend of the notation is shown below.</p>
+
+
+<div class="container">
+  <img src="ER.png" alt="ER diagram" style="width:80%; height:auto;">
+</div>
+
+<div class="container">
+  <img src="notation.png" alt="ER diagram" style="width:40%; height:auto;">
+</div>
+
+<p>Below are examples of queries required by the Patient user views. </p>
+
+<ul>
+  <li>a. Retrieve a Patient's Medical History and Prescriptions.</li>
+  <li>b. Find all Appointments for a Particular Physician.</li>
+  <li>c. Find All Patients Treated by a Specialist in Cardiology.</li>
+  <li>d. Get a List of Emergency Contacts for Patients Over 65.</li>
+  <li>e. Retrieve All Prescriptions Issued by a Specific Physician.</li>
+  <li>f. Show the Insurance Policy Details for a Patient Who Has an Upcoming Appointment.</li> 
+</ul>
+
+<p>1. First, you need to validate the model against the required transactions by describing the pathway taken by each transaction in the ER diagram. If there is no pathway to satisfy a transaction, explain the design modification(s) required to be able to obtain the information.</p>
+
+<p>2. Second, convert the patient view of the ER diagram into the corresponding relational model (i.e. logical design). You must indicate the tables, their attributes, the primary keys as well as the foreign keys. See slides 30 and 31 for examples of presenting the logical design (or consult Chap 17 in Connolly textbook). Clearly indicate in the report the rationale used to identify the list of entities, and how relationships are captured by the relational model and why.</p>
+
+
+
+<h2 id="exercises">Task 2</h2>
+
+<p>The ER diagram shown below shows only entities and primary key attributes. The absence of recognizable named entities or relationships is to emphasize the rule-based nature of the mapping rules described in the lecture about logical database design (i.e. Step 2.1 - summarized on slide 18).</p>
+
+<div class="container">
+  <img src="ER2.png" alt="ER diagram" style="width:80%; height:auto;">
+</div>
+
+
+<p>Answer the following questions with reference to how the ER model maps to relational tables.</p>
+    <ol>
+        <li>How many relations will represent the ER model?</li>
+        <li>How many foreign keys are mapped to the relation representing X?</li>
+        <li>Which relation(s) will have no foreign key?</li>
+        <li>Using only the letter identifier for each entity, provide appropriate names for the relations mapped from the ER model.</li>
+        <li>If the cardinality for each relationship is changed to one-to-one with total participation for all entities, how many relations would be derived from this version of the ER model?</li>
+    </ol>
+
+<h2 id="exercises">Task 3</h2>
+
+  <p>Merge the local data models to create a global logical data model of the following University Case Study. State
+  any assumptions necessary to support your design.</p>
+    <p>This case study involves a university system that maintains separate data models for undergraduate and graduate students. The task is to merge the local data models to create a global logical data model that covers all aspects of the university's academic records, faculty, and research funding. Explain all your decisions.</p>
+
+    <h4>Local View 1: Undergraduate Students' Records</h4>
+    <table border="1">
+        <caption>UndergradStudent</caption>
+        <tr>
+            <th>StudentID (PK)</th>
+            <th>Name</th>
+            <th>EnrollmentYear</th>
+            <th>Major</th>
+            <th>AdvisorID (FK)</th>
+        </tr>
+    </table>
+
+    <table border="1">
+        <caption>Faculty</caption>
+        <tr>
+            <th>FacultyID (PK)</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>OfficeNumber</th>
+        </tr>
+    </table>
+
+    <table border="1">
+        <caption>Enrollment</caption>
+        <tr>
+            <th>StudentID (FK)</th>
+            <th>CourseID (FK)</th>
+            <th>Semester</th>
+            <th>Grade</th>
+        </tr>
+    </table>
+
+    <table border="1">
+        <caption>Course</caption>
+        <tr>
+            <th>CourseID (PK)</th>
+            <th>Title</th>
+            <th>Department</th>
+            <th>Credits</th>
+        </tr>
+    </table>
+
+    <h4>Local View 2: Graduate Students' Research</h4>
+    <table border="1">
+        <caption>GradStudent</caption>
+        <tr>
+            <th>StudentID (PK)</th>
+            <th>Name</th>
+            <th>EnrollmentYear</th>
+            <th>ResearchArea</th>
+            <th>SupervisorID (FK)</th>
+        </tr>
+    </table>
+
+    <table border="1">
+        <caption>Thesis</caption>
+        <tr>
+            <th>ThesisID (PK)</th>
+            <th>Title</th>
+            <th>Abstract</th>
+            <th>DefenseDate</th>
+            <th>StudentID (FK)</th>
+        </tr>
+    </table>
+
+    <table border="1">
+        <caption>Faculty</caption>
+        <tr>
+            <th>FacultyID (PK)</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>OfficeNumber</th>
+            <th>ResearchInterest</th>
+        </tr>
+    </table>
+
+    <table border="1">
+        <caption>ResearchGrant</caption>
+        <tr>
+            <th>GrantID (PK)</th>
+            <th>Topic</th>
+            <th>Amount</th>
+            <th>StartDate</th>
+            <th>EndDate</th>
+            <th>FacultyID (FK)</th>
+        </tr>
+    </table>
+
+
+
+<h2 id="resources">Submission</h2>
+<p>Include all your answers in the report. Any diagrams/tables used must be clear, and design decision should be properly justified to get the full mark.</p>
+
+<p>Submit the report in PDF format to Moodle by Thursday, February 8th, 2024 at 11:59pm.</p>
+
+<h2 id="evaluation-criteria">Evaluation Criteria</h2>
+<ul>
+<li><strong>Task 1</strong>: 10 points</li>
+<li><strong>Task 2</strong>: 10 points</li>
+<li><strong>Task 3</strong>: 10 points</li>
+<li><strong>Report Quality and Presentation</strong>: 4 points</li>
+</ul>
+
+</div>
+
+
+
+</body>
+
+</html>
