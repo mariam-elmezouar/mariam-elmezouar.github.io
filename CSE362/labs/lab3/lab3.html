@@ -1,0 +1,362 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lab3-versioncontrol</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+    <div class="stackedit__html"><h1 id="laboratory-2">Laboratory 3: Project Setup and Version Control</h1>
+  <div class="stackedit__html"><h2 id="part-1-setting-up-git-and-github">Part 1: Setting Up Git and GitHub</h2>
+<h4 id="a.-install-git">A. Install Git</h4>
+<ol>
+<li><strong>Download Git</strong>: Visit <a href="https://git-scm.com/downloads">Git’s official website</a> and download the Git installer for your operating system.</li>
+<li><strong>Install Git</strong>: Run the downloaded installer and follow the installation prompts. Make sure to accept the default options unless you have specific preferences.</li>
+</ol>
+<h4 id="b.-create-github-accounts">B. Create GitHub Accounts</h4>
+<ol>
+<li><strong>Sign Up</strong>: Go to <a href="https://github.com/">GitHub’s website</a> and sign up for a new account.</li>
+<li><strong>Verify Email</strong>: Check your email inbox for a verification email from GitHub and follow the instructions to verify your account.</li>
+</ol>
+<h4 id="c.-create-and-set-up-a-repository-on-github">C. Create and Set Up a Repository on GitHub</h4>
+<ol>
+<li><strong>Create a New Repository</strong>: One team member should log into GitHub, click on the “+” icon in the upper-right corner, and select “New repository”.</li>
+<li><strong>Repository Details</strong>: Fill in the repository name, add a description (optional), and choose if the repository should be public or private. No need to initialize the repository with a README file at the moment.</li>
+<li><strong>Add Collaborators</strong>: In the repository, go to “Settings” &gt; “Manage access” &gt; “Invite collaborators”. Enter the GitHub usernames of your team members and send the invitations.</li>
+</ol>
+<h4 id="d.-initialize-and-push-local-project">D. Initialize and Push Local Project</h4>
+<ol>
+<li><strong>Create Local Project Folder</strong>:<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">mkdir</span> project-name
+<span class="token function">cd</span> project-name
+</code></pre>
+</li>
+<li><strong>Initialize Git Repository</strong>:<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> init
+</code></pre>
+</li>
+<li><strong>Add README File</strong> (optional):<pre class=" language-bash"><code class="prism  language-bash"><span class="token keyword">echo</span> <span class="token string">"# Project Title"</span> <span class="token operator">&gt;</span> README.md
+<span class="token function">git</span> add README.md
+<span class="token function">git</span> commit -m <span class="token string">"Initial commit with README"</span>
+</code></pre>
+</li>
+<li><strong>Link Local Repository to GitHub</strong>:<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> remote add origin https://github.com/username/repository-name.git
+</code></pre>
+</li>
+<li><strong>Push to GitHub</strong>:<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> push -u origin main
+</code></pre>
+</li>
+</ol>
+<h4 id="understanding-git-remote-add-origin-httpsgithub.comusernamerepository-name.git">Understanding <code>git remote add origin https://github.com/username/repository-name.git</code></h4>
+<ul>
+<li>
+<p><strong><code>git remote add origin</code></strong>: This command is used to add a new remote to your local Git repository.</p>
+<ul>
+<li>
+<p><strong><code>git remote</code></strong>: This part of the command deals with the remote repositories. Remote repositories are versions of your project that are hosted on the internet or network somewhere.</p>
+</li>
+<li>
+<p><strong><code>add</code></strong>: This tells Git you want to add a new remote.</p>
+</li>
+<li>
+<p><strong><code>origin</code></strong>: This is the conventional name for the primary remote repository. You can name your remote anything, but <code>origin</code> is the standard and most commonly used name in Git.</p>
+</li>
+<li>
+<p><strong><code>https://github.com/username/repository-name.git</code></strong>: This is the URL of the remote repository on GitHub. Replace <code>username</code> with your GitHub username and <code>repository-name</code> with the name of your repository. This URL is where Git will push to and pull from.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Purpose</strong>: The purpose of this command is to link your local repository with the remote repository on GitHub. After executing this command, <code>origin</code> will be a reference to the GitHub repository, and you can push and pull changes to and from the remote repository.</p>
+</li>
+</ul>
+<h4 id="understanding-git-push--u-origin-main">Understanding <code>git push -u origin main</code></h4>
+<ul>
+<li>
+<p><strong><code>git push</code></strong>: This command is used to upload the content of your local repository to a remote repository.</p>
+<ul>
+<li>
+<p><strong><code>-u</code></strong> or <strong><code>--set-upstream</code></strong>: This flag sets the upstream for your branch. Upstream refers to the default remote branch that Git will push to or pull from. When you use <code>-u</code>, Git not only pushes your current branch to the remote branch but also sets this remote branch as the upstream for your local branch.</p>
+</li>
+<li>
+<p><strong><code>origin</code></strong>: As mentioned earlier, this is the name of your remote repository (in this case, on GitHub).</p>
+</li>
+<li>
+<p><strong><code>main</code></strong>: This is the name of the branch you are pushing. In this context, <code>main</code> is the default branch name for most repositories.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Purpose</strong>: This command pushes your <code>main</code> branch to the <code>origin</code> (GitHub in this case) and sets it as the default branch to track against the remote <code>main</code> branch.</p>
+</li>
+<li>
+<p><strong>Future Pushes</strong>: After running <code>git push -u origin main</code>, your local <code>main</code> branch will “remember” the remote branch to push to. So, in future, you only need to use <code>git push</code> when pushing changes from your local <code>main</code> branch. You don’t have to specify <code>-u origin main</code> again for this branch.</p>
+</li>
+</ul>
+<h4 id="e.-clone-the-repository-for-other-team-members">E. Clone the Repository for Other Team Members</h4>
+<ol>
+<li><strong>Clone the Repository</strong>:<br>
+Each team member (other than the one who created the repo) should open their terminal or Git Bash and run:<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> clone https://github.com/username/repository-name.git
+</code></pre>
+</li>
+<li><strong>Navigate to Project Directory</strong>:<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">cd</span> repository-name
+</code></pre>
+</li>
+</ol>
+<h2 id="part-2-practice-making-changes">Part 2: Practice making changes</h2>
+<p>Below is a set of tasks. Each task is designed to be completed by a different team member. Before you begin your task,  read the <code>General Procedure for Each Task</code> at the bottom of step 2.</p>
+<h3 id="task-1-create-a-meeting-minutes-folder-and-add-a-document">Task 1: Create a “meeting-minutes” Folder and Add a Document</h3>
+<ul>
+<li><strong>Student Assigned</strong>: Student 1</li>
+<li><strong>Task</strong>: In your working copy, create a new folder named <code>meeting-minutes</code>. Inside this folder, create a document named <code>2024-26-01-notes.docs</code> and add some text to it.</li>
+</ul>
+<h3 id="task-2-update-the-readme-file">Task 2: Update the README File</h3>
+<ul>
+<li><strong>Student Assigned</strong>: Student 2</li>
+<li><strong>Task</strong>: Edit the <code>README.md</code> file in the root of the repository to include a paragraph describing the game  the team is working on.</li>
+</ul>
+<h3 id="task-3-create-essential-project-directories">Task 3: Create Essential Project Directories</h3>
+<ul>
+<li><strong>Student Assigned</strong>: Student 3</li>
+<li><strong>Task</strong>: Create the following directories: <code>src</code>, <code>test</code>, <code>docs</code>, <code>assets</code>, <code>data</code>.
+<ul>
+<li><strong><code>src</code></strong>: This directory will contain the source code of the project.</li>
+<li><strong><code>test</code></strong>: For storing test scripts and test-related resources.</li>
+<li><strong><code>docs</code></strong>: To keep project documentation.</li>
+<li><strong><code>assets</code></strong>: For non-code resources like images or sound files.</li>
+<li><strong><code>data</code></strong>: To store data files used or generated by the project.</li>
+</ul>
+</li>
+</ul>
+<h3 id="task-4-add-a-python-script">Task 4: Add a Python Script</h3>
+<ul>
+<li><strong>Student Assigned</strong>: Student 4</li>
+<li><strong>Task</strong>: In the <code>src</code> directory, add some basic Python code, for example, a simple “Hello World” program.</li>
+</ul>
+<h3 id="task-5-modify-the-python-script-potential-for-merge-conflict">Task 5: Modify the Python Script (Potential for Merge Conflict)</h3>
+<ul>
+<li><strong>Student Assigned</strong>: Students 5 and 6 (Simultaneously)</li>
+<li><strong>Task</strong>: Both students modify the same Python file created by Student 4. Students should make different changes to the same part of the file.</li>
+<li><strong>Purpose</strong>: This task is designed to potentially create a merge conflict, which is a common scenario in team-based development. Resolving merge conflicts is a crucial skill in using Git.</li>
+</ul>
+<h3 id="general-procedure-for-each-task">General Procedure for Each Task:</h3>
+<ol>
+<li>
+<p><strong>Pull the Latest Changes</strong>: Start by pulling the latest changes from the repository to ensure you’re working on the most recent version.</p>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> pull origin main
+</code></pre>
+</li>
+<li>
+<p><strong>Make the Changes</strong>: Perform the tasks as described above.</p>
+</li>
+<li>
+<p><strong>Stage the Changes</strong>: Add the changes to the staging area.</p>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> add <span class="token keyword">.</span>
+</code></pre>
+</li>
+<li>
+<p><strong>Commit the Changes</strong>: Commit the changes with an appropriate commit message.</p>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> commit -m <span class="token string">"Descriptive message about the change"</span>
+</code></pre>
+</li>
+<li>
+<p><strong>Push the Changes</strong>: Push the commit to the GitHub repository.</p>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> push origin main
+</code></pre>
+</li>
+<li>
+<p><strong>Handling Merge Conflicts</strong>: If a merge conflict arises (likely in Task 5), Git will notify the student. They will then need to manually resolve the conflict in the file, stage the resolved file, and complete the push. Read below for more details.</p>
+</li>
+</ol>
+<h4 id="when-a-merge-conflict-occurs">When a Merge Conflict Occurs</h4>
+<p><strong>Git Notifies of a Conflict</strong>: When a team member tries to pull or push changes where the same lines of code have been altered by different team members, Git will stop and mark the file as having a conflict.</p>
+<h4 id="resolving-the-merge-conflict">Resolving the Merge Conflict</h4>
+<p>a. <strong>Identify Conflicted Files</strong>: First, identify which files have conflicts. Git will mark these files in the output of the <code>git status</code> command.</p>
+<p>b. <strong>Edit the Files</strong>: Open the conflicted files in a text editor. Git will have marked the areas with conflicts with special markers:</p>
+<ul>
+<li><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code>: Everything after this marker and before the <code>=======</code> marker represents your changes (the changes in the current branch).</li>
+<li><code>=======</code>: Separates your changes from the changes made in the other branch.</li>
+<li><code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; [other branch name]</code>: Everything after this marker represents the changes from the other branch that are conflicting with your changes.</li>
+</ul>
+<p>c. <strong>Resolve the Conflicts</strong>: Decide what the final content should be. You might choose to keep your changes, the other person’s changes, or combine both. Remove the conflict markers (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>) and edit the content to how you want it to appear in the final merge.</p>
+<p>d. <strong>Save the File</strong>: After resolving the conflicts in the file, save it.</p>
+<h4 id="completing-the-merge">Completing the Merge</h4>
+<p>a. <strong>Stage the Resolved File</strong>:</p>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> add <span class="token punctuation">[</span>file<span class="token punctuation">]</span>
+</code></pre>
+<p>Replace <code>[file]</code> with the name of the file you resolved.</p>
+<p>b. <strong>Commit the Resolution</strong>:</p>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> commit -m <span class="token string">"Resolved merge conflict in [file]"</span>
+</code></pre>
+<p>This commit will complete the merge process. You do not need to specify the file name in the commit message, but it can be helpful for documentation purposes.</p>
+<p>c. <strong>Push the Changes</strong>:</p>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> push origin main
+</code></pre>
+<h4 id="final-steps">Final Steps</h4>
+<ul>
+<li><strong>Check Status</strong>: Use <code>git status</code> to ensure all conflicts are resolved and all changes are committed.</li>
+<li><strong>Syncing with Remote</strong>: After resolving conflicts and pushing, it’s a good practice for other team members to pull the latest changes to ensure everyone is working with the updated codebase.</li>
+</ul>
+<h2 id="part-3-working-with-branches-and-pull-requests">Part 3: Working with Branches and Pull Requests</h2>
+<h3 id="introduction-to-branches-in-git">Introduction to Branches in Git</h3>
+<h4 id="what-are-branches">What are Branches?</h4>
+<ul>
+<li><strong>Branches in Git</strong> represent an independent line of development in your project. You can think of them as a way to request a brand new working directory, staging area, and project history.</li>
+</ul>
+<h4 id="why-use-branches">Why Use Branches?</h4>
+<ul>
+<li><strong>Isolation</strong>: Branches allow you to work on different features, fixes, or experiments in isolation, without affecting the main codebase (usually the <code>main</code> or <code>master</code> branch).</li>
+<li><strong>Parallel Development</strong>: Multiple team members can work simultaneously on different aspects of a project without interfering with each other. Each member works on their own branch.</li>
+<li><strong>Safety</strong>: The main codebase remains safe from untested or unstable changes. Features are only merged into the main branch once they are ready and reviewed.</li>
+</ul>
+<h4 id="common-branching-strategies">Common Branching Strategies</h4>
+<ul>
+<li><strong>Feature Branches</strong>: For adding new features or components to your project.</li>
+<li><strong>Bugfix/Branches</strong>: Specifically for fixing bugs in your project.</li>
+<li><strong>Release Branches</strong>: Used for preparing a project for a new release.</li>
+</ul>
+<h4 id="lifecycle-of-a-branch">Lifecycle of a Branch</h4>
+<ol>
+<li><strong>Creation</strong>: You create a branch when you want to add a new feature or fix a bug.</li>
+<li><strong>Development</strong>: You make your changes in this branch, committing them as you go.</li>
+<li><strong>Pull Request</strong>: Once the work is complete, you might make a pull request  to merge your changes into the main branch.</li>
+<li><strong>Merge</strong>: After review and approval, your branch is merged into the main branch.</li>
+<li><strong>Deletion</strong>: Optionally, you can delete the branch after its merge, especially if it was for a specific task.</li>
+</ol>
+<h4 id="creating-and-checking-out-a-branch">Creating and Checking Out a Branch</h4>
+<ul>
+<li>To create and switch to a new branch:<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> checkout -b new-branch-name
+</code></pre>
+</li>
+<li>To only create a new branch without switching to it:<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> branch new-branch-name
+</code></pre>
+</li>
+<li>To switch between branches:<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> checkout branch-name
+</code></pre>
+</li>
+</ul>
+<p>Certainly! When working with multiple branches in Git, it’s important for team members to understand how to switch between branches and what that means for their working copy. Here’s an explanation that you can include in your instructions:</p>
+<h3 id="moving-between-branches-in-git">Moving Between Branches in Git</h3>
+<h4 id="understanding-working-copy">Understanding Working Copy</h4>
+<ul>
+<li><strong>Working Copy</strong>: Your working copy is the local directory where you have your project files. It changes based on the branch you’re currently checked out in. There’s only one working copy, but it reflects the state of the branch you’re working on.</li>
+</ul>
+<h4 id="switching-branches">Switching Branches</h4>
+<ol>
+<li>
+<p><strong>Check Current Branch</strong>: First, it’s good practice to check which branch you’re currently on:</p>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> branch
+</code></pre>
+<p>This command lists all branches in your local repository and marks the current branch with an asterisk (*).</p>
+</li>
+<li>
+<p><strong>Switch Branches</strong>: To switch from one branch to another, use:</p>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> checkout branch-name
+</code></pre>
+<p>Replace <code>branch-name</code> with the name of the branch you want to switch to.</p>
+</li>
+<li>
+<p><strong>What Happens to the Working Copy</strong>:</p>
+<ul>
+<li>When you switch branches, the files in your working directory change to reflect the state of the new branch.</li>
+<li>Any committed changes specific to the branch you’re moving from are saved in that branch.</li>
+<li>Uncommitted changes will be carried over to the new branch unless they conflict with that branch’s files. If there’s a conflict, Git won’t let you switch branches until you either commit or stash your changes.</li>
+</ul>
+</li>
+</ol>
+<h4 id="example-scenario">Example Scenario:</h4>
+<ul>
+<li><strong>Developer on <code>feature-branch-1</code></strong>: Imagine a developer is working on a feature in <code>feature-branch-1</code>. They have made some changes and committed them to this branch.</li>
+<li><strong>Switching to <code>main</code></strong>: Now, if the developer wants to switch to the <code>main</code> branch, they use:<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> checkout main
+</code></pre>
+</li>
+<li><strong>Changes in Working Copy</strong>: After switching, their working copy will represent the state of the <code>main</code> branch. The changes they made in <code>feature-branch-1</code> won’t be visible until they switch back to that branch.</li>
+</ul>
+<h4 id="handling-uncommitted-changes">Handling Uncommitted Changes:</h4>
+<ul>
+<li>If the developer has uncommitted changes in <code>feature-branch-1</code> and tries to switch to <code>main</code>, they have two options:
+<ol>
+<li><strong>Commit the Changes</strong>: Commit them to <code>feature-branch-1</code> before switching.</li>
+<li><strong>Stash the Changes</strong>: Use <code>git stash</code> to temporarily store the changes, switch branches, and then retrieve the changes later with <code>git stash pop</code> after switching back.</li>
+</ol>
+</li>
+</ul>
+<h4 id="best-practices">Best Practices:</h4>
+<ul>
+<li><strong>Frequent Commits</strong>: It’s good practice to commit changes frequently. This way, you can switch between branches without carrying over a lot of uncommitted changes.</li>
+<li><strong>Clean Working Directory</strong>: Try to keep your working directory clean (without uncommitted changes) before switching branches to avoid confusion.</li>
+</ul>
+<h3 id="your-task-feature-development-using-branches-and-pull-requests">Your task: Feature Development Using Branches and Pull Requests</h3>
+<p>Branching and pull requests are fundamental to managing features, fixes, and updates in a structured and reviewable manner.</p>
+<h4 id="objective">Objective</h4>
+<p>Each team member will create a new feature or make a significant update to the project in a separate branch. They will then submit their changes as a pull request on GitHub for review by other team members.</p>
+<h4 id="step-by-step-guide">Step-by-Step Guide</h4>
+<ol>
+<li>
+<p><strong>Create a New Branch</strong>: Each team member should create a new branch for their task. Branches should be named meaningfully, often based on the feature or fix they’re working on.</p>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> checkout -b feature-branch-name
+</code></pre>
+<p>Replace <code>feature-branch-name</code> with a relevant name for the branch.</p>
+</li>
+<li>
+<p><strong>Develop the Feature</strong>: Make changes or add new features in the branch. This could involve adding new files, editing existing ones, etc. For this test scenario, you can ddd files (to be deleted later) and add some text into them.</p>
+</li>
+<li>
+<p><strong>Commit Changes in the Branch</strong>: As you work, you should regularly commit your changes changes.</p>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> add <span class="token keyword">.</span>
+<span class="token function">git</span> commit -m <span class="token string">"Describe the changes made"</span>
+</code></pre>
+<p>After you commit, you can switch to the main branch to see how that changes your working copy, then switch back to your feature branch.</p>
+</li>
+<li>
+<p><strong>Push the Branch to GitHub</strong>: Once the feature is complete, push the branch to the remote repository.</p>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> push -u origin feature-branch-name
+</code></pre>
+</li>
+<li>
+<p><strong>Create a Pull Request (PR)</strong>:</p>
+<ul>
+<li>Go to the GitHub repository page.</li>
+<li>GitHub often shows a quick option to create a pull request for new branches right on the main page of the repository. If not, you can go to the “Pull requests” tab and click “New pull request”.</li>
+<li>Select the <code>feature-branch-name</code> as the source and <code>main</code> (or the relevant branch) as the destination for the merge.</li>
+<li>Fill in the details of the pull request: title, a brief description of the changes, and any other relevant information.</li>
+<li>Create the pull request.</li>
+</ul>
+</li>
+<li>
+<p><strong>Review and Merge the Pull Request</strong>:</p>
+<ul>
+<li>Other team members review the code, discuss it, and suggest changes if necessary.</li>
+<li>Once the pull request is approved by the team or the designated reviewers, it can be merged into the main branch.</li>
+<li>Ideally, the team member who created the pull request shouldn’t be the one to merge it. This encourages peer review and collaboration.</li>
+</ul>
+</li>
+<li>
+<p><strong>Delete the Branch Post-Merge</strong> (optional but recommended for cleanliness):</p>
+<ul>
+<li>After the pull request is merged, the feature branch can be deleted to keep the repository tidy.</li>
+<li>GitHub provides an option to delete the branch immediately after merging the PR.</li>
+</ul>
+</li>
+<li>
+<p><strong>Pull the Latest Changes</strong>:</p>
+<ul>
+<li>Once the feature branch is merged into <code>main</code>, all team members should update their local <code>main</code> branch.</li>
+</ul>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> checkout main
+<span class="token function">git</span> pull origin main
+</code></pre>
+</li>
+</ol>
+<h4 id="why-this-is-important-in-a-collaborative-project">Why this is important in a collaborative project</h4>
+<ul>
+<li><strong>Branching</strong>:  learn to work on features in isolation, reducing the risk of disrupting the main codebase.</li>
+<li><strong>Pull Requests</strong>: They facilitate code reviews, discussions, and provide a history of changes.</li>
+<li><strong>Collaboration and Communication</strong>: This workflow encourages team communication and collaboration through code review.</li>
+</ul>
+</div>
+</body>
+
+</html>
+
