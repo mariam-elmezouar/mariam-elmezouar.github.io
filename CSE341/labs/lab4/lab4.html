@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>341-lab4</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="laboratory-4--relational-algebra">Laboratory 4:  Relational Algebra</h1>
+<h3 id="introduction">Introduction</h3>
+<p>The objective of this lab is to practice relational algebra in the context of the relational model. You can work individually or in a team of two.</p>
+<h3 id="task-1">Task 1:</h3>
+<p>We have the following relational schema:</p>
+<ul>
+<li>Client (noClient, name, noTel, address)</li>
+<li>Article (noArticle, description, unitPrice, qtyInStock)</li>
+<li>Order (noOrder, dateOrder, noClient)</li>
+<li>DetailsOrder (noOrder, noArticle, quantity)</li>
+<li>Delivery (noDelivery, dataDelivery)</li>
+<li>DetailsDelivery (noDelivery, noOrder, noArticle, qtyDelivery)</li>
+</ul>
+<p>The constraints on the foreign keys are the following:</p>
+<ul>
+<li>DetailsOrder(noOrder) refers to Order(noOrder)</li>
+<li>DetailsOrder(noArticle) refers to Article (noArticle)</li>
+<li>DetailsDelivery(noDelivery) refers to Delivery (noDelivery)</li>
+<li>DetailsDelivery(noOrder) refers to Order (noOrder)</li>
+<li>DetailsDelivery(noArticle) refers to Article (noArticle)</li>
+</ul>
+<p>Write in relational algebra the following queries:</p>
+<p>(a) The order number and the order date of orders from customer 10 whose order number is greater than 5.<br>
+(b) The numbers of the articles (noArticle) ordered at least once by customer 10 after 01/06/2000.<br>
+© Order numbers for orders that were placed on the same date as order 2.<br>
+(d) The numbers and names of customers who did not place an order in March of the year 2000.<br>
+(e) The article numbers that appear in all customer orders 10.</p>
+<h3 id="exercise-2">Exercise 2:</h3>
+<p>Consider a relational database containing information about employees. It has several tables:</p>
+<ul>
+<li>Employee (NSS, Name, First name, Date of Birth, Address, Salary, NDep, Superior)</li>
+<li>Department (NDep, NomD, Director)</li>
+<li>Project (NPro, NomP, Location, NDep)</li>
+<li>Works (NSS, NPro, Hours)</li>
+</ul>
+<p>The foreign key constraints are as follows:</p>
+<ul>
+<li>Employee (Superior) references Employee (NSS)</li>
+<li>Employee (NDep) references Department (NDep)</li>
+<li>Department (Director) references Employee (NSS)</li>
+<li>Project (NDep) references Department (NDep)</li>
+<li>Works (NPro) references Project (NPro)</li>
+<li>Works (NSS) references Employee (NSS)</li>
+</ul>
+<p>The Superior attribute in the Employee relationship contains the social security number of the employee’s direct supervisor. Each employee belongs to a department and works on one or more projects. Each project is attached to a department which may be different from that of the employees working on this project.</p>
+<p>Write the following queries in relational algebra:</p>
+<p>(a) Date of birth and address of Mary Brown<br>
+(b) Name and address of the employees working in the research department<br>
+© Names of employees working more than 10 hours on a project at Genève<br>
+(d) Surname and first name of employees who do not work on any project.</p>
+<hr>
+<h3 id="submitting-your-work">Submitting Your Work</h3>
+<p>Submit your PDF report named Your_Names_lab4 on Moodle by Feb. 15th 2024 at 23:59.</p>
+<p><strong>Task 1</strong>: 10 points<br>
+<strong>Task 2</strong>: 10 points</p>
+</div>
+</body>
+
+</html>
