@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>341-lab5</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="database-manipulation-laboratory">Lab 5: Database Manipulation using MySQL</h1>
+<h2 id="objective">Objective</h2>
+<p>This laboratory is dedicated to practicing DML (Data Manipulation Language) requests in MySQL.</p>
+<h2 id="task-1-installation">Task 1: Installation</h2>
+<ol>
+<li>
+<p><strong>Install MySQL Workbench:</strong> If you haven’t already installed MySQL Workbench on your computer, download it from the official site.</p>
+<ul>
+<li><a href="https://dev.mysql.com/downloads/workbench/">MySQL Workbench Download</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Download Script:</strong> A script <a href="StudentDB.sql"><code>StudentDB.sql</code></a> is provided to create the necessary database for practice.</p>
+</li>
+</ol>
+<h2 id="task-2-practice-dml-in-mysql">Task 2: Practice DML in MySQL</h2>
+<ol>
+<li><strong>Load and Execute Script:</strong>
+<ul>
+<li>Open MySQL Workbench.</li>
+<li>Go to the <strong>Edit SQL Script</strong> section.</li>
+<li>Load the script <code>StudentDB.sql</code>.</li>
+<li>Execute the script to create and populate the <code>StudentDB</code> database.</li>
+</ul>
+</li>
+</ol>
+<h3 id="database-schema">Database Schema</h3>
+<p>The database you will be working with has the following schema:</p>
+<ul>
+<li>
+<p><code>Student</code> Table:</p>
+<ul>
+<li><code>ID</code> int</li>
+<li><code>name</code> varchar(20)</li>
+<li><code>GPA</code> real</li>
+<li><code>sizeHS</code> int</li>
+</ul>
+</li>
+<li>
+<p><code>Campus</code> Table:</p>
+<ul>
+<li><code>location</code> varchar(20)</li>
+<li><code>enrollment</code> int</li>
+<li><code>camprank</code> int</li>
+</ul>
+</li>
+<li>
+<p><code>Apply</code> Table:</p>
+<ul>
+<li><code>ID</code> int</li>
+<li><code>location</code> varchar(20)</li>
+<li><code>major</code> varchar(20)</li>
+<li><code>decision</code> varchar(20)</li>
+</ul>
+</li>
+</ul>
+<h2 id="task-3-sql-queries">Task 3: SQL Queries</h2>
+<ol>
+<li>
+<p><strong>Create Queries:</strong></p>
+<ul>
+<li>Based on the <code>studentDB</code> schema and data, create the queries as described in the file <a href="StudentDBQueries.sql"><code>StudentDBQueries.sql</code></a>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Test Queries:</strong></p>
+<ul>
+<li>Execute the file <code>StudentDBQueries.sql</code> in MySQL Workbench (Edit SQL Script section) to test your queries.</li>
+</ul>
+</li>
+</ol>
+<h2 id="documentation">Documentation</h2>
+<p>For more information on how to use MySQL Workbench, refer to the official documentation.</p>
+<ul>
+<li><a href="https://dev.mysql.com/doc/workbench/en/">MySQL Workbench Documentation</a></li>
+</ul>
+<h2 id="grading-scheme">Grading Scheme</h2>
+
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Points</th>
+<th>Query</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.</td>
+<td>0.5 point</td>
+<td>9.</td>
+<td>0.5 point</td>
+</tr>
+<tr>
+<td>2.</td>
+<td>0.5 point</td>
+<td>10.</td>
+<td>0.5 point</td>
+</tr>
+<tr>
+<td>3.</td>
+<td>1 point</td>
+<td>11.</td>
+<td>0.5 point</td>
+</tr>
+<tr>
+<td>4.</td>
+<td>0.5 point</td>
+<td>12.</td>
+<td>0.5 point</td>
+</tr>
+<tr>
+<td>5.</td>
+<td>1 point</td>
+<td>13.</td>
+<td>1 point</td>
+</tr>
+<tr>
+<td>6.</td>
+<td>1 point</td>
+<td>14.</td>
+<td>1 point</td>
+</tr>
+<tr>
+<td>7.</td>
+<td>1 point</td>
+<td>15.</td>
+<td>1 point</td>
+</tr>
+<tr>
+<td>8.</td>
+<td>0.5 point</td>
+<td>16.</td>
+<td>1 point</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>17.</td>
+<td>1 point</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>18.</td>
+<td>1 point</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>19.</td>
+<td>1 point</td>
+</tr>
+</tbody>
+</table><h2 id="submission">Submission</h2>
+<p>Submit the SQL file renamed as yourname(s)_StudentDBQueries.sql, with your name added as comment at the top of the file, on Moodle by March 7th 2024 at 23:59. You can work individually or in a team of two.</p>
+</div>
+</body>
+
+</html>
