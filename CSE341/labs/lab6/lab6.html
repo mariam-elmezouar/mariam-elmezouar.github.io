@@ -1,0 +1,364 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>341-lab6</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="database-manipulation-laboratory">Lab 6: Database Definition using MySQL</h1>
+  <div class="stackedit__html"><h2 id="exercise-1-database-creation-script">Exercise 1: Database Creation Script</h2>
+<p><strong>Objective</strong>: Practice complex DDL statements by defining and implementing a relational database schema with enhanced features and constraints using MySQL.</p>
+<p><strong>Background</strong>:<br>
+A university wishes to manage data concerning its students, campuses, and applications. A relational database, <code>StudentDB</code>, is required to reflect the complexities of this data.</p>
+<p><strong>Task</strong>:<br>
+Write a MySQL script named “yourName_lab6.sql” to create the <code>StudentDB</code> database with the following specifications:</p>
+<h3 id="schema-details">Schema Details:</h3>
+<ol>
+<li>
+<p><strong>Student Table</strong>:</p>
+<ul>
+<li>Attributes: <code>ID</code> (primary key, <a href="extra-sql-features.html">auto-increment</a>), <code>name</code>, <code>GPA</code> (not null, decimal), <code>sizeHS</code> (size of the high school), <code>email</code> (unique, varchar), <code>dateOfBirth</code> (date).</li>
+<li>Constraints: <code>GPA</code> must be between 0.0 and 4.0.</li>
+</ul>
+</li>
+<li>
+<p><strong>Campus Table</strong>:</p>
+<ul>
+<li>Attributes: <code>location</code> (primary key, varchar), <code>enrollment</code> (integer), <code>rank</code> (integer), <code>foundedYear</code> (year).</li>
+</ul>
+</li>
+<li>
+<p><strong>Application Table</strong>:</p>
+<ul>
+<li>Attributes: <code>applicationID</code> (primary key, auto-increment), <code>studentID</code> (foreign key, integer), <code>campus</code> (foreign key, varchar), <code>major</code>, <code>decision</code> (<a href="extra-sql-features.html">enum</a> with values ‘Accepted’, ‘Rejected’, ‘Waitlisted’).</li>
+<li>Constraints:
+<ul>
+<li>On update of <code>campus</code> in Campus table, corresponding <code>campus</code> in Application should update.</li>
+<li>On delete of a <code>Student</code>, all related <code>Application</code> records should be deleted.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Major Table</strong>:</p>
+<ul>
+<li>Attributes: <code>majorID</code> (primary key, auto-increment), <code>majorName</code> (unique, varchar).</li>
+</ul>
+</li>
+<li>
+<p><strong>StudentMajors Table</strong> (for many-to-many relationship):</p>
+<ul>
+<li>Attributes: <code>studentID</code> (foreign key), <code>majorID</code> (foreign key).</li>
+</ul>
+</li>
+</ol>
+<h3 id="requirements">Requirements:</h3>
+<ul>
+<li>If <code>StudentDB</code> exists, the script must drop it before creating a new one.</li>
+<li>Include commands to create each table with appropriate data types and constraints.</li>
+<li>Ensure referential integrity is maintained through the use of foreign keys.</li>
+<li>Include comments within the script to describe each step or section.</li>
+<li>Use appropriate naming conventions for database objects.</li>
+</ul>
+<h2 id="exercise-2-practicing-alter-statements">Exercise 2: Practicing ALTER Statements</h2>
+<p><strong>Task</strong>: Apply the following changes to your previously created <code>StudentDB</code> using the <code>ALTER TABLE</code> statement in MySQL:</p>
+<h3 id="alterations-to-perform">Alterations to Perform:</h3>
+<ol>
+<li>
+<p><strong>Student Table</strong>:</p>
+<ul>
+<li>Add a new column <code>phoneNumber</code> which should be a <code>VARCHAR(15)</code>. Ensure that phone numbers are unique across all students.</li>
+<li>Drop the <code>sizeHS</code> column as the university has decided that this information is no longer required.</li>
+</ul>
+</li>
+<li>
+<p><strong>Campus Table</strong>:</p>
+<ul>
+<li>Add a <code>CHECK</code> constraint to ensure that the <code>enrollment</code> cannot be less than zero.</li>
+</ul>
+</li>
+<li>
+<p><strong>Application Table</strong>:</p>
+<ul>
+<li>Add a new column <code>applicationDate</code> of type <code>DATE</code> to record when an application was submitted.</li>
+<li>Drop the constraint on <code>decision</code> ENUM and change it to a <code>VARCHAR(20)</code> to allow for new types of decisions that might be added in the future.</li>
+</ul>
+</li>
+<li>
+<p><strong>Major Table</strong>:</p>
+<ul>
+<li>Add a unique constraint to the <code>majorName</code> if it was not already unique.</li>
+<li>Introduce a new column <code>faculty</code> which represents the broader category for the major, e.g., Science, Arts, etc.</li>
+</ul>
+</li>
+</ol>
+<h2 id="exercise-3-data-insertion-practice">Exercise 3: Data Insertion Practice</h2>
+<p><strong>Task</strong>: Use the <code>INSERT INTO</code> statement to add the following data into the  tables of your <code>StudentDB</code> database. Keep in mind the recent schema alterations and ensure data integrity.</p>
+<h4 id="student-table-data">Student Table Data:</h4>
+
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>GPA</th>
+<th>Email</th>
+<th>DateOfBirth</th>
+<th>PhoneNumber</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>123</td>
+<td>Amy</td>
+<td>3.9</td>
+<td><a href="mailto:amy@university.edu">amy@university.edu</a></td>
+<td>2000-04-15</td>
+<td>555-0101</td>
+</tr>
+<tr>
+<td>234</td>
+<td>Bob</td>
+<td>3.8</td>
+<td><a href="mailto:bob@university.edu">bob@university.edu</a></td>
+<td>1999-11-08</td>
+<td>555-0202</td>
+</tr>
+<tr>
+<td>345</td>
+<td>Craig</td>
+<td>3.7</td>
+<td><a href="mailto:craig@university.edu">craig@university.edu</a></td>
+<td>2001-06-20</td>
+<td>555-0303</td>
+</tr>
+<tr>
+<td>456</td>
+<td>Doris</td>
+<td>3.7</td>
+<td><a href="mailto:doris@university.edu">doris@university.edu</a></td>
+<td>2002-01-13</td>
+<td>555-0404</td>
+</tr>
+<tr>
+<td>567</td>
+<td>Edward</td>
+<td>3.6</td>
+<td><a href="mailto:edward@university.edu">edward@university.edu</a></td>
+<td>1998-08-29</td>
+<td>555-0505</td>
+</tr>
+</tbody>
+</table><h4 id="campus-table-data">Campus Table Data:</h4>
+
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th>Enrollment</th>
+<th>Rank</th>
+<th>FoundedYear</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Berkeley</td>
+<td>35000</td>
+<td>1</td>
+<td>1868</td>
+</tr>
+<tr>
+<td>Los Angeles</td>
+<td>38000</td>
+<td>2</td>
+<td>1919</td>
+</tr>
+<tr>
+<td>San Diego</td>
+<td>27500</td>
+<td>3</td>
+<td>1960</td>
+</tr>
+<tr>
+<td>Santa Cruz</td>
+<td>15000</td>
+<td>4</td>
+<td>1965</td>
+</tr>
+</tbody>
+</table><h4 id="application-table-data">Application Table Data:</h4>
+<h4 id="application-table-data-1">Application Table Data:</h4>
+
+<table>
+<thead>
+<tr>
+<th>ApplicationID</th>
+<th>StudentID</th>
+<th>Campus</th>
+<th>Major</th>
+<th>Decision</th>
+<th>ApplicationDate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>123</td>
+<td>Los Angeles</td>
+<td>Computer Science</td>
+<td>Accepted</td>
+<td>2024-03-15</td>
+</tr>
+<tr>
+<td>2</td>
+<td>234</td>
+<td>Berkeley</td>
+<td>Biology</td>
+<td>Waitlisted</td>
+<td>2024-03-22</td>
+</tr>
+<tr>
+<td>3</td>
+<td>345</td>
+<td>San Diego</td>
+<td>Bioengineering</td>
+<td>Accepted</td>
+<td>2024-03-30</td>
+</tr>
+<tr>
+<td>4</td>
+<td>456</td>
+<td>Santa Cruz</td>
+<td>Mathematics</td>
+<td>Rejected</td>
+<td>2024-04-05</td>
+</tr>
+<tr>
+<td>5</td>
+<td>567</td>
+<td>Berkeley</td>
+<td>English Literature</td>
+<td>Accepted</td>
+<td>2024-04-12</td>
+</tr>
+</tbody>
+</table><h4 id="major-table-data">Major Table Data:</h4>
+
+<table>
+<thead>
+<tr>
+<th>majorID</th>
+<th>majorName</th>
+<th>faculty</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Computer Science</td>
+<td>Science</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Biology</td>
+<td>Science</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Bioengineering</td>
+<td>Engineering</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Mathematics</td>
+<td>Science</td>
+</tr>
+<tr>
+<td>5</td>
+<td>English Literature</td>
+<td>Arts</td>
+</tr>
+</tbody>
+</table><p><em>(Major IDs are assumed to be auto-incremented.)</em></p>
+<h4 id="studentmajors-table-data">StudentMajors Table Data:</h4>
+
+<table>
+<thead>
+<tr>
+<th>studentID</th>
+<th>majorID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>5</td>
+<td>5</td>
+</tr>
+</tbody>
+</table><p>Once done, verify that each table has been populated with the correct data and that the overall database reflects a consistent and accurate representation of the intended structure. The code needs to run without errors on my end.</p>
+<h2 id="exercise-4-reverse-engineering">Exercise 4: Reverse Engineering</h2>
+<p><strong>Task</strong>: Generate an EER diagram from your <code>StudentDB</code> using MySQL Workbench and ensure all relationships are correctly represented.</p>
+<ol>
+<li>
+<p><strong>Open Reverse Engineer Wizard</strong>:</p>
+<ul>
+<li>Connect to your MySQL server in MySQL Workbench.</li>
+<li>Navigate to <code>Database &gt; Reverse Engineer</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Select Your Database</strong>:</p>
+<ul>
+<li>Select <code>StudentDB</code>, and execute the reverse engineering process.</li>
+</ul>
+</li>
+<li>
+<p><strong>Import Objects</strong>:</p>
+<ul>
+<li>Ensure tables are selected and check the option “Place imported objects in the diagram”.</li>
+</ul>
+</li>
+<li>
+<p><strong>Manual Relationships</strong>:</p>
+<ul>
+<li>If relationships are missing in the EER diagram, use the “Place a Relationship Using Existing Columns” tool to add them manually.</li>
+</ul>
+</li>
+<li>
+<p><strong>Save Your EER Diagram</strong>:</p>
+<ul>
+<li>Save the project as <code>yourName_lab6.mwb</code> via <code>File &gt; Save Model As...</code>.</li>
+</ul>
+</li>
+</ol>
+<p>Ensure the EER diagram matches the schema defined in your SQL script without errors.</p>
+<h2 id="deliverables">Deliverables:</h2>
+<ul>
+<li>In zipped file names yourName(s)_lab6, include the MySQL script file and the generated EER model. Make sure you add your names as a comment as top of the SQL file. You can work in a team of 2 or individually.</li>
+<li>Document your code and any assumptions made during the database design.</li>
+<li>Submit on Moodle by March 14th 2024 at 23:59.</li>
+</ul>
+</div>
+</body>
+
+</html>

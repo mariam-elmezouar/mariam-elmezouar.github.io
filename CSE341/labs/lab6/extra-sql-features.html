@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>extra-sql-features</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h3 id="auto_increment-in-mysql">Auto_increment in MySQL</h3>
+<p>The <code>AUTO_INCREMENT</code> attribute in MySQL automatically assigns a unique identifier for new rows in a table:</p>
+<ul>
+<li><strong>Unique Identifier</strong>: Ensures each record has a distinct number for the <code>PRIMARY KEY</code> column.</li>
+<li><strong>Sequential Numbers</strong>: The value starts at 1 and increments by 1 for each new record, by default.</li>
+<li><strong>Inserts</strong>: When inserting data, you do not need to specify a value for the <code>AUTO_INCREMENT</code> column; MySQL handles it.</li>
+</ul>
+<h4 id="example-usage">Example Usage:</h4>
+<pre class=" language-sql"><code class="prism  language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> students <span class="token punctuation">(</span>
+    student_id <span class="token keyword">INT</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+    name <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>student_id<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> students <span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token string">'John Doe'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">-- student_id will be 1</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> students <span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token string">'Jane Smith'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">-- student_id will be 2</span>
+</code></pre>
+<h3 id="enum-data-type-in-mysql">ENUM Data Type in MySQL</h3>
+<p><code>ENUM</code> is a string object that restricts data to a list of predefined values:</p>
+<ul>
+<li><strong>Predefined Values</strong>: The <code>ENUM</code> field can only contain one of the values listed during table creation.</li>
+<li><strong>Storage</strong>: Internally stored as integers, <code>ENUM</code> is space-efficient and fast.</li>
+<li><strong>Data Integrity</strong>: The field can only store a value that is listed in the column definition.</li>
+</ul>
+<h4 id="example-usage-1">Example Usage:</h4>
+<pre class=" language-sql"><code class="prism  language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> shirt_orders <span class="token punctuation">(</span>
+    order_id <span class="token keyword">INT</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+    shirt_size <span class="token keyword">ENUM</span><span class="token punctuation">(</span><span class="token string">'XS'</span><span class="token punctuation">,</span> <span class="token string">'S'</span><span class="token punctuation">,</span> <span class="token string">'M'</span><span class="token punctuation">,</span> <span class="token string">'L'</span><span class="token punctuation">,</span> <span class="token string">'XL'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>order_id<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> shirt_orders <span class="token punctuation">(</span>shirt_size<span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token string">'M'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">-- Accepts 'M' as a valid size</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> shirt_orders <span class="token punctuation">(</span>shirt_size<span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token string">'XXL'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">-- Throws an error, 'XXL' is not in the list</span>
+</code></pre>
+<pre><code></code></pre>
+</div>
+</body>
+
+</html>
