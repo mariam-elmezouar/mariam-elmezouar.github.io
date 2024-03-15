@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>341-lab7</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="lab-7-mysql-and-python">Lab 7: MySQL and Python</h1>
+<h3 id="objective">Objective:</h3>
+<p>In this lab, you will practice writing queries, as well as writing a simple Python GUI app to perform database operations such as insertions, updates, and deletions from a user interface, giving you practical experience with the link between front-end interfaces and back-end databases.</p>
+<h3 id="case-study">Case study:</h3>
+<p>A library management system database is being designed to help the library director and staff efficiently manage and track the vast collection of books, authors, categories, and borrowers. The system facilitates the management of book borrowing transactions. This system aims to enhance the overall library management process, from maintaining an organized catalog of books to managing borrower transactions and ensuring the timely return of borrowed materials.</p>
+<h3 id="task-1.-load-and-execute-script">Task 1. Load and Execute Script:</h3>
+<ul>
+<li>Open MySQL Workbench.</li>
+<li>Go to the <strong>Edit SQL Script</strong> section.</li>
+<li>Load the script <a href="LibraryDB.sql"><code>LibraryDB.sql</code></a>.</li>
+<li>Execute the script to create and populate the <code>LibraryDB</code> database.</li>
+</ul>
+<h4 id="database-schema-library-management-system">Database Schema: Library Management System</h4>
+<h5 id="authors-table"><strong>1. <code>authors</code> Table</strong></h5>
+<ul>
+<li><code>author_id</code> INT AUTO_INCREMENT (PK): Unique identifier for the author.</li>
+<li><code>name</code> VARCHAR(255): The name of the author.</li>
+<li><code>bio</code> TEXT: A short biography of the author.</li>
+</ul>
+<h5 id="categories-table"><strong>2. <code>categories</code> Table</strong></h5>
+<ul>
+<li><code>category_id</code> INT AUTO_INCREMENT (PK): Unique identifier for the category.</li>
+<li><code>name</code> VARCHAR(100): The name of the category (e.g., Fantasy, Dystopian).</li>
+<li><code>description</code> TEXT: A description of what the category encompasses.</li>
+</ul>
+<h5 id="books-table"><strong>3. <code>books</code> Table</strong></h5>
+<ul>
+<li><code>book_id</code> INT AUTO_INCREMENT (PK): Unique identifier for the book.</li>
+<li><code>title</code> VARCHAR(255): The title of the book.</li>
+<li><code>author_id</code> INT (FK): Reference to the <code>authors</code> table.</li>
+<li><code>category_id</code> INT (FK): Reference to the <code>categories</code> table.</li>
+<li><code>isbn</code> VARCHAR(13): The International Standard Book Number.</li>
+<li><code>published_date</code> DATE: The date when the book was published.</li>
+<li><code>status</code> ENUM(‘available’, ‘borrowed’): The current status of the book.</li>
+</ul>
+<h5 id="borrowers-table"><strong>4. <code>borrowers</code> Table</strong></h5>
+<ul>
+<li><code>borrower_id</code> INT AUTO_INCREMENT (PK): Unique identifier for the borrower.</li>
+<li><code>name</code> VARCHAR(255): The name of the borrower.</li>
+<li><code>email</code> VARCHAR(255): The email address of the borrower.</li>
+</ul>
+<h5 id="book_borrowers-table"><strong>5. <code>book_borrowers</code> Table</strong></h5>
+<ul>
+<li><code>book_id</code> INT (FK): Reference to the <code>books</code> table.</li>
+<li><code>borrower_id</code> INT (FK): Reference to the <code>borrowers</code> table.</li>
+<li><code>borrowed_date</code> DATE: The date when the book was borrowed.</li>
+<li><code>due_date</code> DATE: The date by which the book is due to be returned.</li>
+<li><code>returned_date</code> DATE: The date when the book was actually returned.</li>
+<li>Primary Key (PK): Composite key consisting of <code>book_id</code> and <code>borrower_id</code>.</li>
+</ul>
+<h3 id="task-2-queries-for-library-management-system">Task 2: Queries for Library Management System</h3>
+<p>The staff at the library would like to be able to carry out the following queries:</p>
+<h4 id="a.-enter-the-details-of-a-new-borrower.">a. Enter the details of a new borrower.</h4>
+<h4 id="b.-enter-the-details-of-a-new-borrowing-transaction-using-book-and-borrower-ids.">b. Enter the details of a new borrowing transaction using book and borrower IDs.</h4>
+<h4 id="c.-update--delete-the-details-of-a-borrower-and-a-borrowing-transaction-using-ids-4-queries.">c. Update / delete the details of a borrower and a borrowing transaction using IDs (4 queries).</h4>
+<h4 id="d.-display-the-list-of-books-which-are-currently-not-borrowed.">d. Display the list of books which are currently not borrowed.</h4>
+<h4 id="e.-display-the-list-of-books-which-are-currently-borrowed-and-the-borrower-details.">e. Display the list of books which are currently borrowed and the borrower details.</h4>
+<h4 id="f.-create-a-view-for-borrowers-to-enable-them-to-see-their-borrowing-transactions.">f. Create a view for borrowers to enable them to see their borrowing transactions.</h4>
+<p>Design these SQL queries and add them to the bottom of <code>library_db.sql</code>. Comment your code properly for clarity. You can ddd more rows in the tables as needed, for more meaningful results from the queries.</p>
+<h3 id="task-3-mysql-and-python">Task 3: MySQL and Python</h3>
+<p>Design an object-oriented Python application that will make use of the queries designed above. Your application should include:<br>
+a. A proper graphical user interface enabling access to the functionalities (queries in task 2) of the system through a menu;<br>
+b. A form to create a new borrower;<br>
+c. A form to create a new book borrowing transaction;<br>
+d. A form that displays the list of borrowers in addition to two buttons: delete borrower and update borrower;<br>
+e. Delete borrower should ask you to confirm the deletion before proceeding;<br>
+f. Update borrower should display all the borrower information in updatable text components, allowing the modification of the data by the user. A button <code>update</code> should save the current modifications when clicked on;<br>
+g. A form that displays the list of borrowed books and the borrower details.</p>
+<h3 id="notes">Notes:</h3>
+<ul>
+<li>
+<p><strong>Set Up the Environment:</strong> Install Python on your system if you haven’t already. Install MySQL Server and ensure it’s running on your system.</p>
+</li>
+<li>
+<p><strong>Install Necessary Libraries:</strong> For the GUI, you can use libraries like <code>tkinter</code> (which is included with Python) or <code>PyQt</code>. For connecting to MySQL, you can use <code>mysql-connector-python</code>. Here’s how you can install these using pip:</p>
+<pre><code>pip install mysql-connector-python
+# If you want to use PyQt
+pip install PyQt5
+</code></pre>
+</li>
+<li>
+<p><strong>Using MySQL with Python:</strong> To learn how about how to use MySQL with Python, consult the tutorial <a href="https://www.w3schools.com/python/python_mysql_getstarted.asp">here</a>. Notice the subsequent sections that explain how to deal with different types of queries (e.g. insert)</p>
+</li>
+<li>
+<p><strong>Design the Database Connection:</strong> Create a class that handles the connection to the MySQL database and includes methods for executing your queries.</p>
+</li>
+<li>
+<p><strong>Design the GUI:</strong> Create a main application window using your chosen GUI library. Add menus and forms for each of the functionalities you need, like creating new borrowers, adding new transactions, etc. Implement dialog boxes for confirmations like deletions.</p>
+</li>
+<li>
+<p><strong>Implement Functionality:</strong> For each form, you will need to write the function that gets called when a button is pressed. For example, when the “Add Borrower” button is clicked, the function should gather the data from the input fields and execute an INSERT statement through the database connection.</p>
+</li>
+</ul>
+<p>Below is a sample code that you can use for inspiration. You can use different GUI libraries and/or organize your classes differently, as long as you follow the requirements listed above.</p>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">import</span> mysql<span class="token punctuation">.</span>connector
+<span class="token keyword">from</span> tkinter <span class="token keyword">import</span> Tk<span class="token punctuation">,</span> Label<span class="token punctuation">,</span> Entry<span class="token punctuation">,</span> Button<span class="token punctuation">,</span> messagebox
+
+<span class="token comment"># Database connection class</span>
+<span class="token keyword">class</span> <span class="token class-name">LibraryDB</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> host<span class="token punctuation">,</span> user<span class="token punctuation">,</span> password<span class="token punctuation">,</span> database<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>connection <span class="token operator">=</span> mysql<span class="token punctuation">.</span>connector<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>
+            host<span class="token operator">=</span>host<span class="token punctuation">,</span>
+            user<span class="token operator">=</span>user<span class="token punctuation">,</span>
+            password<span class="token operator">=</span>password<span class="token punctuation">,</span>
+            database<span class="token operator">=</span>database
+        <span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>cursor <span class="token operator">=</span> self<span class="token punctuation">.</span>connection<span class="token punctuation">.</span>cursor<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    
+    <span class="token keyword">def</span> <span class="token function">add_borrower</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">,</span> email<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            sql <span class="token operator">=</span> <span class="token string">"INSERT INTO borrowers (name, email) VALUES (%s, %s)"</span>
+            self<span class="token punctuation">.</span>cursor<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">,</span> <span class="token punctuation">(</span>name<span class="token punctuation">,</span> email<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>connection<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token boolean">True</span>
+        <span class="token keyword">except</span> mysql<span class="token punctuation">.</span>connector<span class="token punctuation">.</span>Error <span class="token keyword">as</span> err<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Error: "</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token boolean">False</span>
+
+<span class="token comment"># GUI class</span>
+<span class="token keyword">class</span> <span class="token class-name">LibraryApp</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>db <span class="token operator">=</span> LibraryDB<span class="token punctuation">(</span><span class="token string">'localhost'</span><span class="token punctuation">,</span> <span class="token string">'username'</span><span class="token punctuation">,</span> <span class="token string">'password'</span><span class="token punctuation">,</span> <span class="token string">'library_db'</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>root <span class="token operator">=</span> root
+        self<span class="token punctuation">.</span>root<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">"Library Management System"</span><span class="token punctuation">)</span>
+
+        <span class="token comment"># Add GUI components here...</span>
+        self<span class="token punctuation">.</span>name_label <span class="token operator">=</span> Label<span class="token punctuation">(</span>root<span class="token punctuation">,</span> text<span class="token operator">=</span><span class="token string">"Name:"</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>name_label<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        self<span class="token punctuation">.</span>name_entry <span class="token operator">=</span> Entry<span class="token punctuation">(</span>root<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>name_entry<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        self<span class="token punctuation">.</span>email_label <span class="token operator">=</span> Label<span class="token punctuation">(</span>root<span class="token punctuation">,</span> text<span class="token operator">=</span><span class="token string">"Email:"</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>email_label<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        self<span class="token punctuation">.</span>email_entry <span class="token operator">=</span> Entry<span class="token punctuation">(</span>root<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>email_entry<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        self<span class="token punctuation">.</span>add_button <span class="token operator">=</span> Button<span class="token punctuation">(</span>root<span class="token punctuation">,</span> text<span class="token operator">=</span><span class="token string">"Add Borrower"</span><span class="token punctuation">,</span> command<span class="token operator">=</span>self<span class="token punctuation">.</span>add_borrower<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>add_button<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">add_borrower</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        name <span class="token operator">=</span> self<span class="token punctuation">.</span>name_entry<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        email <span class="token operator">=</span> self<span class="token punctuation">.</span>email_entry<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>db<span class="token punctuation">.</span>add_borrower<span class="token punctuation">(</span>name<span class="token punctuation">,</span> email<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            messagebox<span class="token punctuation">.</span>showinfo<span class="token punctuation">(</span><span class="token string">"Success"</span><span class="token punctuation">,</span> <span class="token string">"Borrower added successfully!"</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            messagebox<span class="token punctuation">.</span>showerror<span class="token punctuation">(</span><span class="token string">"Error"</span><span class="token punctuation">,</span> <span class="token string">"Failed to add borrower."</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    root <span class="token operator">=</span> Tk<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    app <span class="token operator">=</span> LibraryApp<span class="token punctuation">(</span>root<span class="token punctuation">)</span>
+    root<span class="token punctuation">.</span>mainloop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<h2 id="deliverables">Deliverables:</h2>
+<ul>
+<li>In a zipped file named yourName(s)_lab7, include <code>LibraryDB.sql</code> and your Python folder named <code>LibraryApp</code> with a readme file on how to run it . Make sure you add your names as a comment at the top of the SQL/Python files. You can work in a team of 2 or individually.</li>
+<li>Document your code.</li>
+<li>Submit on Moodle by March 18th 2024 at 23:59.</li>
+</ul>
+</div>
+</body>
+
+</html>
