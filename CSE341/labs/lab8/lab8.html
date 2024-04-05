@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>341-lab8</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h2 id="exercise-1-database-creation-script">Exercise 1: Database Creation Script</h2>
+<p><strong>Objective</strong>: The learning outcomes of this lab are as follows:</p>
+<ol>
+<li><strong>Disk Storage Understanding</strong>: Calculate physical disk storage capacities and performance metrics.</li>
+<li><strong>B+ Tree Manipulation</strong>: Perform insertions and deletions on B+ trees to understand dynamic index structure operations.</li>
+<li><strong>Query Optimization</strong>: Optimize SQL queries using relational algebra and transformation rules for improved performance.</li>
+<li><strong>Concurrency Control Analysis</strong>: Create wait-for graphs to analyze transaction locking and detect deadlocks.</li>
+</ol>
+<h3 id="task-1-disk-characteristics-and-calculations">Task 1: Disk Characteristics and Calculations</h3>
+<p>Consider a disk with the following characteristics (these are not parameters<br>
+of any particular disk unit):</p>
+<ul>
+<li>Block size (B) = 512 bytes</li>
+<li>Interblock gap size (G) = 128 bytes</li>
+<li>Number of blocks per track = 20</li>
+<li>Number of tracks per surface = 400</li>
+<li>A disk pack consists of 15 double-sided disks</li>
+</ul>
+<p>Answer the following questions:<br>
+a. What is the total capacity of a track, and what is its useful capacity (excluding interblock gaps)?<br>
+b. How many cylinders are there?<br>
+c. What are the total capacity and the useful capacity of a cylinder?<br>
+d. What are the total capacity and the useful capacity of a disk pack?<br>
+e. Given that the disk drive rotates the disk pack at a speed of 2,400 rpm (revolutions per minute), calculate the transfer rate (tr) in bytes/msec and the block transfer time (btt) in msec. Also, determine the average rotational delay (rd) in msec and the bulk transfer rate. (Refer to Appendix B.)<br>
+f. Assuming the average seek time is 30 msec, how much time does it take (on average) in msec to locate and transfer a single block, given its block address?<br>
+g. Calculate the average time it would take to transfer 20 random blocks, and compare this with the time it would take to transfer 20 consecutive blocks using double buffering to save seek time and rotational delay.</p>
+<h3 id="task-2-operations-on-b-tree">Task 2: Operations on B+ Tree</h3>
+<p>Draw the result of each of the following operations on the B+ tree provided:</p>
+<p><img src="tree.png" alt="B+ tree" title="B+ tree"></p>
+<p>a) Insert 23<br>
+b) Insert 65<br>
+c) Insert 52<br>
+d) Insert 42<br>
+e) Remove 44<br>
+f) Remove 40<br>
+g) Remove 70<br>
+h) Remove 60<br>
+i) Remove 60 and 70</p>
+<h3 id="task-3-relational-algebra-tree-and-query-optimization">Task 3: Relational Algebra Tree and Query Optimization</h3>
+<p>Consider the following Hotel schema:</p>
+<ul>
+<li>Hotel (hotelNo, hotelName, city)</li>
+<li>Room (roomNo, hotelNo, type, price)</li>
+<li>Booking (hotelNo, guestNo, dateFrom, dateTo, roomNo)</li>
+<li>Guest (guestNo, guestName, guestAddress)</li>
+</ul>
+<p>where:</p>
+<ul>
+<li>Hotel contains hotel details and hotelNo is the primary key.</li>
+<li>Room contains room details for each hotel and (roomNo, hotelNo) forms the primary key.</li>
+<li>Booking contains details of bookings and (hotelNo, guestNo, dateFrom) forms the primary key.</li>
+<li>Guest contains guest details and guestNo is the primary key.</li>
+</ul>
+<p>Perform the following:</p>
+<ol>
+<li>Draw a relational algebra tree for the query below.</li>
+<li>Use the heuristic rules given in Section 23.3.2 of the Connelly textbook to transform the queries into a more efficient form.</li>
+<li>Discuss each step and state any transformation rules used in the process.</li>
+</ol>
+<pre class=" language-sql"><code class="prism  language-sql"><span class="token keyword">SELECT</span> r<span class="token punctuation">.</span>roomNo<span class="token punctuation">,</span> r<span class="token punctuation">.</span><span class="token keyword">type</span><span class="token punctuation">,</span> r<span class="token punctuation">.</span>price
+<span class="token keyword">FROM</span> Room r<span class="token punctuation">,</span> Booking <span class="token number">b</span><span class="token punctuation">,</span> Hotel h
+<span class="token keyword">WHERE</span> r<span class="token punctuation">.</span>roomNo <span class="token operator">=</span> <span class="token number">b</span><span class="token punctuation">.</span>roomNo <span class="token operator">AND</span> <span class="token number">b</span><span class="token punctuation">.</span>hotelNo <span class="token operator">=</span> h<span class="token punctuation">.</span>hotelNo <span class="token operator">AND</span>
+h<span class="token punctuation">.</span>hotelName <span class="token operator">=</span> <span class="token string">'Grosvenor Hotel'</span> <span class="token operator">AND</span> r<span class="token punctuation">.</span>price <span class="token operator">&gt;</span> <span class="token number">100</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="task-4-wait-for-graph-and-deadlock-detection">Task 4: Wait-For-Graph and Deadlock Detection</h3>
+<p>Given the locking information for several transactions in the following table, perform the following:</p>
+<ol>
+<li>Produce a wait-for-graph (WFG) for the transactions.</li>
+<li>Determine whether a deadlock exists.</li>
+</ol>
+
+<table>
+<thead>
+<tr>
+<th>Transaction</th>
+<th>Data items locked by transaction</th>
+<th>Data items transaction is waiting for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T1</td>
+<td>X2</td>
+<td>X1</td>
+</tr>
+<tr>
+<td>T2</td>
+<td>X3, X10</td>
+<td>X7, X8</td>
+</tr>
+<tr>
+<td>T3</td>
+<td>X8</td>
+<td>X4</td>
+</tr>
+<tr>
+<td>T4</td>
+<td>X7</td>
+<td>X1</td>
+</tr>
+<tr>
+<td>T5</td>
+<td>X1, X5</td>
+<td>X3</td>
+</tr>
+<tr>
+<td>T6</td>
+<td>X4, X9</td>
+<td>X6</td>
+</tr>
+<tr>
+<td>T7</td>
+<td>X6</td>
+<td>X5</td>
+</tr>
+</tbody>
+</table><h2 id="deliverables">Deliverables:</h2>
+<ul>
+<li>Include all your answers to all 4 tasks in a document, and submit it as a PDF named yourName(s)_lab8. You can work in a team of 2 or individually.</li>
+<li>Submit on Moodle by <strong>Sunday March 14th</strong> 2024 at 23:59.</li>
+</ul>
+</div>
+</body>
+
+</html>
